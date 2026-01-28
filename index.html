@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GC Vessel & Cargo Tracker - TV Dashboard</title>
+    <title>GC Vessel & Cargo Tracker</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -36,17 +36,12 @@
             color: var(--text-dark);
             line-height: 1.6;
             overflow-x: hidden;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
         }
         
         .container {
             max-width: 98%;
             margin: 0 auto;
             padding: 0 15px;
-            flex: 1;
-            overflow: hidden;
         }
         
         /* Header Styles */
@@ -56,7 +51,6 @@
             padding: 15px 0;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             width: 100%;
-            flex-shrink: 0;
         }
         
         .header-content {
@@ -160,7 +154,6 @@
         /* Tabs Navigation */
         .tabs-container {
             margin: 20px 0 20px;
-            flex-shrink: 0;
         }
         
         .tabs {
@@ -191,8 +184,6 @@
         .tab-content {
             display: none;
             animation: fadeIn 0.5s;
-            flex: 1;
-            overflow: hidden;
         }
         
         .tab-content.active {
@@ -540,22 +531,18 @@
             font-weight: 700;
         }
         
-        /* DASHBOARD LAYOUT - TV OPTIMIZED */
+        /* DASHBOARD LAYOUT */
         .dashboard-container {
             display: grid;
             grid-template-columns: 1fr 320px;
             gap: 20px;
-            height: calc(100vh - 280px); /* FIXED HEIGHT FOR TV */
-            min-height: 0; /* Critical for grid children */
+            min-height: calc(100vh - 250px);
         }
         
         .main-dashboard {
             display: flex;
             flex-direction: column;
             gap: 20px;
-            height: 100%;
-            min-height: 0;
-            overflow: hidden;
         }
         
         .dashboard-section {
@@ -563,27 +550,13 @@
             border-radius: 10px;
             padding: 15px;
             box-shadow: var(--shadow);
-            height: 100%; /* Fill available space */
-            min-height: 0;
-            display: flex;
-            flex-direction: column;
         }
         
-        /* NEW: Table container for internal scrolling */
-        .table-container {
-            flex: 1;
-            min-height: 0;
-            overflow-y: auto;
-            margin-top: 5px;
-        }
-        
-        /* RIGHT SIDE SUMMARY SECTION - FIXED HEIGHT */
+        /* RIGHT SIDE SUMMARY SECTION */
         .dashboard-sidebar {
             display: flex;
             flex-direction: column;
             gap: 20px;
-            height: 100%;
-            min-height: 0;
         }
         
         .sidebar-summary {
@@ -591,7 +564,6 @@
             border-radius: 10px;
             padding: 15px;
             box-shadow: var(--shadow);
-            min-height: 0;
         }
         
         .sidebar-summary-title {
@@ -640,7 +612,7 @@
             color: var(--primary-blue);
         }
         
-        /* DASHBOARD TABLES - WITH INTERNAL SCROLLING */
+        /* DASHBOARD TABLES - WIDER */
         .dashboard-table {
             width: 100%;
             border-collapse: collapse;
@@ -662,9 +634,6 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            position: sticky;
-            top: 0;
-            z-index: 10;
         }
         
         .dashboard-table td {
@@ -744,16 +713,13 @@
             color: white;
         }
         
-        /* UPDATED: Incoming RORO Styles - PROPER HEIGHT */
+        /* UPDATED: Incoming RORO Styles - COMPACT WITHOUT SCROLL */
         .roro-card {
             background: white;
             border-radius: 10px;
             padding: 15px;
             box-shadow: var(--shadow);
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            min-height: 0;
+            /* REMOVED max-height and overflow to eliminate scrolling */
         }
         
         .roro-total {
@@ -763,7 +729,6 @@
             border-radius: 8px;
             text-align: center;
             margin-bottom: 12px;
-            flex-shrink: 0;
         }
         
         .roro-total-number {
@@ -775,12 +740,6 @@
         .roro-total-label {
             font-size: 14px;
             opacity: 0.9;
-        }
-        
-        .roro-vessels-container {
-            flex: 1;
-            min-height: 0;
-            overflow-y: auto;
         }
         
         .roro-vessels {
@@ -930,77 +889,6 @@
             font-weight: 500;
         }
         
-        /* TV-SPECIFIC OPTIMIZATIONS */
-        @media (min-width: 1200px) {
-            body {
-                font-size: 18px;
-            }
-            
-            .logo-text h1 {
-                font-size: 32px;
-            }
-            
-            .current-time {
-                font-size: 32px;
-            }
-            
-            .current-day {
-                font-size: 24px;
-            }
-            
-            .current-date {
-                font-size: 20px;
-            }
-            
-            .tab {
-                font-size: 22px;
-                padding: 18px 35px;
-            }
-            
-            .dashboard-container {
-                height: calc(100vh - 260px);
-                grid-template-columns: 1fr 360px;
-            }
-            
-            .dashboard-table {
-                font-size: 16px;
-            }
-            
-            .dashboard-table th,
-            .dashboard-table td {
-                padding: 10px 12px;
-            }
-            
-            .sidebar-summary-title {
-                font-size: 20px;
-            }
-            
-            .summary-item {
-                font-size: 18px;
-            }
-            
-            .roro-total-number {
-                font-size: 32px;
-            }
-            
-            .roro-vessel-item {
-                font-size: 14px;
-            }
-            
-            /* Auto-switch to dashboard on TV */
-            .tab[data-tab="addVessel"] {
-                display: none;
-            }
-            
-            #addVessel {
-                display: none !important;
-            }
-            
-            #dashboard {
-                display: block !important;
-            }
-        }
-        
         /* Responsive Styles */
         @media (max-width: 1400px) {
             .container {
@@ -1020,8 +908,6 @@
         @media (max-width: 1200px) {
             .dashboard-container {
                 grid-template-columns: 1fr;
-                height: auto;
-                min-height: 0;
             }
             
             .vessel-details {
@@ -1134,95 +1020,226 @@
     <main class="container">
         <div class="tabs-container">
             <div class="tabs">
-                <div class="tab" data-tab="addVessel">Add a Vessel</div>
-                <div class="tab active" data-tab="dashboard">Dashboard</div>
+                <div class="tab active" data-tab="addVessel">Add a Vessel</div>
+                <div class="tab" data-tab="dashboard">Dashboard</div>
+            </div>
+        </div>
+        
+        <!-- Add Vessel Tab -->
+        <div class="tab-content active" id="addVessel">
+            <div class="form-section">
+                <div class="section-header">
+                    <h2 class="section-title">Add a Vessel</h2>
+                </div>
+                
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="vesselName">Vessel Name *</label>
+                        <input type="text" id="vesselName" placeholder="Enter vessel name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="voyage">VOY. *</label>
+                        <input type="text" id="voyage" placeholder="Enter voyage number">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="agent">Agent *</label>
+                        <input type="text" id="agent" placeholder="Enter agent name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="eta">ETA *</label>
+                        <input type="datetime-local" id="eta">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="vesselType">Vessel Type *</label>
+                        <select id="vesselType">
+                            <option value="">Select vessel type</option>
+                            <option value="RORO">RORO</option>
+                            <option value="GENERAL CARGO">General Cargo</option>
+                            <option value="DHOW">Dhow</option>
+                            <option value="NAVAL">Naval</option>
+                            <option value="TUG BOAT">Tug Boat</option>
+                            <option value="CRUISE">Cruise</option>
+                            <option value="TUG&BARGE">Tug & Barge</option>
+                            <option value="TANKER">Tanker</option>
+                            <option value="RIG">Rig</option>
+                            <option value="CONTAINER">Container</option>
+                            <option value="OTHER">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="commodity">Commodity *</label>
+                        <select id="commodity">
+                            <option value="">Select commodity</option>
+                            <option value="UNITS">Units</option>
+                            <option value="PACKAGES">Packages</option>
+                            <option value="UNITS AND PACKAGES">Units and Packages</option>
+                            <option value="LIVESTOCK">Livestock</option>
+                            <option value="LAY BY">Lay By</option>
+                            <option value="NAVAL CREW">Naval Crew</option>
+                            <option value="PASSENGERS">Passengers</option>
+                            <option value="OVER DIMENSION">Over Dimension</option>
+                            <option value="STEEL PIPE">Steel Pipe</option>
+                            <option value="PORT CLEARANCE">Port Clearance</option>
+                            <option value="SULPHUR">Sulphur</option>
+                            <option value="ALUMINIUM">Aluminium</option>
+                            <option value="CREW CHANGE">Crew Change</option>
+                            <option value="STEEL BILLET">Steel Billet</option>
+                            <option value="TOWING">Towing</option>
+                            <option value="TIMBER">Timber</option>
+                            <option value="SUGAR">Sugar</option>
+                            <option value="STEEL PLATE">Steel Plate</option>
+                            <option value="IRON ORE CAKE">Iron Ore Cake</option>
+                            <option value="HOLD INSPECTION">Hold Inspection</option>
+                            <option value="AQIS – AUSTRALIAN QUARANTINE">AQIS – Australian Quarantine</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="purpose">Purpose of Call *</label>
+                        <select id="purpose">
+                            <option value="">Select purpose</option>
+                            <option value="DISCHARGE">Discharge</option>
+                            <option value="LOAD">Load</option>
+                            <option value="DISCHARGE/LOAD">Discharge/Load</option>
+                            <option value="N/A">N/A</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="etd">ETD</label>
+                        <input type="datetime-local" id="etd">
+                    </div>
+                </div>
+                
+                <!-- Quantity Section (dynamically generated) -->
+                <div id="quantitySection"></div>
+                
+                <div class="form-actions">
+                    <button class="btn btn-primary" id="addVesselBtn">
+                        <i class="fas fa-plus-circle"></i> Add Vessel
+                    </button>
+                    <button class="btn btn-secondary" id="clearFormBtn">
+                        <i class="fas fa-redo"></i> Clear Form
+                    </button>
+                </div>
+                
+                <!-- Data Export/Import Section -->
+                <div class="data-actions">
+                    <button class="btn btn-export" id="exportDataBtn">
+                        <i class="fas fa-file-export"></i> Export Data
+                    </button>
+                    <button class="btn btn-import" id="importDataBtn">
+                        <i class="fas fa-file-import"></i> Import Data
+                    </button>
+                    <button class="btn btn-danger" id="clearAllDataBtn">
+                        <i class="fas fa-trash"></i> Clear All Data
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Vessels Log Section -->
+            <div class="form-section">
+                <div class="section-header">
+                    <h2 class="section-title">Vessels Log</h2>
+                    <div class="vessel-count">
+                        <span id="vesselCount">0 vessels</span>
+                    </div>
+                </div>
+                
+                <!-- Vertical Vessels Container -->
+                <div class="vessels-container" id="vesselsLog">
+                    <div class="empty-state" style="text-align: center; padding: 40px; color: var(--text-light);">
+                        <i class="fas fa-ship" style="font-size: 60px; margin-bottom: 20px; opacity: 0.3;"></i>
+                        <h3 style="margin-bottom: 10px;">No vessels added yet</h3>
+                        <p>Add a vessel using the form above to see it appear here.</p>
+                    </div>
+                </div>
             </div>
         </div>
         
         <!-- Dashboard Tab -->
-        <div class="tab-content active" id="dashboard">
+        <div class="tab-content" id="dashboard">
             <div class="dashboard-container">
                 <!-- LEFT SIDE: Vessel Tables -->
                 <div class="main-dashboard">
                     <!-- Sailed Vessels Table -->
                     <div class="dashboard-section" id="sailedSection" style="display: none;">
                         <h3 class="section-title" style="margin-bottom: 12px;">Sailed Vessels</h3>
-                        <div class="table-container">
-                            <table class="dashboard-table" id="sailedTable">
-                                <thead>
-                                    <tr>
-                                        <th>Vessel / Voy.</th>
-                                        <th>ATA</th>
-                                        <th>ATD</th>
-                                        <th>Port Stay</th>
-                                        <th>Vessel Type</th>
-                                        <th>Commodity</th>
-                                        <th>Berth</th>
-                                        <th>Remarks</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <!-- Sailed vessels will be added here -->
-                                </tbody>
-                            </table>
-                        </div>
+                        <table class="dashboard-table" id="sailedTable">
+                            <thead>
+                                <tr>
+                                    <th>Vessel / Voy.</th>
+                                    <th>ATA</th>
+                                    <th>ATD</th>
+                                    <th>Port Stay</th>
+                                    <th>Vessel Type</th>
+                                    <th>Commodity</th>
+                                    <th>Berth</th>
+                                    <th>Remarks</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Sailed vessels will be added here -->
+                            </tbody>
+                        </table>
                     </div>
                     
                     <!-- Working Vessels Table -->
                     <div class="dashboard-section" id="workingSection" style="display: none;">
                         <h3 class="section-title" style="margin-bottom: 12px;">Working Vessels</h3>
-                        <div class="table-container">
-                            <table class="dashboard-table" id="workingTable">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Vessel / Voy.</th>
-                                        <th>ATA</th>
-                                        <th>Port Stay</th>
-                                        <th>ETD</th>
-                                        <th>Vessel Type</th>
-                                        <th>Commodity</th>
-                                        <th>Quantity</th>
-                                        <th>Completed</th>
-                                        <th>Balance</th>
-                                        <th>Berth</th>
-                                        <th>Remarks</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <!-- Working vessels will be added here -->
-                                </tbody>
-                            </table>
-                        </div>
+                        <table class="dashboard-table" id="workingTable">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Vessel / Voy.</th>
+                                    <th>ATA</th>
+                                    <th>Port Stay</th>
+                                    <th>ETD</th>
+                                    <th>Vessel Type</th>
+                                    <th>Commodity</th>
+                                    <th>Quantity</th>
+                                    <th>Completed</th>
+                                    <th>Balance</th>
+                                    <th>Berth</th>
+                                    <th>Remarks</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Working vessels will be added here -->
+                            </tbody>
+                        </table>
                     </div>
                     
                     <!-- Inbound Vessels Table with Date Grouping -->
                     <div class="dashboard-section" id="inboundSection" style="display: none;">
                         <h3 class="section-title" style="margin-bottom: 12px;">Inbound Vessels</h3>
-                        <div class="table-container">
-                            <table class="dashboard-table" id="inboundTable">
-                                <thead>
-                                    <tr>
-                                        <th>ETA</th>
-                                        <th>Vessel / Voy.</th>
-                                        <th>Vessel Type</th>
-                                        <th>Commodity</th>
-                                        <th>Quantity</th>
-                                        <th>ETD</th>
-                                        <th>Remarks</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="inboundTableBody">
-                                    <!-- Inbound vessels will be added here -->
-                                </tbody>
-                            </table>
-                        </div>
+                        <table class="dashboard-table" id="inboundTable">
+                            <thead>
+                                <tr>
+                                    <th>ETA</th>
+                                    <th>Vessel / Voy.</th>
+                                    <th>Vessel Type</th>
+                                    <th>Commodity</th>
+                                    <th>Quantity</th>
+                                    <th>ETD</th>
+                                    <th>Remarks</th>
+                                </tr>
+                            </thead>
+                            <tbody id="inboundTableBody">
+                                <!-- Inbound vessels will be added here -->
+                            </tbody>
+                        </table>
                     </div>
                 </div>
                 
                 <!-- RIGHT SIDE: Summary and RORO -->
                 <div class="dashboard-sidebar">
-                    <!-- Summary Card -->
+                    <!-- Summary Card - UPDATED -->
                     <div class="sidebar-summary">
                         <div class="sidebar-summary-title">Vessel Summary</div>
                         <div class="summary-item">
@@ -1238,8 +1255,9 @@
                             <span class="summary-item-value" id="sidebarInboundCount">0</span>
                         </div>
                         
-                        <!-- Commodity Breakdown -->
+                        <!-- Commodity Breakdown - UPDATED (No "Inbound by Commodity" title) -->
                         <div class="commodity-summary" id="commoditySummary" style="display: none;">
+                            <!-- UPDATED: No header title, just show commodities like bullet list -->
                             <div id="commodityBreakdown">
                                 <!-- Commodity items will be added here -->
                             </div>
@@ -1251,7 +1269,7 @@
                         </div>
                     </div>
                     
-                    <!-- Incoming RORO Units -->
+                    <!-- Incoming RORO Units - COMPACT WITHOUT SCROLL -->
                     <div class="sidebar-summary roro-card">
                         <div class="sidebar-summary-title">RORO Units Summary</div>
                         <div class="roro-total">
@@ -1259,12 +1277,10 @@
                             <div class="roro-total-label">Total RORO Units</div>
                         </div>
                         
-                        <div class="roro-vessels-container">
-                            <div class="roro-vessels" id="roroVesselsList">
-                                <div style="text-align: center; padding: 15px; color: var(--text-light);">
-                                    <i class="fas fa-truck-loading" style="font-size: 25px; margin-bottom: 8px; opacity: 0.3;"></i>
-                                    <p style="font-size: 13px;">No RORO vessels with units</p>
-                                </div>
+                        <div class="roro-vessels" id="roroVesselsList">
+                            <div style="text-align: center; padding: 15px; color: var(--text-light);">
+                                <i class="fas fa-truck-loading" style="font-size: 25px; margin-bottom: 8px; opacity: 0.3;"></i>
+                                <p style="font-size: 13px;">No RORO vessels with units</p>
                             </div>
                         </div>
                     </div>
@@ -1277,30 +1293,6 @@
     <div class="toast-container" id="toastContainer"></div>
     
     <script>
-        // TV Optimization: Auto-switch to dashboard on large screens
-        document.addEventListener('DOMContentLoaded', function() {
-            // Auto-show dashboard on TV-sized screens
-            if (window.innerWidth >= 1200) {
-                // Force dashboard view
-                document.querySelectorAll('.tab').forEach(tab => {
-                    tab.classList.remove('active');
-                    if (tab.dataset.tab === 'dashboard') {
-                        tab.classList.add('active');
-                    }
-                });
-                
-                document.querySelectorAll('.tab-content').forEach(content => {
-                    content.classList.remove('active');
-                    if (content.id === 'dashboard') {
-                        content.classList.add('active');
-                    }
-                });
-            }
-            
-            // Then initialize the app
-            initializeApp();
-        });
-
         // Global variables
         let vessels = JSON.parse(localStorage.getItem('gcVessels')) || [];
         let currentDate = new Date();
@@ -1351,6 +1343,11 @@
                 'night': {shift: 'A', time: '22:00-06:00'}
             }
         };
+        
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeApp();
+        });
         
         // Main initialization function
         function initializeApp() {
@@ -1658,20 +1655,20 @@
         // Setup form interactions
         function setupFormInteractions() {
             // Add vessel button
-            document.getElementById('addVesselBtn')?.addEventListener('click', addVessel);
+            document.getElementById('addVesselBtn').addEventListener('click', addVessel);
             
             // Clear form button
-            document.getElementById('clearFormBtn')?.addEventListener('click', clearForm);
+            document.getElementById('clearFormBtn').addEventListener('click', clearForm);
             
             // Commodity and purpose change listeners to update quantity section
-            document.getElementById('commodity')?.addEventListener('change', updateQuantitySection);
-            document.getElementById('purpose')?.addEventListener('change', updateQuantitySection);
-            document.getElementById('vesselType')?.addEventListener('change', updateQuantitySection);
+            document.getElementById('commodity').addEventListener('change', updateQuantitySection);
+            document.getElementById('purpose').addEventListener('change', updateQuantitySection);
+            document.getElementById('vesselType').addEventListener('change', updateQuantitySection);
             
-            // Export/Import buttons
-            document.getElementById('exportDataBtn')?.addEventListener('click', exportData);
-            document.getElementById('importDataBtn')?.addEventListener('click', importData);
-            document.getElementById('clearAllDataBtn')?.addEventListener('click', clearAllData);
+// Export/Import buttons
+document.getElementById('exportDataBtn').addEventListener('click', exportData);
+document.getElementById('importDataBtn').addEventListener('click', importData); // THIS LINE
+            document.getElementById('clearAllDataBtn').addEventListener('click', clearAllData);
         }
         
         // Export data function
@@ -1706,65 +1703,65 @@
             showToast('Data exported successfully', 'success');
         }
         
-        // Import data function
-        function importData() {
-            // Ask for password for security
-            const password = prompt('Enter password to import data:');
-            if (password !== 'GC123') {
-                showToast('Incorrect password', 'error');
-                return;
+  // Import data function
+function importData() {
+    // Ask for password for security
+    const password = prompt('Enter password to import data:');
+    if (password !== 'GC123') {
+        showToast('Incorrect password', 'error');
+        return;
+    }
+    
+    // Create file input element
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = '.json';
+    
+    fileInput.onchange = function(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+        
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            try {
+                const importedData = JSON.parse(e.target.result);
+                
+                // Validate the imported data
+                if (!importedData.vessels || !Array.isArray(importedData.vessels)) {
+                    showToast('Invalid data file format', 'error');
+                    return;
+                }
+                
+                // Ask for confirmation
+                if (!confirm(`This will replace all current data with ${importedData.vessels.length} vessels. Continue?`)) {
+                    return;
+                }
+                
+                // Remove existing modal if any
+                const existingModal = document.querySelector('.modal');
+                if (existingModal) existingModal.remove();
+                
+                // Replace current vessels with imported data
+                vessels = importedData.vessels;
+                
+                // Save to localStorage
+                saveVessels();
+                
+                // Reload display
+                loadVessels();
+                updateDashboard();
+                
+                showToast(`Successfully imported ${vessels.length} vessels`, 'success');
+            } catch (error) {
+                showToast('Error reading data file: ' + error.message, 'error');
             }
-            
-            // Create file input element
-            const fileInput = document.createElement('input');
-            fileInput.type = 'file';
-            fileInput.accept = '.json';
-            
-            fileInput.onchange = function(event) {
-                const file = event.target.files[0];
-                if (!file) return;
-                
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    try {
-                        const importedData = JSON.parse(e.target.result);
-                        
-                        // Validate the imported data
-                        if (!importedData.vessels || !Array.isArray(importedData.vessels)) {
-                            showToast('Invalid data file format', 'error');
-                            return;
-                        }
-                        
-                        // Ask for confirmation
-                        if (!confirm(`This will replace all current data with ${importedData.vessels.length} vessels. Continue?`)) {
-                            return;
-                        }
-                        
-                        // Remove existing modal if any
-                        const existingModal = document.querySelector('.modal');
-                        if (existingModal) existingModal.remove();
-                        
-                        // Replace current vessels with imported data
-                        vessels = importedData.vessels;
-                        
-                        // Save to localStorage
-                        saveVessels();
-                        
-                        // Reload display
-                        loadVessels();
-                        updateDashboard();
-                        
-                        showToast(`Successfully imported ${vessels.length} vessels`, 'success');
-                    } catch (error) {
-                        showToast('Error reading data file: ' + error.message, 'error');
-                    }
-                };
-                
-                reader.readAsText(file);
-            };
-            
-            fileInput.click();
-        }
+        };
+        
+        reader.readAsText(file);
+    };
+    
+    fileInput.click();
+}
         
         // Clear all data function
         function clearAllData() {
@@ -2167,8 +2164,6 @@
         // Load vessels from localStorage and display them vertically
         function loadVessels() {
             const vesselsLog = document.getElementById('vesselsLog');
-            if (!vesselsLog) return;
-            
             vesselsLog.innerHTML = '';
             
             // Sort vessels by recently added (newest first)
@@ -3835,7 +3830,7 @@
             updateRoroUnits();
         }
         
-        // Update commodity breakdown for inbound vessels
+        // Update commodity breakdown for inbound vessels - UPDATED
         function updateCommodityBreakdown(inboundVessels) {
             const commodityBreakdown = document.getElementById('commodityBreakdown');
             const commoditySummary = document.getElementById('commoditySummary');
@@ -3862,7 +3857,7 @@
                 }
             });
             
-            // Build HTML
+            // Build HTML - UPDATED: No "Inbound by Commodity" title, just show like bullet list
             let html = '';
             
             // Add RORO count
@@ -3910,7 +3905,7 @@
                 const portStay = (vessel.ata && vessel.atd) ? calculatePortStay(vessel.ata, vessel.atd) : null;
                 const portStayFormatted = portStay ? formatPortStay(portStay) : 'N/A';
                 
-                // Build remarks for sailed vessels
+                // Build remarks for sailed vessels - UPDATED with bullet separator
                 let remarks = '';
                 const remarkParts = [];
                 
@@ -3988,7 +3983,7 @@
                     balanceSummary = hasBalanceData ? formatDashboardQuantity(vessel.balance, 'balance') : 'NIL';
                 }
                 
-                // Build remarks for working vessels
+                // Build remarks for working vessels - UPDATED with bullet separator
                 let remarks = '';
                 const remarkParts = [];
                 
@@ -4098,7 +4093,7 @@
                     // Format quantity with DISCHARGE/LOAD labels
                     const quantitySummary = formatDashboardQuantity(vessel.quantity, 'quantity');
                     
-                    // Build remarks for inbound vessels
+                    // Build remarks for inbound vessels - UPDATED with bullet separator
                     let remarks = '';
                     const remarkParts = [];
                     
@@ -4204,7 +4199,7 @@
             return parts.length > 0 ? `<strong>${prefix}:</strong> ${parts.join(', ')}` : '';
         }
         
-        // Update RORO units
+        // Update RORO units - UPDATED for no scrolling
         function updateRoroUnits() {
             const roroContainer = document.getElementById('roroVesselsList');
             const totalUnitsElement = document.getElementById('totalRoroUnits');
@@ -4375,10 +4370,10 @@
             totalUnitsElement.textContent = formatNumber(totalUnits);
         }
         
-        // Save vessels to localStorage
-        function saveVessels() {
-            localStorage.setItem('gcVessels', JSON.stringify(vessels));
-        }
+// Save vessels to localStorage
+function saveVessels() {
+    localStorage.setItem('gcVessels', JSON.stringify(vessels));
+}
         
         // Show toast notification
         function showToast(message, type = 'info') {
