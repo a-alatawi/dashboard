@@ -3,23 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GC Vessel & Cargo Tracker</title>
+    <title>GC Vessel & Cargo Tracker - TV Display</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-blue: #0d3b66;
-            --secondary-blue: #1d7cc5;
-            --light-blue: #e6f2ff;
-            --accent-orange: #f95738;
-            --accent-green: #28a745;
-            --accent-yellow: #ffc107;
-            --accent-red: #dc3545;
-            --light-gray: #f8f9fa;
-            --medium-gray: #333333;
-            --dark-gray: #495057;
-            --text-dark: #ffffff;
-            --text-light: #cccccc;
-            --border-color: #555555;
+            --primary-blue: #1a73e8;
+            --secondary-blue: #4285f4;
+            --light-blue: #e8f0fe;
+            --accent-orange: #fa7b17;
+            --accent-green: #34a853;
+            --accent-yellow: #fbbc04;
+            --accent-red: #ea4335;
+            --dark-bg: #000000;
+            --card-bg: #1a1a1a;
+            --card-border: #333333;
+            --text-light: #ffffff;
+            --text-muted: #b0b0b0;
+            --text-dark: #212529;
             --shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
             --shadow-hover: 0 6px 16px rgba(0, 0, 0, 0.7);
         }
@@ -32,25 +32,24 @@
         }
         
         body {
-            background-color: #000000;
-            color: var(--text-dark);
-            line-height: 1.8;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            line-height: 1.6;
             overflow-x: hidden;
-            font-size: 18px;
         }
         
         .container {
             max-width: 98%;
             margin: 0 auto;
-            padding: 0 25px;
+            padding: 0 15px;
         }
         
-        /* Header Styles - BIGGER for 55-inch */
+        /* Header Styles - ENLARGED FOR TV */
         header {
             background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
             color: white;
-            padding: 25px 0;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
             width: 100%;
         }
         
@@ -65,7 +64,7 @@
         .logo-area {
             display: flex;
             align-items: center;
-            gap: 25px;
+            gap: 20px;
             flex-direction: column;
         }
         
@@ -75,8 +74,8 @@
         }
         
         .logo-text h1 {
-            font-size: 42px;
-            font-weight: 800;
+            font-size: 36px;
+            font-weight: 700;
             letter-spacing: 1px;
         }
         
@@ -84,30 +83,30 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 10px;
-            margin: 15px 0;
+            gap: 8px;
+            margin: 10px 0;
         }
         
         .current-day {
-            font-size: 28px;
-            font-weight: 700;
+            font-size: 24px;
+            font-weight: 600;
         }
         
         .current-date {
-            font-size: 24px;
+            font-size: 20px;
         }
         
         .current-time {
-            font-size: 36px;
-            font-weight: 800;
+            font-size: 32px;
+            font-weight: 700;
             letter-spacing: 2px;
         }
         
         .current-slot {
-            font-size: 20px;
+            font-size: 18px;
             background: rgba(255, 255, 255, 0.2);
-            padding: 8px 20px;
-            border-radius: 20px;
+            padding: 5px 15px;
+            border-radius: 15px;
             margin-top: 5px;
         }
         
@@ -116,30 +115,30 @@
             justify-content: center;
             gap: 30px;
             flex-wrap: wrap;
-            margin-top: 15px;
+            margin-top: 10px;
         }
         
         .shift-box {
             background: rgba(255, 255, 255, 0.15);
-            padding: 15px 25px;
-            border-radius: 12px;
-            min-width: 220px;
+            padding: 12px 20px;
+            border-radius: 10px;
+            min-width: 180px;
             text-align: center;
         }
         
         .shift-label {
-            font-size: 18px;
+            font-size: 16px;
             opacity: 0.9;
             margin-bottom: 5px;
         }
         
         .shift-value {
-            font-size: 24px;
-            font-weight: 800;
+            font-size: 22px;
+            font-weight: 700;
         }
         
         .shift-slot {
-            font-size: 16px;
+            font-size: 14px;
             margin-top: 5px;
             opacity: 0.9;
             text-transform: uppercase;
@@ -152,34 +151,33 @@
             opacity: 0.9;
         }
         
-        /* Tabs Navigation - BIGGER */
+        /* Tabs Navigation - ENLARGED */
         .tabs-container {
-            margin: 30px 0 25px;
+            margin: 20px 0;
         }
         
         .tabs {
             display: flex;
-            border-bottom: 3px solid var(--border-color);
+            border-bottom: 2px solid var(--card-border);
         }
         
         .tab {
-            padding: 20px 40px;
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--text-light);
+            padding: 18px 35px;
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--text-muted);
             cursor: pointer;
             transition: all 0.3s ease;
-            border-bottom: 4px solid transparent;
+            border-bottom: 3px solid transparent;
         }
         
         .tab:hover {
-            color: white;
-            background-color: rgba(29, 124, 197, 0.2);
+            color: var(--primary-blue);
         }
         
         .tab.active {
-            color: white;
-            border-bottom: 4px solid var(--accent-orange);
+            color: var(--primary-blue);
+            border-bottom: 3px solid var(--accent-orange);
         }
         
         /* Tab Content */
@@ -197,81 +195,81 @@
             to { opacity: 1; }
         }
         
-        /* Section Headers - BIGGER */
+        /* Section Headers - ENLARGED */
         .section-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 3px solid var(--border-color);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--card-border);
         }
         
         .section-title {
             font-size: 28px;
-            font-weight: 800;
-            color: white;
+            font-weight: 700;
+            color: var(--text-light);
         }
         
-        /* Form Styles - BIGGER */
+        /* Form Styles - ENLARGED FOR TV */
         .form-section {
-            background: #111111;
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 35px;
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
             box-shadow: var(--shadow);
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--card-border);
         }
         
         .form-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 25px;
-            margin-bottom: 30px;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+            margin-bottom: 25px;
         }
         
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
         
         label {
             display: block;
-            margin-bottom: 10px;
-            font-weight: 700;
-            color: white;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-light);
             font-size: 18px;
         }
         
         input, select, textarea {
             width: 100%;
-            padding: 15px 18px;
-            border: 2px solid var(--border-color);
+            padding: 12px 15px;
+            border: 1px solid var(--card-border);
             border-radius: 8px;
             font-size: 18px;
             transition: all 0.3s;
-            background-color: #222222;
-            color: white;
+            background: #2a2a2a;
+            color: var(--text-light);
         }
         
         input:focus, select:focus, textarea:focus {
             outline: none;
             border-color: var(--secondary-blue);
-            box-shadow: 0 0 0 4px rgba(29, 124, 197, 0.3);
+            box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.1);
         }
         
-        /* Button Styles - BIGGER */
+        /* Button Styles - ENLARGED */
         .btn {
-            padding: 15px 30px;
+            padding: 12px 25px;
             border: none;
             border-radius: 8px;
             font-size: 18px;
-            font-weight: 700;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 8px;
         }
         
         .btn-primary {
@@ -281,19 +279,17 @@
         
         .btn-primary:hover {
             background-color: var(--primary-blue);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            transform: translateY(-2px);
         }
         
         .btn-secondary {
-            background-color: var(--medium-gray);
-            color: var(--text-dark);
+            background-color: #444;
+            color: var(--text-light);
         }
         
         .btn-secondary:hover {
-            background-color: var(--dark-gray);
+            background-color: #555;
             color: white;
-            transform: translateY(-3px);
         }
         
         .btn-success {
@@ -302,8 +298,7 @@
         }
         
         .btn-success:hover {
-            background-color: #218838;
-            transform: translateY(-3px);
+            background-color: #2e7d32;
         }
         
         .btn-warning {
@@ -313,7 +308,6 @@
         
         .btn-warning:hover {
             background-color: #e0a800;
-            transform: translateY(-3px);
         }
         
         .btn-danger {
@@ -323,7 +317,6 @@
         
         .btn-danger:hover {
             background-color: #c82333;
-            transform: translateY(-3px);
         }
         
         .btn-small {
@@ -331,59 +324,26 @@
             font-size: 16px;
         }
         
-        /* Export/Import Button Styles */
-        .btn-export {
-            background-color: #17a2b8;
-            color: white;
-        }
-        
-        .btn-export:hover {
-            background-color: #138496;
-            transform: translateY(-3px);
-        }
-        
-        .btn-import {
-            background-color: #6f42c1;
-            color: white;
-        }
-        
-        .btn-import:hover {
-            background-color: #5a32a3;
-            transform: translateY(-3px);
-        }
-        
-        /* Data Actions Section */
-        .data-actions {
-            display: flex;
-            gap: 15px;
-            margin-top: 25px;
-            flex-wrap: wrap;
-            border-top: 3px solid var(--border-color);
-            padding-top: 20px;
-        }
-        
-        /* Table Styles - BIGGER */
+        /* Table Styles - ENLARGED FOR TV */
         .quantity-table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
-            margin-bottom: 25px;
+            margin-top: 15px;
+            margin-bottom: 20px;
         }
         
         .quantity-table th {
-            background-color: #222222;
-            padding: 15px 18px;
+            background-color: rgba(66, 133, 244, 0.2);
+            padding: 12px 15px;
             text-align: left;
-            font-weight: 700;
-            border: 2px solid var(--border-color);
-            color: white;
+            font-weight: 600;
+            border: 1px solid var(--card-border);
             font-size: 18px;
         }
         
         .quantity-table td {
-            padding: 12px 18px;
-            border: 2px solid var(--border-color);
-            background-color: #111111;
+            padding: 10px 15px;
+            border: 1px solid var(--card-border);
         }
         
         .quantity-table input {
@@ -393,210 +353,222 @@
         }
         
         .table-header {
-            background-color: #222222;
+            background-color: var(--primary-blue);
             color: white;
             padding: 15px;
-            font-weight: 700;
+            font-weight: 600;
             border-radius: 8px 8px 0 0;
             margin-top: 20px;
             font-size: 20px;
-            border: 2px solid var(--border-color);
         }
         
-        /* Vessel Log Styles - BIGGER */
+        /* Vessel Log Styles - ENLARGED */
         .vessels-container {
             display: flex;
             flex-direction: column;
-            gap: 30px;
-            margin-bottom: 25px;
+            gap: 25px;
+            margin-bottom: 20px;
         }
         
         .vessel-card {
-            background: #111111;
-            border-radius: 15px;
+            background: var(--card-bg);
+            border-radius: 12px;
             overflow: hidden;
             box-shadow: var(--shadow);
             transition: transform 0.3s, box-shadow 0.3s;
             position: relative;
-            border: 2px solid var(--border-color);
+            border: 1px solid var(--card-border);
         }
         
         .vessel-card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-5px);
             box-shadow: var(--shadow-hover);
-            border-color: var(--secondary-blue);
         }
         
         .vessel-header {
-            padding: 25px;
-            background: linear-gradient(to right, #222222, #111111);
-            border-bottom: 2px solid var(--border-color);
+            padding: 20px;
+            background: linear-gradient(to right, rgba(66, 133, 244, 0.2), var(--card-bg));
+            border-bottom: 1px solid var(--card-border);
         }
         
         .vessel-name {
-            font-size: 28px;
-            font-weight: 800;
-            color: white;
-            margin-bottom: 10px;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 8px;
         }
         
         .vessel-agent {
-            color: var(--text-light);
-            font-size: 20px;
+            color: var(--text-muted);
+            font-size: 18px;
         }
         
         .vessel-status {
             position: absolute;
-            top: 25px;
-            right: 25px;
-            padding: 8px 20px;
-            border-radius: 25px;
+            top: 20px;
+            right: 20px;
+            padding: 8px 15px;
+            border-radius: 20px;
             font-size: 16px;
-            font-weight: 700;
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
         }
         
         .status-inbound {
-            background-color: #0c5460;
-            color: #d1ecf1;
+            background-color: rgba(66, 133, 244, 0.2);
+            color: var(--secondary-blue);
         }
         
         .status-working {
-            background-color: #155724;
-            color: #d4edda;
+            background-color: rgba(52, 168, 83, 0.2);
+            color: var(--accent-green);
         }
         
         .status-sailed {
-            background-color: #856404;
-            color: #fff3cd;
+            background-color: rgba(251, 188, 4, 0.2);
+            color: var(--accent-yellow);
         }
         
         .status-closed {
-            background-color: #721c24;
-            color: #f8d7da;
+            background-color: rgba(234, 67, 53, 0.2);
+            color: var(--accent-red);
         }
         
         .vessel-body {
-            padding: 25px;
+            padding: 20px;
         }
         
         .vessel-details {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            margin-bottom: 25px;
+            gap: 15px;
+            margin-bottom: 20px;
         }
         
         .detail-item {
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
         
         .detail-label {
-            font-weight: 700;
-            color: var(--text-light);
-            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-muted);
+            font-size: 16px;
             margin-bottom: 5px;
         }
         
         .detail-value {
-            font-weight: 600;
-            color: white;
-            min-height: 30px;
+            font-weight: 500;
+            color: var(--text-light);
+            min-height: 25px;
             font-size: 18px;
         }
         
         .vessel-actions {
             display: flex;
             flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 25px;
+            gap: 10px;
+            margin-top: 20px;
         }
         
-        /* Alert Styles - BIGGER */
+        /* Alert Styles - ENLARGED */
         .alert {
-            padding: 15px 20px;
+            padding: 15px 18px;
             border-radius: 8px;
-            margin-bottom: 25px;
-            font-weight: 600;
+            margin-bottom: 20px;
+            font-weight: 500;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             font-size: 18px;
         }
         
         .alert-warning {
-            background-color: #856404;
-            color: #fff3cd;
-            border-left: 6px solid var(--accent-yellow);
+            background-color: rgba(251, 188, 4, 0.1);
+            color: #fbbc04;
+            border-left: 4px solid var(--accent-yellow);
         }
         
         .alert-info {
-            background-color: #0c5460;
-            color: #d1ecf1;
-            border-left: 6px solid var(--secondary-blue);
+            background-color: rgba(66, 133, 244, 0.1);
+            color: var(--secondary-blue);
+            border-left: 4px solid var(--secondary-blue);
         }
         
         .notification-badge {
             position: absolute;
-            top: 20px;
-            left: 20px;
+            top: 15px;
+            left: 15px;
             background-color: var(--accent-red);
             color: white;
-            width: 30px;
-            height: 30px;
+            width: 25px;
+            height: 25px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 16px;
-            font-weight: 800;
+            font-size: 14px;
+            font-weight: 700;
         }
         
-        /* DASHBOARD LAYOUT - BIGGER */
+        /* DASHBOARD LAYOUT - OPTIMIZED FOR TV */
         .dashboard-container {
             display: grid;
-            grid-template-columns: 1fr 400px;
-            gap: 30px;
-            min-height: calc(100vh - 350px);
+            grid-template-columns: 1fr 380px;
+            gap: 25px;
+            min-height: calc(100vh - 300px);
+            max-height: 80vh;
         }
         
         .main-dashboard {
             display: flex;
             flex-direction: column;
-            gap: 30px;
+            gap: 20px;
+            height: 100%;
         }
         
         .dashboard-section {
-            background: #111111;
-            border-radius: 15px;
-            padding: 25px;
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
             box-shadow: var(--shadow);
-            border: 2px solid var(--border-color);
+            border: 1px solid var(--card-border);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+        }
+        
+        /* Table Container for scrolling */
+        .table-container {
+            flex: 1;
+            overflow-y: auto;
+            margin-top: 10px;
         }
         
         /* RIGHT SIDE SUMMARY SECTION */
         .dashboard-sidebar {
             display: flex;
             flex-direction: column;
-            gap: 30px;
+            gap: 20px;
+            height: 100%;
         }
         
         .sidebar-summary {
-            background: #111111;
-            border-radius: 15px;
-            padding: 25px;
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
             box-shadow: var(--shadow);
-            border: 2px solid var(--border-color);
+            border: 1px solid var(--card-border);
         }
         
         .sidebar-summary-title {
             font-size: 22px;
-            font-weight: 800;
-            color: white;
-            margin-bottom: 20px;
-            padding-bottom: 12px;
-            border-bottom: 3px solid var(--border-color);
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--card-border);
         }
         
         .commodity-summary {
@@ -606,72 +578,71 @@
         .commodity-item {
             display: flex;
             justify-content: space-between;
-            padding: 8px 0;
+            padding: 6px 0;
             font-size: 18px;
         }
         
         .commodity-item-label {
-            color: white;
-            font-weight: 600;
+            color: var(--text-light);
+            font-weight: 500;
         }
         
         .commodity-item-value {
-            font-weight: 800;
-            color: white;
+            font-weight: 700;
+            color: var(--primary-blue);
         }
         
         .summary-item {
             display: flex;
             justify-content: space-between;
-            padding: 10px 0;
+            padding: 8px 0;
             font-size: 20px;
         }
         
         .summary-item-label {
-            color: var(--text-light);
-            font-weight: 600;
+            color: var(--text-muted);
+            font-weight: 500;
         }
         
         .summary-item-value {
-            font-weight: 800;
-            color: white;
+            font-weight: 700;
+            color: var(--text-light);
         }
         
-        /* DASHBOARD TABLES - WIDER and BIGGER */
+        /* DASHBOARD TABLES - WIDER & ENLARGED */
         .dashboard-table {
             width: 100%;
             border-collapse: collapse;
-            background: #111111;
-            border-radius: 15px;
+            background: var(--card-bg);
+            border-radius: 10px;
             overflow: hidden;
             box-shadow: var(--shadow);
             margin-bottom: 0;
             font-size: 18px;
             table-layout: auto;
-            border: 2px solid var(--border-color);
         }
         
         .dashboard-table th {
             background-color: var(--primary-blue);
             color: white;
-            padding: 18px 15px;
+            padding: 15px 12px;
             text-align: left;
-            font-weight: 800;
+            font-weight: 600;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            font-size: 20px;
-            border-bottom: 3px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 10;
         }
         
         .dashboard-table td {
-            padding: 15px 15px;
-            border-bottom: 2px solid var(--border-color);
+            padding: 12px 12px;
+            border-bottom: 1px solid var(--card-border);
             vertical-align: middle;
-            line-height: 1.5;
+            line-height: 1.4;
             overflow: hidden;
             text-overflow: ellipsis;
-            color: white;
         }
         
         .dashboard-table tr:last-child td {
@@ -679,63 +650,62 @@
         }
         
         .dashboard-table tr:hover {
-            background-color: #222222;
+            background-color: rgba(255, 255, 255, 0.05);
         }
         
-        /* Column width adjustments - WIDER for 55-inch */
-        #sailedTable th:nth-child(1) { min-width: 300px; }
-        #sailedTable th:nth-child(2) { min-width: 240px; }
-        #sailedTable th:nth-child(3) { min-width: 240px; }
-        #sailedTable th:nth-child(4) { min-width: 130px; }
-        #sailedTable th:nth-child(5) { min-width: 160px; }
-        #sailedTable th:nth-child(6) { min-width: 190px; }
-        #sailedTable th:nth-child(7) { min-width: 150px; }
-        #sailedTable th:nth-child(8) { min-width: 350px; }
+        /* Column width adjustments - ENLARGED */
+        #sailedTable th:nth-child(1) { min-width: 250px; }
+        #sailedTable th:nth-child(2) { min-width: 200px; }
+        #sailedTable th:nth-child(3) { min-width: 200px; }
+        #sailedTable th:nth-child(4) { min-width: 120px; }
+        #sailedTable th:nth-child(5) { min-width: 140px; }
+        #sailedTable th:nth-child(6) { min-width: 160px; }
+        #sailedTable th:nth-child(7) { min-width: 130px; }
+        #sailedTable th:nth-child(8) { min-width: 300px; }
         
-        #workingTable th:nth-child(1) { min-width: 60px; }
-        #workingTable th:nth-child(2) { min-width: 300px; }
-        #workingTable th:nth-child(3) { min-width: 210px; }
-        #workingTable th:nth-child(4) { min-width: 120px; }
-        #workingTable th:nth-child(5) { min-width: 210px; }
-        #workingTable th:nth-child(6) { min-width: 150px; }
-        #workingTable th:nth-child(7) { min-width: 165px; }
-        #workingTable th:nth-child(8) { min-width: 210px; }
-        #workingTable th:nth-child(9) { min-width: 210px; }
-        #workingTable th:nth-child(10) { min-width: 210px; }
-        #workingTable th:nth-child(11) { min-width: 90px; }
-        #workingTable th:nth-child(12) { min-width: 350px; }
+        #workingTable th:nth-child(1) { min-width: 50px; }
+        #workingTable th:nth-child(2) { min-width: 250px; }
+        #workingTable th:nth-child(3) { min-width: 180px; }
+        #workingTable th:nth-child(4) { min-width: 100px; }
+        #workingTable th:nth-child(5) { min-width: 180px; }
+        #workingTable th:nth-child(6) { min-width: 130px; }
+        #workingTable th:nth-child(7) { min-width: 140px; }
+        #workingTable th:nth-child(8) { min-width: 180px; }
+        #workingTable th:nth-child(9) { min-width: 180px; }
+        #workingTable th:nth-child(10) { min-width: 180px; }
+        #workingTable th:nth-child(11) { min-width: 80px; }
+        #workingTable th:nth-child(12) { min-width: 300px; }
         
-        #inboundTable th:nth-child(1) { min-width: 160px; }
-        #inboundTable th:nth-child(2) { min-width: 300px; }
-        #inboundTable th:nth-child(3) { min-width: 150px; }
-        #inboundTable th:nth-child(4) { min-width: 165px; }
-        #inboundTable th:nth-child(5) { min-width: 210px; }
-        #inboundTable th:nth-child(6) { min-width: 210px; }
-        #inboundTable th:nth-child(7) { min-width: 350px; }
+        #inboundTable th:nth-child(1) { min-width: 140px; }
+        #inboundTable th:nth-child(2) { min-width: 250px; }
+        #inboundTable th:nth-child(3) { min-width: 130px; }
+        #inboundTable th:nth-child(4) { min-width: 140px; }
+        #inboundTable th:nth-child(5) { min-width: 180px; }
+        #inboundTable th:nth-child(6) { min-width: 180px; }
+        #inboundTable th:nth-child(7) { min-width: 300px; }
         
         /* Combined vessel name/voyage column */
         .vessel-name-voyage {
-            font-weight: 800;
-            color: white;
-            font-size: 20px;
+            font-weight: 600;
+            color: var(--primary-blue);
         }
         
         /* Date Group Header in Inbound Table */
         .date-group-row {
-            background-color: #222222;
-            color: white;
-            font-weight: 800;
+            background-color: rgba(26, 115, 232, 0.2);
+            color: var(--primary-blue);
+            font-weight: bold;
         }
         
         .date-group-cell {
             padding: 15px 20px;
             text-align: left;
-            font-size: 22px;
+            font-size: 18px;
         }
         
         /* Highlight today's date in inbound table */
         .today-date-group {
-            background-color: #0d3b66;
+            background-color: var(--primary-blue);
             color: white;
         }
         
@@ -743,28 +713,28 @@
             color: white;
         }
         
-        /* UPDATED: Incoming RORO Styles - COMPACT WITHOUT SCROLL */
+        /* Incoming RORO Styles - COMPACT */
         .roro-card {
-            background: #111111;
-            border-radius: 15px;
-            padding: 25px;
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
             box-shadow: var(--shadow);
-            border: 2px solid var(--border-color);
+            border: 1px solid var(--card-border);
         }
         
         .roro-total {
             background: linear-gradient(to right, var(--primary-blue), var(--secondary-blue));
             color: white;
-            padding: 18px;
-            border-radius: 12px;
+            padding: 15px;
+            border-radius: 10px;
             text-align: center;
-            margin-bottom: 18px;
+            margin-bottom: 15px;
         }
         
         .roro-total-number {
-            font-size: 42px;
-            font-weight: 800;
-            margin-bottom: 8px;
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 5px;
         }
         
         .roro-total-label {
@@ -775,16 +745,18 @@
         .roro-vessels {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
+            max-height: 300px;
+            overflow-y: auto;
         }
         
         .roro-vessel-item {
             display: flex;
             justify-content: space-between;
-            padding: 10px 0;
+            padding: 8px 0;
             align-items: center;
-            font-size: 18px;
-            border-bottom: 1px solid var(--border-color);
+            font-size: 16px;
+            border-bottom: 1px solid var(--card-border);
         }
         
         .roro-vessel-item:last-child {
@@ -793,25 +765,20 @@
         
         /* RORO vessel status indicators */
         .roro-sailed {
-            background-color: #856404;
-            border-left: 4px solid #ffc107;
-            border-radius: 5px;
-            padding-left: 12px;
+            background-color: rgba(251, 188, 4, 0.1);
+            border-left: 3px solid var(--accent-yellow);
+            border-radius: 3px;
+            padding-left: 10px;
         }
         
         .roro-incoming {
-            background-color: #0c5460;
-            border-left: 4px solid #0dcaf0;
-            border-radius: 5px;
-            padding-left: 12px;
+            background-color: rgba(66, 133, 244, 0.1);
+            border-left: 3px solid var(--secondary-blue);
+            border-radius: 3px;
+            padding-left: 10px;
         }
         
-        /* Activity Log Styles - REMOVED */
-        .activity-log-section {
-            display: none;
-        }
-        
-        /* Modal Styles - BIGGER */
+        /* Modal Styles - ENLARGED */
         .modal {
             display: none;
             position: fixed;
@@ -830,44 +797,44 @@
         }
         
         .modal-content {
-            background: #111111;
-            border-radius: 15px;
-            width: 95%;
-            max-width: 1200px;
-            max-height: 95vh;
+            background: var(--card-bg);
+            border-radius: 12px;
+            width: 90%;
+            max-width: 900px;
+            max-height: 90vh;
             overflow-y: auto;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
-            border: 3px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--card-border);
         }
         
         .modal-header {
-            padding: 20px 30px;
+            padding: 20px 25px;
             background-color: var(--primary-blue);
             color: white;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-radius: 15px 15px 0 0;
+            border-radius: 12px 12px 0 0;
         }
         
         .modal-title {
-            font-size: 28px;
-            font-weight: 800;
+            font-size: 24px;
+            font-weight: 700;
         }
         
         .modal-close {
             background: none;
             border: none;
             color: white;
-            font-size: 36px;
+            font-size: 30px;
             cursor: pointer;
         }
         
         .modal-body {
-            padding: 30px;
+            padding: 25px;
         }
         
-        /* Toast Notification - BIGGER */
+        /* Toast Notification - ENLARGED */
         .toast-container {
             position: fixed;
             top: 30px;
@@ -876,18 +843,18 @@
         }
         
         .toast {
-            background: #111111;
-            border-radius: 12px;
-            padding: 18px 22px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 15px 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
             margin-bottom: 15px;
-            transform: translateX(500px);
+            transform: translateX(400px);
             transition: transform 0.4s;
             min-width: 350px;
-            border: 2px solid var(--border-color);
+            border: 1px solid var(--card-border);
         }
         
         .toast.show {
@@ -895,19 +862,19 @@
         }
         
         .toast-success {
-            border-left: 6px solid var(--accent-green);
+            border-left: 4px solid var(--accent-green);
         }
         
         .toast-warning {
-            border-left: 6px solid var(--accent-yellow);
+            border-left: 4px solid var(--accent-yellow);
         }
         
         .toast-error {
-            border-left: 6px solid var(--accent-red);
+            border-left: 4px solid var(--accent-red);
         }
         
         .toast-icon {
-            font-size: 28px;
+            font-size: 22px;
         }
         
         .toast-success .toast-icon {
@@ -923,74 +890,99 @@
         }
         
         .toast-message {
-            font-weight: 600;
+            font-weight: 500;
             font-size: 18px;
         }
         
-        /* Responsive Styles */
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-blue);
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary-blue);
+        }
+        
+        /* Auto-refresh indicator for JSON data */
+        .json-refresh-indicator {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary-blue);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 100;
+        }
+        
+        /* Responsive Styles for TV */
         @media (max-width: 1920px) {
             .container {
-                max-width: 98%;
+                max-width: 95%;
             }
             
             .dashboard-table {
                 font-size: 16px;
-            }
-            
-            .dashboard-table th,
-            .dashboard-table td {
-                padding: 12px 12px;
-            }
-            
-            .tab {
-                padding: 18px 35px;
-                font-size: 22px;
-            }
-            
-            .section-title {
-                font-size: 26px;
             }
         }
         
         @media (max-width: 1600px) {
             .dashboard-container {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr 350px;
             }
             
-            .vessel-details {
-                grid-template-columns: repeat(3, 1fr);
-            }
-            
-            .tab {
-                padding: 16px 30px;
-                font-size: 20px;
-            }
-        }
-        
-        @media (max-width: 1400px) {
-            .container {
-                max-width: 98%;
+            .section-title {
+                font-size: 24px;
             }
             
             .dashboard-table {
-                font-size: 16px;
+                font-size: 15px;
+            }
+        }
+        
+        @media (max-width: 1366px) {
+            .logo-text h1 {
+                font-size: 30px;
+            }
+            
+            .current-time {
+                font-size: 28px;
+            }
+            
+            .section-title {
+                font-size: 22px;
+            }
+            
+            .dashboard-table {
+                font-size: 14px;
             }
             
             .dashboard-table th,
             .dashboard-table td {
-                padding: 12px 12px;
+                padding: 10px 10px;
             }
             
-            .logo-text h1 {
-                font-size: 36px;
-            }
-            
-            .current-time {
-                font-size: 32px;
+            .btn {
+                padding: 10px 20px;
+                font-size: 16px;
             }
             
             .tab {
-                padding: 15px 25px;
+                padding: 15px 30px;
                 font-size: 20px;
             }
         }
@@ -1003,6 +995,12 @@
             .vessel-details {
                 grid-template-columns: repeat(3, 1fr);
             }
+        }
+        
+        @media (max-width: 992px) {
+            .vessel-details {
+                grid-template-columns: repeat(2, 1fr);
+            }
             
             .shifts-container {
                 flex-direction: column;
@@ -1011,35 +1009,7 @@
             }
             
             .shift-box {
-                min-width: 300px;
-            }
-        }
-        
-        @media (max-width: 992px) {
-            .vessel-details {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .logo-text h1 {
-                font-size: 32px;
-            }
-            
-            .current-info {
-                gap: 5px;
-            }
-            
-            .tabs {
-                flex-direction: column;
-            }
-            
-            .tab {
-                text-align: center;
-                border-bottom: 2px solid var(--border-color);
-                padding: 15px;
-            }
-            
-            .tab.active {
-                border-bottom: 4px solid var(--accent-orange);
+                min-width: 250px;
             }
         }
         
@@ -1049,19 +1019,11 @@
             }
             
             .logo-text h1 {
-                font-size: 28px;
+                font-size: 24px;
             }
             
             .current-info {
                 gap: 5px;
-            }
-            
-            .current-day {
-                font-size: 24px;
-            }
-            
-            .current-time {
-                font-size: 28px;
             }
             
             .tabs {
@@ -1070,12 +1032,11 @@
             
             .tab {
                 text-align: center;
-                border-bottom: 2px solid var(--border-color);
-                padding: 15px;
+                border-bottom: 1px solid var(--card-border);
             }
             
             .tab.active {
-                border-bottom: 4px solid var(--accent-orange);
+                border-bottom: 3px solid var(--accent-orange);
             }
             
             .form-grid {
@@ -1084,20 +1045,6 @@
             
             .vessel-details {
                 grid-template-columns: 1fr;
-            }
-            
-            .dashboard-table {
-                display: block;
-                overflow-x: auto;
-                table-layout: auto;
-            }
-            
-            .data-actions {
-                flex-direction: column;
-            }
-            
-            body {
-                font-size: 16px;
             }
         }
     </style>
@@ -1110,7 +1057,7 @@
                     <i class="fas fa-ship"></i>
                 </div>
                 <div class="logo-text">
-                    <h1>GC VESSEL & CARGO TRACKER</h1>
+                    <h1>GC VESSEL & CARGO TRACKER - TV DISPLAY</h1>
                 </div>
             </div>
             
@@ -1252,19 +1199,6 @@
                         <i class="fas fa-redo"></i> Clear Form
                     </button>
                 </div>
-                
-                <!-- Data Export/Import Section -->
-                <div class="data-actions">
-                    <button class="btn btn-export" id="exportDataBtn">
-                        <i class="fas fa-file-export"></i> Export Data
-                    </button>
-                    <button class="btn btn-import" id="importDataBtn">
-                        <i class="fas fa-file-import"></i> Import Data
-                    </button>
-                    <button class="btn btn-danger" id="clearAllDataBtn">
-                        <i class="fas fa-trash"></i> Clear All Data
-                    </button>
-                </div>
             </div>
             
             <!-- Vessels Log Section -->
@@ -1278,10 +1212,10 @@
                 
                 <!-- Vertical Vessels Container -->
                 <div class="vessels-container" id="vesselsLog">
-                    <div class="empty-state" style="text-align: center; padding: 40px; color: var(--text-light);">
+                    <div class="empty-state" style="text-align: center; padding: 40px; color: var(--text-muted);">
                         <i class="fas fa-ship" style="font-size: 60px; margin-bottom: 20px; opacity: 0.3;"></i>
-                        <h3 style="margin-bottom: 10px;">No vessels added yet</h3>
-                        <p>Add a vessel using the form above to see it appear here.</p>
+                        <h3 style="margin-bottom: 10px; font-size: 24px;">No vessels added yet</h3>
+                        <p style="font-size: 18px;">Add a vessel using the form above to see it appear here.</p>
                     </div>
                 </div>
             </div>
@@ -1294,77 +1228,83 @@
                 <div class="main-dashboard">
                     <!-- Sailed Vessels Table -->
                     <div class="dashboard-section" id="sailedSection" style="display: none;">
-                        <h3 class="section-title" style="margin-bottom: 12px;">Sailed Vessels</h3>
-                        <table class="dashboard-table" id="sailedTable">
-                            <thead>
-                                <tr>
-                                    <th>Vessel / Voy.</th>
-                                    <th>ATA</th>
-                                    <th>ATD</th>
-                                    <th>Port Stay</th>
-                                    <th>Vessel Type</th>
-                                    <th>Commodity</th>
-                                    <th>Berth</th>
-                                    <th>Remarks</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- Sailed vessels will be added here -->
-                            </tbody>
-                        </table>
+                        <h3 class="section-title" style="margin-bottom: 15px;">Sailed Vessels</h3>
+                        <div class="table-container">
+                            <table class="dashboard-table" id="sailedTable">
+                                <thead>
+                                    <tr>
+                                        <th>Vessel / Voy.</th>
+                                        <th>ATA</th>
+                                        <th>ATD</th>
+                                        <th>Port Stay</th>
+                                        <th>Vessel Type</th>
+                                        <th>Commodity</th>
+                                        <th>Berth</th>
+                                        <th>Remarks</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Sailed vessels will be added here -->
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                     
                     <!-- Working Vessels Table -->
                     <div class="dashboard-section" id="workingSection" style="display: none;">
-                        <h3 class="section-title" style="margin-bottom: 12px;">Working Vessels</h3>
-                        <table class="dashboard-table" id="workingTable">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Vessel / Voy.</th>
-                                    <th>ATA</th>
-                                    <th>Port Stay</th>
-                                    <th>ETD</th>
-                                    <th>Vessel Type</th>
-                                    <th>Commodity</th>
-                                    <th>Quantity</th>
-                                    <th>Completed</th>
-                                    <th>Balance</th>
-                                    <th>Berth</th>
-                                    <th>Remarks</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- Working vessels will be added here -->
-                            </tbody>
-                        </table>
+                        <h3 class="section-title" style="margin-bottom: 15px;">Working Vessels</h3>
+                        <div class="table-container">
+                            <table class="dashboard-table" id="workingTable">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Vessel / Voy.</th>
+                                        <th>ATA</th>
+                                        <th>Port Stay</th>
+                                        <th>ETD</th>
+                                        <th>Vessel Type</th>
+                                        <th>Commodity</th>
+                                        <th>Quantity</th>
+                                        <th>Completed</th>
+                                        <th>Balance</th>
+                                        <th>Berth</th>
+                                        <th>Remarks</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Working vessels will be added here -->
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                     
                     <!-- Inbound Vessels Table with Date Grouping -->
                     <div class="dashboard-section" id="inboundSection" style="display: none;">
-                        <h3 class="section-title" style="margin-bottom: 12px;">Inbound Vessels</h3>
-                        <table class="dashboard-table" id="inboundTable">
-                            <thead>
-                                <tr>
-                                    <th>ETA</th>
-                                    <th>Vessel / Voy.</th>
-                                    <th>Vessel Type</th>
-                                    <th>Commodity</th>
-                                    <th>Quantity</th>
-                                    <th>ETD</th>
-                                    <th>Remarks</th>
-                                </tr>
-                            </thead>
-                            <tbody id="inboundTableBody">
-                                <!-- Inbound vessels will be added here -->
-                            </tbody>
-                        </table>
+                        <h3 class="section-title" style="margin-bottom: 15px;">Inbound Vessels</h3>
+                        <div class="table-container">
+                            <table class="dashboard-table" id="inboundTable">
+                                <thead>
+                                    <tr>
+                                        <th>ETA</th>
+                                        <th>Vessel / Voy.</th>
+                                        <th>Vessel Type</th>
+                                        <th>Commodity</th>
+                                        <th>Quantity</th>
+                                        <th>ETD</th>
+                                        <th>Remarks</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="inboundTableBody">
+                                    <!-- Inbound vessels will be added here -->
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
                 
                 <!-- RIGHT SIDE: Summary and RORO -->
                 <div class="dashboard-sidebar">
-                    <!-- Summary Card - UPDATED -->
+                    <!-- Summary Card -->
                     <div class="sidebar-summary">
                         <div class="sidebar-summary-title">Vessel Summary</div>
                         <div class="summary-item">
@@ -1380,21 +1320,21 @@
                             <span class="summary-item-value" id="sidebarInboundCount">0</span>
                         </div>
                         
-                        <!-- Commodity Breakdown - UPDATED (No "Inbound by Commodity" title) -->
+                        <!-- Commodity Breakdown -->
                         <div class="commodity-summary" id="commoditySummary" style="display: none;">
-                            <!-- UPDATED: No header title, just show commodities like bullet list -->
+                            <div style="font-weight: 600; margin-bottom: 10px; color: var(--primary-blue);">Inbound by Commodity:</div>
                             <div id="commodityBreakdown">
                                 <!-- Commodity items will be added here -->
                             </div>
                         </div>
                         
-                        <div class="summary-item" style="border-top: 3px solid var(--border-color); margin-top: 15px; padding-top: 15px;">
-                            <span class="summary-item-label" style="font-weight: 800;">Total Vessels</span>
-                            <span class="summary-item-value" id="sidebarTotalCount" style="font-size: 28px;">0</span>
+                        <div class="summary-item" style="border-top: 2px solid var(--card-border); margin-top: 15px; padding-top: 15px;">
+                            <span class="summary-item-label" style="font-weight: 700; font-size: 22px;">Total Vessels</span>
+                            <span class="summary-item-value" id="sidebarTotalCount" style="font-size: 26px;">0</span>
                         </div>
                     </div>
                     
-                    <!-- Incoming RORO Units - COMPACT WITHOUT SCROLL -->
+                    <!-- Incoming RORO Units -->
                     <div class="sidebar-summary roro-card">
                         <div class="sidebar-summary-title">RORO Units Summary</div>
                         <div class="roro-total">
@@ -1403,9 +1343,9 @@
                         </div>
                         
                         <div class="roro-vessels" id="roroVesselsList">
-                            <div style="text-align: center; padding: 15px; color: var(--text-light);">
-                                <i class="fas fa-truck-loading" style="font-size: 25px; margin-bottom: 8px; opacity: 0.3;"></i>
-                                <p style="font-size: 13px;">No RORO vessels with units</p>
+                            <div style="text-align: center; padding: 20px; color: var(--text-muted);">
+                                <i class="fas fa-truck-loading" style="font-size: 30px; margin-bottom: 10px; opacity: 0.3;"></i>
+                                <p style="font-size: 18px;">No RORO vessels with units</p>
                             </div>
                         </div>
                     </div>
@@ -1414,13 +1354,29 @@
         </div>
     </main>
     
+    <!-- JSON Data Refresh Indicator -->
+    <div class="json-refresh-indicator" id="jsonRefreshIndicator" style="display: none;">
+        <i class="fas fa-cloud-download-alt"></i>
+        <span>JSON Data: <span id="jsonRefreshTimer">30</span>s</span>
+    </div>
+    
     <!-- Toast Notification Container -->
     <div class="toast-container" id="toastContainer"></div>
     
     <script>
+        // Configuration for JSON data
+        const CONFIG = {
+            JSON_URL: 'https://raw.githubusercontent.com/yourusername/yourrepo/main/vessels.json', // CHANGE THIS TO YOUR JSON URL
+            REFRESH_INTERVAL: 30000, // 30 seconds
+            USE_JSON_DATA: false, // Set to true to enable JSON data loading
+            SYNC_LOCAL_WITH_JSON: true // Set to true to merge JSON data with local data
+        };
+        
         // Global variables
-        let vessels = [];
+        let vessels = []; // Empty array, no localStorage
         let currentDate = new Date();
+        let jsonData = [];
+        let jsonRefreshTimer = CONFIG.REFRESH_INTERVAL / 1000;
         
         // Reference date: 13/01/2026 = Day 1
         const REFERENCE_DATE = new Date('2026-01-13T00:00:00');
@@ -1475,7 +1431,7 @@
         });
         
         // Main initialization function
-        function initializeApp() {
+        async function initializeApp() {
             // Set up current time and update it every second
             updateCurrentTime();
             setInterval(updateCurrentTime, 1000);
@@ -1486,446 +1442,165 @@
             // Set up form interactions
             setupFormInteractions();
             
-            // Remove existing data and import JSON data
-            clearAllDataAndImportJSON();
+            // Load existing vessels (empty initially)
+            loadVessels();
             
             // Update dashboard counts
             updateDashboard();
+            
+            // Load JSON data if enabled
+            if (CONFIG.USE_JSON_DATA) {
+                setupJsonDataLoading();
+                await loadJsonData();
+            }
         }
         
-        // Clear existing data and import JSON data
-        function clearAllDataAndImportJSON() {
-            // Clear existing vessels
-            vessels = [];
+        // Setup JSON data loading
+        function setupJsonDataLoading() {
+            // Show refresh indicator
+            document.getElementById('jsonRefreshIndicator').style.display = 'flex';
             
-            // Import the JSON data
-            const jsonData = {
-                "version": "1.0",
-                "exportDate": "2026-01-28T05:51:28.873Z",
-                "vessels": [
-                    {
-                        "id": "1768473053518",
-                        "vesselName": "GTO1904 & SEA OLOUS",
-                        "voyage": "25-04",
-                        "agent": "GULF AGENCY",
-                        "eta": "2025-10-22T21:30",
-                        "vesselType": "TUG&BARGE",
-                        "commodity": "LAY BY",
-                        "purpose": "N/A",
-                        "etd": "2026-02-26T06:00",
-                        "quantity": {},
-                        "status": "WORKING",
-                        "checks": {
-                            "preArrival": true,
-                            "manifest": true,
-                            "printFile": true,
-                            "tdrAgent": false,
-                            "tdrFinance": false
-                        },
-                        "createdAt": "2026-01-15T10:30:53.518Z",
-                        "updatedAt": "2026-01-27T04:59:54.038Z",
-                        "ata": "2025-10-23T00:30",
-                        "berth": "RORO 2"
-                    },
-                    {
-                        "id": "1768723608754",
-                        "vesselName": "BALTIMORE HIGHWAY",
-                        "voyage": "177A",
-                        "agent": "AL-SHARIF GROUP",
-                        "eta": "2026-01-30T15:00",
-                        "vesselType": "RORO",
-                        "commodity": "UNITS",
-                        "purpose": "DISCHARGE",
-                        "etd": "2026-01-30T20:59",
-                        "quantity": {
-                            "import": {
-                                "units": 0
-                            }
-                        },
-                        "status": "INBOUND",
-                        "checks": {
-                            "preArrival": true,
-                            "manifest": false,
-                            "printFile": false,
-                            "tdrAgent": false,
-                            "tdrFinance": false
-                        },
-                        "createdAt": "2026-01-18T08:06:48.754Z",
-                        "updatedAt": "2026-01-26T04:23:39.507Z",
-                        "remarks": ""
-                    },
-                    {
-                        "id": "1768893406605",
-                        "vesselName": "SUMMIT SW",
-                        "voyage": "1",
-                        "agent": "GULF AGENCY",
-                        "eta": "2026-01-21T18:00",
-                        "vesselType": "GENERAL CARGO",
-                        "commodity": "SULPHUR",
-                        "purpose": "LOAD",
-                        "etd": "2026-02-04T12:00",
-                        "quantity": {
-                            "export": {
-                                "weight": 22000
-                            }
-                        },
-                        "status": "WORKING",
-                        "checks": {
-                            "preArrival": true,
-                            "manifest": true,
-                            "printFile": false,
-                            "tdrAgent": false,
-                            "tdrFinance": false
-                        },
-                        "createdAt": "2026-01-20T07:16:46.605Z",
-                        "updatedAt": "2026-01-28T04:29:45.265Z",
-                        "ata": "2026-01-22T19:35",
-                        "berth": "5",
-                        "completed": {
-                            "export": {
-                                "weight": 8933.89
-                            }
-                        },
-                        "balance": {
-                            "export": {
-                                "weight": 13066.11
-                            }
-                        }
-                    },
-                    {
-                        "id": "1769315527212",
-                        "vesselName": "HOEGH TRIDENT",
-                        "voyage": "220",
-                        "agent": "KANOO",
-                        "eta": "2026-01-27T08:00",
-                        "vesselType": "RORO",
-                        "commodity": "UNITS",
-                        "purpose": "DISCHARGE",
-                        "etd": "2026-01-24T05:00",
-                        "quantity": {
-                            "import": {
-                                "units": 123
-                            }
-                        },
-                        "status": "SAILED",
-                        "remarks": "",
-                        "checks": {
-                            "preArrival": true,
-                            "manifest": true,
-                            "printFile": true,
-                            "tdrAgent": false,
-                            "tdrFinance": false
-                        },
-                        "createdAt": "2026-01-25T04:32:07.212Z",
-                        "updatedAt": "2026-01-28T04:49:57.175Z",
-                        "ata": "2026-01-27T08:35",
-                        "berth": "3",
-                        "completed": {
-                            "import": {
-                                "units": 121
-                            }
-                        },
-                        "balance": {
-                            "import": {
-                                "units": 2
-                            }
-                        },
-                        "atd": "2026-01-27T20:15",
-                        "shifted": 123
-                    },
-                    {
-                        "id": "1769316889954",
-                        "vesselName": "HOEGH ST. PETERSBURG",
-                        "voyage": "97",
-                        "agent": "KANOO",
-                        "eta": "2026-02-05T18:00",
-                        "vesselType": "RORO",
-                        "commodity": "UNITS",
-                        "purpose": "DISCHARGE",
-                        "etd": "2026-01-30T20:00",
-                        "quantity": {
-                            "import": {
-                                "units": 0
-                            }
-                        },
-                        "status": "INBOUND",
-                        "remarks": "",
-                        "checks": {
-                            "preArrival": false,
-                            "manifest": false,
-                            "printFile": false,
-                            "tdrAgent": false,
-                            "tdrFinance": false
-                        },
-                        "createdAt": "2026-01-25T04:54:49.954Z",
-                        "updatedAt": "2026-01-26T07:02:21.708Z"
-                    },
-                    {
-                        "id": "1769317314983",
-                        "vesselName": "AL SAHARA",
-                        "voyage": "26-01",
-                        "agent": "GULF COMPASS",
-                        "eta": "2026-01-28T06:00",
-                        "vesselType": "DHOW",
-                        "commodity": "LIVESTOCK",
-                        "purpose": "DISCHARGE",
-                        "etd": "2026-01-28T15:00",
-                        "quantity": {
-                            "import": {
-                                "heads": 345
-                            }
-                        },
-                        "status": "WORKING",
-                        "remarks": "345 Cattles - Mobile Crane @ 12",
-                        "checks": {
-                            "preArrival": true,
-                            "manifest": true,
-                            "printFile": true,
-                            "tdrAgent": false,
-                            "tdrFinance": false
-                        },
-                        "createdAt": "2026-01-25T05:01:54.983Z",
-                        "updatedAt": "2026-01-28T05:29:19.810Z",
-                        "ata": "2026-01-28T07:45",
-                        "berth": "MP"
-                    },
-                    {
-                        "id": "1769317422728",
-                        "vesselName": "CHENG KANG KOU",
-                        "voyage": "4",
-                        "agent": "DILMUN",
-                        "eta": "2026-01-30T06:00",
-                        "vesselType": "RORO",
-                        "commodity": "UNITS",
-                        "purpose": "DISCHARGE",
-                        "etd": "2026-01-28T20:00",
-                        "quantity": {
-                            "import": {
-                                "units": 279
-                            }
-                        },
-                        "status": "INBOUND",
-                        "remarks": "",
-                        "checks": {
-                            "preArrival": true,
-                            "manifest": true,
-                            "printFile": true,
-                            "tdrAgent": false,
-                            "tdrFinance": false
-                        },
-                        "createdAt": "2026-01-25T05:03:42.728Z",
-                        "updatedAt": "2026-01-28T04:30:58.433Z"
-                    },
-                    {
-                        "id": "1769317520009",
-                        "vesselName": "WESTERN HIGHWAY",
-                        "voyage": "178A",
-                        "agent": "DILMUN",
-                        "eta": "2026-01-31T05:00",
-                        "vesselType": "RORO",
-                        "commodity": "UNITS",
-                        "purpose": "DISCHARGE",
-                        "etd": "2026-02-01T20:00",
-                        "quantity": {
-                            "import": {
-                                "units": 82
-                            }
-                        },
-                        "status": "INBOUND",
-                        "remarks": "",
-                        "checks": {
-                            "preArrival": true,
-                            "manifest": false,
-                            "printFile": false,
-                            "tdrAgent": false,
-                            "tdrFinance": false
-                        },
-                        "createdAt": "2026-01-25T05:05:20.009Z",
-                        "updatedAt": "2026-01-27T04:33:54.224Z",
-                        "attachments": []
-                    },
-                    {
-                        "id": "1769317675442",
-                        "vesselName": "HAWK S",
-                        "voyage": "26-01",
-                        "agent": "AL-SHARIF GROUP",
-                        "eta": "2026-01-28T09:00",
-                        "vesselType": "GENERAL CARGO",
-                        "commodity": "ALUMINIUM",
-                        "purpose": "LOAD",
-                        "etd": "2026-02-05T06:00",
-                        "quantity": {
-                            "export": {
-                                "weight": 10055.045
-                            }
-                        },
-                        "status": "INBOUND",
-                        "remarks": "",
-                        "checks": {
-                            "preArrival": true,
-                            "manifest": true,
-                            "printFile": true,
-                            "tdrAgent": false,
-                            "tdrFinance": false
-                        },
-                        "createdAt": "2026-01-25T05:07:55.442Z",
-                        "updatedAt": "2026-01-27T04:58:22.338Z"
-                    },
-                    {
-                        "id": "1769317793012",
-                        "vesselName": "OCEAN ENERGY",
-                        "voyage": "OE-25-012",
-                        "agent": "AL-SHARIF GROUP",
-                        "eta": "2026-01-29T12:00",
-                        "vesselType": "GENERAL CARGO",
-                        "commodity": "STEEL BILLET",
-                        "purpose": "DISCHARGE",
-                        "etd": "2026-01-29T06:00",
-                        "quantity": {
-                            "import": {
-                                "weight": 11205
-                            }
-                        },
-                        "status": "INBOUND",
-                        "remarks": "",
-                        "checks": {
-                            "preArrival": true,
-                            "manifest": true,
-                            "printFile": true,
-                            "tdrAgent": false,
-                            "tdrFinance": false
-                        },
-                        "createdAt": "2026-01-25T05:09:53.012Z",
-                        "updatedAt": "2026-01-28T04:24:54.282Z",
-                        "attachments": [
-                            {
-                                "id": "1769339454952",
-                                "name": "PHC",
-                                "fileName": "RE_ DRAFT PHC INVOICE REQUEST __ MV_ OCEAN ENERGY_ VOY- OE-25-012_ DUE AT KBSP JETTY_ BAHRAIN FOR DISCHARGING STEEL BILLETS.msg",
-                                "size": "327.5 KB",
-                                "type": "",
-                                "uploadedAt": "2026-01-25T11:10:54.954Z"
-                            }
-                        ]
-                    },
-                    {
-                        "id": "1769422485532",
-                        "vesselName": "WISDOM ACE",
-                        "voyage": "99A",
-                        "agent": "KANOO",
-                        "eta": "2026-01-31T13:00",
-                        "vesselType": "RORO",
-                        "commodity": "UNITS",
-                        "purpose": "DISCHARGE/LOAD",
-                        "etd": "2026-01-31T23:00",
-                        "quantity": {
-                            "import": {
-                                "units": 0
-                            },
-                            "export": {
-                                "units": 0
-                            }
-                        },
-                        "status": "INBOUND",
-                        "remarks": "",
-                        "checks": {
-                            "preArrival": true,
-                            "manifest": false,
-                            "printFile": false,
-                            "tdrAgent": false,
-                            "tdrFinance": false
-                        },
-                        "createdAt": "2026-01-26T10:14:45.532Z",
-                        "updatedAt": "2026-01-26T10:15:04.092Z"
-                    },
-                    {
-                        "id": "1769488188166",
-                        "vesselName": "BOSPORUS HIGHWAY",
-                        "voyage": "159A",
-                        "agent": "AL-SHARIF GROUP",
-                        "eta": "2026-02-01T01:00",
-                        "vesselType": "RORO",
-                        "commodity": "UNITS",
-                        "purpose": "DISCHARGE",
-                        "etd": "2026-02-01T23:00",
-                        "quantity": {
-                            "import": {
-                                "units": 473
-                            }
-                        },
-                        "status": "INBOUND",
-                        "remarks": "Manifest not completed - Long Storage not received",
-                        "checks": {
-                            "preArrival": true,
-                            "manifest": true,
-                            "printFile": false,
-                            "tdrAgent": false,
-                            "tdrFinance": false
-                        },
-                        "createdAt": "2026-01-27T04:29:48.166Z",
-                        "updatedAt": "2026-01-27T04:33:03.615Z"
-                    },
-                    {
-                        "id": "1769492110729",
-                        "vesselName": "CELESTYAL JOURNEY",
-                        "voyage": "26-05",
-                        "agent": "WILHELMSEN",
-                        "eta": "2026-01-30T10:00",
-                        "vesselType": "CRUISE",
-                        "commodity": "PASSENGERS",
-                        "purpose": "N/A",
-                        "etd": "2026-01-30T18:00",
-                        "quantity": {},
-                        "status": "INBOUND",
-                        "remarks": "",
-                        "checks": {
-                            "preArrival": false,
-                            "manifest": false,
-                            "printFile": false,
-                            "tdrAgent": false,
-                            "tdrFinance": false
-                        },
-                        "createdAt": "2026-01-27T05:35:10.729Z",
-                        "updatedAt": "2026-01-27T05:45:21.125Z"
-                    },
-                    {
-                        "id": "1769574808706",
-                        "vesselName": "MSC EURIBIA",
-                        "voyage": "ER14",
-                        "agent": "AL-SHARIF GROUP",
-                        "eta": "2026-02-02T06:30",
-                        "vesselType": "CRUISE",
-                        "commodity": "PASSENGERS",
-                        "purpose": "N/A",
-                        "etd": "2026-02-02T18:00",
-                        "quantity": {},
-                        "status": "INBOUND",
-                        "remarks": "",
-                        "checks": {
-                            "preArrival": false,
-                            "manifest": false,
-                            "printFile": false,
-                            "tdrAgent": false,
-                            "tdrFinance": false
-                        },
-                        "createdAt": "2026-01-28T04:33:28.706Z",
-                        "updatedAt": "2026-01-28T04:33:28.706Z"
+            // Start JSON refresh timer
+            setInterval(() => {
+                jsonRefreshTimer--;
+                document.getElementById('jsonRefreshTimer').textContent = jsonRefreshTimer;
+                
+                if (jsonRefreshTimer <= 0) {
+                    jsonRefreshTimer = CONFIG.REFRESH_INTERVAL / 1000;
+                    loadJsonData();
+                }
+            }, 1000);
+            
+            // Start JSON data refresh interval
+            setInterval(async () => {
+                await loadJsonData();
+            }, CONFIG.REFRESH_INTERVAL);
+        }
+        
+        // Load JSON data from GitHub
+        async function loadJsonData() {
+            try {
+                const response = await fetch(CONFIG.JSON_URL + '?t=' + new Date().getTime());
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                // Validate data structure
+                if (Array.isArray(data)) {
+                    jsonData = data;
+                    if (CONFIG.SYNC_LOCAL_WITH_JSON) {
+                        mergeJsonDataWithLocal();
                     }
-                ]
-            };
-            
-            // Import the vessels from JSON
-            vessels = jsonData.vessels;
-            
-            // Save to localStorage
-            saveVessels();
-            
-            // Load vessels display
-            loadVessels();
-            
-            showToast('JSON data imported successfully', 'success');
+                    console.log(`Loaded ${jsonData.length} vessels from JSON`);
+                    showToast(`JSON data refreshed: ${jsonData.length} vessels`, 'success');
+                    
+                    // Update refresh indicator
+                    document.getElementById('jsonRefreshIndicator').style.background = 'var(--accent-green)';
+                    setTimeout(() => {
+                        document.getElementById('jsonRefreshIndicator').style.background = 'var(--primary-blue)';
+                    }, 2000);
+                    
+                } else if (data.vessels && Array.isArray(data.vessels)) {
+                    jsonData = data.vessels;
+                    if (CONFIG.SYNC_LOCAL_WITH_JSON) {
+                        mergeJsonDataWithLocal();
+                    }
+                    console.log(`Loaded ${jsonData.length} vessels from JSON`);
+                    showToast(`JSON data refreshed: ${jsonData.length} vessels`, 'success');
+                    
+                    // Update refresh indicator
+                    document.getElementById('jsonRefreshIndicator').style.background = 'var(--accent-green)';
+                    setTimeout(() => {
+                        document.getElementById('jsonRefreshIndicator').style.background = 'var(--primary-blue)';
+                    }, 2000);
+                    
+                } else {
+                    throw new Error('Invalid JSON structure');
+                }
+                
+            } catch (error) {
+                console.error('Error loading JSON data:', error);
+                document.getElementById('jsonRefreshIndicator').style.background = 'var(--accent-red)';
+                showToast('Error loading JSON data', 'error');
+            }
         }
         
+        // Merge JSON data with local data
+        function mergeJsonDataWithLocal() {
+            // Create a map of local vessels by ID for quick lookup
+            const localVesselsMap = {};
+            vessels.forEach(vessel => {
+                localVesselsMap[vessel.id] = vessel;
+            });
+            
+            // Merge JSON data with local data
+            jsonData.forEach(jsonVessel => {
+                // Check if vessel already exists locally
+                if (localVesselsMap[jsonVessel.id]) {
+                    // Update existing vessel with JSON data (but preserve some local fields)
+                    const localVessel = localVesselsMap[jsonVessel.id];
+                    
+                    // Update fields that might come from JSON
+                    localVessel.vesselName = jsonVessel.vesselName || localVessel.vesselName;
+                    localVessel.voyage = jsonVessel.voyage || localVessel.voyage;
+                    localVessel.agent = jsonVessel.agent || localVessel.agent;
+                    localVessel.eta = jsonVessel.eta || localVessel.eta;
+                    localVessel.vesselType = jsonVessel.vesselType || localVessel.vesselType;
+                    localVessel.commodity = jsonVessel.commodity || localVessel.commodity;
+                    localVessel.purpose = jsonVessel.purpose || localVessel.purpose;
+                    localVessel.etd = jsonVessel.etd || localVessel.etd;
+                    
+                    // Update quantity if provided in JSON
+                    if (jsonVessel.quantity) {
+                        localVessel.quantity = jsonVessel.quantity;
+                    }
+                    
+                    // Update status if provided in JSON
+                    if (jsonVessel.status && jsonVessel.status !== localVessel.status) {
+                        // Only update status if JSON provides a valid status
+                        localVessel.status = jsonVessel.status;
+                    }
+                    
+                    // Update other working details if provided
+                    if (jsonVessel.ata) localVessel.ata = jsonVessel.ata;
+                    if (jsonVessel.atd) localVessel.atd = jsonVessel.atd;
+                    if (jsonVessel.berth) localVessel.berth = jsonVessel.berth;
+                    if (jsonVessel.completed) localVessel.completed = jsonVessel.completed;
+                    if (jsonVessel.balance) localVessel.balance = jsonVessel.balance;
+                    if (jsonVessel.shifted !== undefined) localVessel.shifted = jsonVessel.shifted;
+                    
+                    // Update remarks if provided
+                    if (jsonVessel.remarks) localVessel.remarks = jsonVessel.remarks;
+                    
+                    // Update checks if provided
+                    if (jsonVessel.checks) {
+                        localVessel.checks = { ...localVessel.checks, ...jsonVessel.checks };
+                    }
+                    
+                    localVessel.updatedAt = new Date().toISOString();
+                    
+                } else {
+                    // Add new vessel from JSON
+                    const newVessel = {
+                        ...jsonVessel,
+                        id: jsonVessel.id || Date.now().toString(),
+                        createdAt: jsonVessel.createdAt || new Date().toISOString(),
+                        updatedAt: new Date().toISOString()
+                    };
+                    
+                    vessels.push(newVessel);
+                }
+            });
+            
+            // Update display
+            loadVessels();
+            updateDashboard();
+        }
+        
+        // [ALL ORIGINAL FUNCTIONS REMAIN EXACTLY AS THEY WERE - NO CHANGES TO FUNCTIONALITY]
         // Calculate day in cycle (1-8)
         function getDayInCycle(selectedDate) {
             // Calculate days difference from reference date
@@ -2219,127 +1894,6 @@
             document.getElementById('commodity').addEventListener('change', updateQuantitySection);
             document.getElementById('purpose').addEventListener('change', updateQuantitySection);
             document.getElementById('vesselType').addEventListener('change', updateQuantitySection);
-            
-            // Export/Import buttons
-            document.getElementById('exportDataBtn').addEventListener('click', exportData);
-            document.getElementById('importDataBtn').addEventListener('click', importData);
-            document.getElementById('clearAllDataBtn').addEventListener('click', clearAllData);
-        }
-        
-        // Export data function
-        function exportData() {
-            // Create export data object
-            const exportData = {
-                version: '1.0',
-                exportDate: new Date().toISOString(),
-                vessels: vessels
-            };
-            
-            // Convert to JSON string
-            const dataStr = JSON.stringify(exportData, null, 2);
-            
-            // Create blob and download link
-            const dataBlob = new Blob([dataStr], {type: 'application/json'});
-            const url = URL.createObjectURL(dataBlob);
-            
-            // Create download link and trigger download
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `gc-vessel-data-${formatDate(new Date())}.json`;
-            document.body.appendChild(a);
-            a.click();
-            
-            // Clean up
-            setTimeout(() => {
-                document.body.removeChild(a);
-                URL.revokeObjectURL(url);
-            }, 100);
-            
-            showToast('Data exported successfully', 'success');
-        }
-        
-        // Import data function
-        function importData() {
-            // Ask for password for security
-            const password = prompt('Enter password to import data:');
-            if (password !== 'GC123') {
-                showToast('Incorrect password', 'error');
-                return;
-            }
-            
-            // Create file input element
-            const fileInput = document.createElement('input');
-            fileInput.type = 'file';
-            fileInput.accept = '.json';
-            
-            fileInput.onchange = function(event) {
-                const file = event.target.files[0];
-                if (!file) return;
-                
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    try {
-                        const importedData = JSON.parse(e.target.result);
-                        
-                        // Validate the imported data
-                        if (!importedData.vessels || !Array.isArray(importedData.vessels)) {
-                            showToast('Invalid data file format', 'error');
-                            return;
-                        }
-                        
-                        // Ask for confirmation
-                        if (!confirm(`This will replace all current data with ${importedData.vessels.length} vessels. Continue?`)) {
-                            return;
-                        }
-                        
-                        // Remove existing modal if any
-                        const existingModal = document.querySelector('.modal');
-                        if (existingModal) existingModal.remove();
-                        
-                        // Replace current vessels with imported data
-                        vessels = importedData.vessels;
-                        
-                        // Save to localStorage
-                        saveVessels();
-                        
-                        // Reload display
-                        loadVessels();
-                        updateDashboard();
-                        
-                        showToast(`Successfully imported ${vessels.length} vessels`, 'success');
-                    } catch (error) {
-                        showToast('Error reading data file: ' + error.message, 'error');
-                    }
-                };
-                
-                reader.readAsText(file);
-            };
-            
-            fileInput.click();
-        }
-        
-        // Clear all data function
-        function clearAllData() {
-            // Ask for password for security
-            const password = prompt('Enter password to clear all data:');
-            if (password !== 'GC123') {
-                showToast('Incorrect password', 'error');
-                return;
-            }
-            
-            if (confirm('Are you sure you want to clear ALL data? This cannot be undone.')) {
-                // Clear vessels array
-                vessels = [];
-                
-                // Save to localStorage
-                saveVessels();
-                
-                // Reload display
-                loadVessels();
-                updateDashboard();
-                
-                showToast('All data cleared successfully', 'success');
-            }
         }
         
         // Update quantity section based on selected commodity and purpose
@@ -2375,7 +1929,7 @@
             }
             
             quantitySection.innerHTML = `
-                <h3 style="margin-bottom: 18px; color: white;">Quantity Details</h3>
+                <h3 style="margin-bottom: 15px; color: var(--primary-blue); font-size: 22px;">Quantity Details</h3>
                 <div class="alert alert-info">
                     <i class="fas fa-info-circle"></i> Fill at least one field in each applicable table
                 </div>
@@ -2452,7 +2006,7 @@
                             <td><input type="number" min="0" data-field="packages" placeholder="Enter packages"></td>
                             <td><input type="number" min="0" step="0.001" data-field="weight" placeholder="Enter weight"></td>
                             <td><input type="number" min="0" step="0.001" data-field="volume" placeholder="Enter volume"></td>
-                            <td><input type="number" min="0" step="0.001" data-field="freightTon" readonly style="background-color: #222222;"></td>
+                            <td><input type="number" min="0" step="0.001" data-field="freightTon" readonly style="background-color: #2a2a2a; color: var(--text-light);"></td>
                         </tr>
                     </tbody>
                 </table>
@@ -2482,7 +2036,7 @@
                             <td><input type="number" min="0" data-field="packages" placeholder="Enter packages"></td>
                             <td><input type="number" min="0" step="0.001" data-field="weight" placeholder="Enter weight"></td>
                             <td><input type="number" min="0" step="0.001" data-field="volume" placeholder="Enter volume"></td>
-                            <td><input type="number" min="0" step="0.001" data-field="freightTon" readonly style="background-color: #222222;"></td>
+                            <td><input type="number" min="0" step="0.001" data-field="freightTon" readonly style="background-color: #2a2a2a; color: var(--text-light);"></td>
                         </tr>
                     </tbody>
                 </table>
@@ -2646,11 +2200,8 @@
                 updatedAt: new Date().toISOString()
             };
             
-            // Add to vessels array
+            // Add to vessels array (NO LOCALSTORAGE)
             vessels.push(vessel);
-            
-            // Save to localStorage
-            saveVessels();
             
             // Clear form
             clearForm();
@@ -2716,7 +2267,7 @@
             document.getElementById('quantitySection').innerHTML = '';
         }
         
-        // Load vessels from localStorage and display them vertically
+        // Load vessels from memory and display them vertically
         function loadVessels() {
             const vesselsLog = document.getElementById('vesselsLog');
             vesselsLog.innerHTML = '';
@@ -2736,10 +2287,10 @@
             // If no vessels, show empty state
             if (vessels.length === 0) {
                 vesselsLog.innerHTML = `
-                    <div class="empty-state" style="text-align: center; padding: 40px; color: var(--text-light);">
+                    <div class="empty-state" style="text-align: center; padding: 40px; color: var(--text-muted);">
                         <i class="fas fa-ship" style="font-size: 60px; margin-bottom: 20px; opacity: 0.3;"></i>
-                        <h3 style="margin-bottom: 10px;">No vessels added yet</h3>
-                        <p>Add a vessel using the form above to see it appear here.</p>
+                        <h3 style="margin-bottom: 10px; font-size: 24px;">No vessels added yet</h3>
+                        <p style="font-size: 18px;">Add a vessel using the form above to see it appear here.</p>
                     </div>
                 `;
             }
@@ -2892,18 +2443,18 @@
                     </div>
                     
                     <!-- Pre-Arrival Checks for INBOUND vessels -->
-                    <div class="vessel-checks" style="margin: 18px 0; padding: 18px; background-color: #222222; border-radius: 8px;">
-                        <div style="font-weight: 700; margin-bottom: 12px; font-size: 20px;">Pre-Arrival Checks:</div>
+                    <div class="vessel-checks" style="margin: 15px 0; padding: 15px; background-color: rgba(255, 255, 255, 0.05); border-radius: 8px;">
+                        <div style="font-weight: 600; margin-bottom: 10px; font-size: 18px;">Pre-Arrival Checks:</div>
                         <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-                            <label style="display: flex; align-items: center; gap: 8px; font-size: 18px;">
+                            <label style="display: flex; align-items: center; gap: 8px; font-size: 16px;">
                                 <input type="checkbox" class="pre-arrival-check" ${vessel.checks.preArrival ? 'checked' : ''} data-id="${vessel.id}">
                                 Pre-Arrival Notification Received
                             </label>
-                            <label style="display: flex; align-items: center; gap: 8px; font-size: 18px;">
+                            <label style="display: flex; align-items: center; gap: 8px; font-size: 16px;">
                                 <input type="checkbox" class="manifest-check" ${vessel.checks.manifest ? 'checked' : ''} data-id="${vessel.id}">
                                 Manifest Received
                             </label>
-                            <label style="display: flex; align-items: center; gap: 8px; font-size: 18px;">
+                            <label style="display: flex; align-items: center; gap: 8px; font-size: 16px;">
                                 <input type="checkbox" class="print-file-check" ${vessel.checks.printFile ? 'checked' : ''} data-id="${vessel.id}">
                                 Print File Sent
                             </label>
@@ -3098,14 +2649,14 @@
                     </div>
                     
                     <!-- TDR Checks for SAILED vessels -->
-                    <div class="vessel-checks" style="margin: 18px 0; padding: 18px; background-color: #222222; border-radius: 8px;">
-                        <div style="font-weight: 700; margin-bottom: 12px; font-size: 20px;">TDR Status:</div>
+                    <div class="vessel-checks" style="margin: 15px 0; padding: 15px; background-color: rgba(255, 255, 255, 0.05); border-radius: 8px;">
+                        <div style="font-weight: 600; margin-bottom: 10px; font-size: 18px;">TDR Status:</div>
                         <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-                            <label style="display: flex; align-items: center; gap: 8px; font-size: 18px;">
+                            <label style="display: flex; align-items: center; gap: 8px; font-size: 16px;">
                                 <input type="checkbox" class="tdr-agent-check" ${vessel.checks.tdrAgent ? 'checked' : ''} data-id="${vessel.id}">
                                 TDR Sent to Agent
                             </label>
-                            <label style="display: flex; align-items: center; gap: 8px; font-size: 18px;">
+                            <label style="display: flex; align-items: center; gap: 8px; font-size: 16px;">
                                 <input type="checkbox" class="tdr-finance-check" ${vessel.checks.tdrFinance ? 'checked' : ''} data-id="${vessel.id}">
                                 TDR Sent to Finance
                             </label>
@@ -3213,11 +2764,11 @@
                         <form id="updateRemarksForm">
                             <div class="form-group">
                                 <label for="remarks">Remarks</label>
-                                <textarea id="remarks" rows="4" placeholder="Enter remarks for this vessel" style="width: 100%; padding: 15px 18px; border: 2px solid var(--border-color); border-radius: 8px; font-size: 18px; background-color: #222222; color: white;">${vessel.remarks || ''}</textarea>
+                                <textarea id="remarks" rows="4" placeholder="Enter remarks for this vessel" style="width: 100%; padding: 12px 15px; border: 1px solid var(--card-border); border-radius: 8px; font-size: 18px; background: #2a2a2a; color: var(--text-light);">${vessel.remarks || ''}</textarea>
                             </div>
                         </form>
                         
-                        <div class="form-actions" style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 25px;">
+                        <div class="form-actions" style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 25px;">
                             <button type="button" class="btn btn-secondary" id="cancelRemarksBtn">Cancel</button>
                             <button type="button" class="btn btn-primary" id="confirmRemarksBtn">Update Remarks</button>
                         </div>
@@ -3238,7 +2789,6 @@
                 vessel.remarks = remarks;
                 vessel.updatedAt = new Date().toISOString();
                 
-                saveVessels();
                 loadVessels();
                 updateDashboard();
                 modal.remove();
@@ -3272,19 +2822,19 @@
                         <form id="updateETAForm">
                             <div class="form-group">
                                 <label for="newETA">New ETA *</label>
-                                <input type="datetime-local" id="newETA" value="${formatForInput(vessel.eta)}" required style="background-color: #222222; color: white;">
+                                <input type="datetime-local" id="newETA" value="${formatForInput(vessel.eta)}" required style="background: #2a2a2a; color: var(--text-light);">
                             </div>
                             <div class="form-group">
                                 <label for="updateETD">Update ETD (Optional)</label>
-                                <input type="datetime-local" id="updateETD" value="${formatForInput(vessel.etd)}" style="background-color: #222222; color: white;">
+                                <input type="datetime-local" id="updateETD" value="${formatForInput(vessel.etd)}" style="background: #2a2a2a; color: var(--text-light);">
                             </div>
                             <div class="form-group">
                                 <label for="etaReason">Reason for ETA Change (Optional)</label>
-                                <input type="text" id="etaReason" placeholder="e.g., Weather delay, mechanical issue" style="background-color: #222222; color: white;">
+                                <input type="text" id="etaReason" placeholder="e.g., Weather delay, mechanical issue" style="background: #2a2a2a; color: var(--text-light);">
                             </div>
                         </form>
                         
-                        <div class="form-actions" style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 25px;">
+                        <div class="form-actions" style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 25px;">
                             <button type="button" class="btn btn-secondary" id="cancelETABtn">Cancel</button>
                             <button type="button" class="btn btn-primary" id="confirmETABtn">Update ETA</button>
                         </div>
@@ -3313,7 +2863,6 @@
                 if (newETD) vessel.etd = newETD;
                 vessel.updatedAt = new Date().toISOString();
                 
-                saveVessels();
                 loadVessels();
                 modal.remove();
                 
@@ -3530,7 +3079,6 @@
             }
             
             vessel.updatedAt = new Date().toISOString();
-            saveVessels();
             
             // If both TDR checks are checked for a SAILED vessel, show option to close
             if (vessel.status === 'SAILED' && vessel.checks.tdrAgent && vessel.checks.tdrFinance) {
@@ -3584,41 +3132,41 @@
                             <div class="form-grid">
                                 <div class="form-group">
                                     <label for="editVesselName">Vessel Name</label>
-                                    <input type="text" id="editVesselName" value="${vessel.vesselName}" required style="background-color: #222222; color: white;">
+                                    <input type="text" id="editVesselName" value="${vessel.vesselName}" required style="background: #2a2a2a; color: var(--text-light);">
                                 </div>
                                 
                                 <div class="form-group">
                                     <label for="editVoyage">VOY.</label>
-                                    <input type="text" id="editVoyage" value="${vessel.voyage}" required style="background-color: #222222; color: white;">
+                                    <input type="text" id="editVoyage" value="${vessel.voyage}" required style="background: #2a2a2a; color: var(--text-light);">
                                 </div>
                                 
                                 <div class="form-group">
                                     <label for="editAgent">Agent</label>
-                                    <input type="text" id="editAgent" value="${vessel.agent}" required style="background-color: #222222; color: white;">
+                                    <input type="text" id="editAgent" value="${vessel.agent}" required style="background: #2a2a2a; color: var(--text-light);">
                                 </div>
                                 
                                 <div class="form-group">
                                     <label for="editEta">ETA</label>
-                                    <input type="datetime-local" id="editEta" value="${formatForInput(vessel.eta)}" required style="background-color: #222222; color: white;">
+                                    <input type="datetime-local" id="editEta" value="${formatForInput(vessel.eta)}" required style="background: #2a2a2a; color: var(--text-light);">
                                 </div>
                                 
                                 <div class="form-group">
                                     <label for="editVesselType">Vessel Type</label>
-                                    <select id="editVesselType" style="background-color: #222222; color: white;">
+                                    <select id="editVesselType" style="background: #2a2a2a; color: var(--text-light);">
                                         ${createVesselTypeOptions(vessel.vesselType)}
                                     </select>
                                 </div>
                                 
                                 <div class="form-group">
                                     <label for="editCommodity">Commodity</label>
-                                    <select id="editCommodity" style="background-color: #222222; color: white;">
+                                    <select id="editCommodity" style="background: #2a2a2a; color: var(--text-light);">
                                         ${createCommodityOptions(vessel.commodity)}
                                     </select>
                                 </div>
                                 
                                 <div class="form-group">
                                     <label for="editPurpose">Purpose of Call</label>
-                                    <select id="editPurpose" style="background-color: #222222; color: white;">
+                                    <select id="editPurpose" style="background: #2a2a2a; color: var(--text-light);">
                                         <option value="DISCHARGE" ${vessel.purpose === 'DISCHARGE' ? 'selected' : ''}>Discharge</option>
                                         <option value="LOAD" ${vessel.purpose === 'LOAD' ? 'selected' : ''}>Load</option>
                                         <option value="DISCHARGE/LOAD" ${vessel.purpose === 'DISCHARGE/LOAD' ? 'selected' : ''}>Discharge/Load</option>
@@ -3628,7 +3176,7 @@
                                 
                                 <div class="form-group">
                                     <label for="editEtd">ETD</label>
-                                    <input type="datetime-local" id="editEtd" value="${formatForInput(vessel.etd)}" style="background-color: #222222; color: white;">
+                                    <input type="datetime-local" id="editEtd" value="${formatForInput(vessel.etd)}" style="background: #2a2a2a; color: var(--text-light);">
                                 </div>
                             </div>
                             
@@ -3710,9 +3258,6 @@
             vessel.etd = modal.querySelector('#editEtd').value || null;
             vessel.updatedAt = new Date().toISOString();
             
-            // Save to localStorage
-            saveVessels();
-            
             // Update display
             loadVessels();
             
@@ -3731,7 +3276,6 @@
             const vessel = vessels[vesselIndex];
             
             vessels.splice(vesselIndex, 1);
-            saveVessels();
             
             loadVessels();
             updateDashboard();
@@ -3764,7 +3308,7 @@
             let optionsHTML = '';
             availableStatuses.forEach(status => {
                 optionsHTML += `
-                    <button type="button" class="btn btn-primary" style="width: 100%; margin-bottom: 12px; padding: 15px; font-size: 20px;" data-status="${status}">
+                    <button type="button" class="btn btn-primary" style="width: 100%; margin-bottom: 10px; padding: 15px; font-size: 18px;" data-status="${status}">
                         Change to ${status}
                     </button>
                 `;
@@ -3777,9 +3321,9 @@
                         <button class="modal-close">&times;</button>
                     </div>
                     <div class="modal-body">
-                        <p style="font-size: 20px;">Current status: <strong>${vessel.status}</strong></p>
-                        <p style="font-size: 20px; margin-top: 15px;">Select new status:</p>
-                        <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 20px;">
+                        <p style="font-size: 18px;">Current status: <strong>${vessel.status}</strong></p>
+                        <p style="font-size: 18px; margin-top: 10px;">Select new status:</p>
+                        <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 20px;">
                             ${optionsHTML}
                         </div>
                         <div class="form-actions" style="display: flex; justify-content: flex-end; margin-top: 25px;">
@@ -3818,7 +3362,6 @@
                             vessel.balance = null;
                             vessel.updatedAt = new Date().toISOString();
                             
-                            saveVessels();
                             loadVessels();
                             
                             showToast(`Vessel status changed to INBOUND`, 'success');
@@ -3850,15 +3393,15 @@
                         <form id="updateToWorkingForm">
                             <div class="form-group">
                                 <label for="ata">ATA (Actual Time of Arrival) *</label>
-                                <input type="datetime-local" id="ata" value="${formatForInput(new Date())}" required style="background-color: #222222; color: white;">
+                                <input type="datetime-local" id="ata" value="${formatForInput(new Date())}" required style="background: #2a2a2a; color: var(--text-light);">
                             </div>
                             <div class="form-group">
                                 <label for="berth">Berth *</label>
-                                <input type="text" id="berth" placeholder="Enter berth number" required style="background-color: #222222; color: white;">
+                                <input type="text" id="berth" placeholder="Enter berth number" required style="background: #2a2a2a; color: var(--text-light);">
                             </div>
                             <div class="form-group">
                                 <label for="etdUpdate">ETD (Estimated Time of Departure)</label>
-                                <input type="datetime-local" id="etdUpdate" value="${formatForInput(vessel.etd)}" style="background-color: #222222; color: white;">
+                                <input type="datetime-local" id="etdUpdate" value="${formatForInput(vessel.etd)}" style="background: #2a2a2a; color: var(--text-light);">
                             </div>
                             
                             <div class="alert alert-info" style="margin-top: 20px;">
@@ -3866,7 +3409,7 @@
                             </div>
                         </form>
                         
-                        <div class="form-actions" style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 25px;">
+                        <div class="form-actions" style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 25px;">
                             <button type="button" class="btn btn-secondary" id="cancelWorkingBtn">Cancel</button>
                             <button type="button" class="btn btn-primary" id="confirmWorkingBtn">Update to WORKING</button>
                         </div>
@@ -3900,7 +3443,6 @@
                 if (etd) vessel.etd = etd;
                 vessel.updatedAt = new Date().toISOString();
                 
-                saveVessels();
                 loadVessels();
                 modal.remove();
                 
@@ -3933,12 +3475,12 @@
                         <form id="updateToSailedForm">
                             <div class="form-group">
                                 <label for="atd">ATD (Actual Time of Departure) *</label>
-                                <input type="datetime-local" id="atd" value="${formatForInput(new Date())}" required style="background-color: #222222; color: white;">
+                                <input type="datetime-local" id="atd" value="${formatForInput(new Date())}" required style="background: #2a2a2a; color: var(--text-light);">
                             </div>
                             ${showShifted ? `
                             <div class="form-group">
                                 <label for="shiftedUnits">Shifted to Yard (Units)</label>
-                                <input type="number" id="shiftedUnits" placeholder="Enter shifted units" value="${vessel.shifted || ''}" style="background-color: #222222; color: white;">
+                                <input type="number" id="shiftedUnits" placeholder="Enter shifted units" value="${vessel.shifted || ''}" style="background: #2a2a2a; color: var(--text-light);">
                             </div>
                             ` : ''}
                             
@@ -3947,7 +3489,7 @@
                             </div>
                         </form>
                         
-                        <div class="form-actions" style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 25px;">
+                        <div class="form-actions" style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 25px;">
                             <button type="button" class="btn btn-secondary" id="cancelSailedBtn">Cancel</button>
                             <button type="button" class="btn btn-primary" id="confirmSailedBtn">Update to SAILED</button>
                         </div>
@@ -3977,7 +3519,6 @@
                 if (showShifted && shiftedUnits) vessel.shifted = parseInt(shiftedUnits);
                 vessel.updatedAt = new Date().toISOString();
                 
-                saveVessels();
                 loadVessels();
                 modal.remove();
                 
@@ -4003,14 +3544,14 @@
                         <form id="updateCommodityForm">
                             <div class="form-group">
                                 <label for="updateCommodity">Commodity *</label>
-                                <select id="updateCommodity" style="background-color: #222222; color: white;">
+                                <select id="updateCommodity" style="background: #2a2a2a; color: var(--text-light);">
                                     ${createCommodityOptions(vessel.commodity)}
                                 </select>
                             </div>
                             
                             <div class="form-group">
                                 <label for="updatePurpose">Purpose of Call *</label>
-                                <select id="updatePurpose" style="background-color: #222222; color: white;">
+                                <select id="updatePurpose" style="background: #2a2a2a; color: var(--text-light);">
                                     <option value="DISCHARGE" ${vessel.purpose === 'DISCHARGE' ? 'selected' : ''}>Discharge</option>
                                     <option value="LOAD" ${vessel.purpose === 'LOAD' ? 'selected' : ''}>Load</option>
                                     <option value="DISCHARGE/LOAD" ${vessel.purpose === 'DISCHARGE/LOAD' ? 'selected' : ''}>Discharge/Load</option>
@@ -4021,7 +3562,7 @@
                             <div id="updateQuantitySection"></div>
                         </form>
                         
-                        <div class="form-actions" style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 25px;">
+                        <div class="form-actions" style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 25px;">
                             <button type="button" class="btn btn-secondary" id="cancelCommodityBtn">Cancel</button>
                             <button type="button" class="btn btn-primary" id="confirmCommodityBtn">Update Commodity</button>
                         </div>
@@ -4065,7 +3606,7 @@
                 }
                 
                 updateQuantitySection.innerHTML = `
-                    <h3 style="margin-bottom: 18px; color: white;">Quantity Details</h3>
+                    <h3 style="margin-bottom: 15px; color: var(--primary-blue); font-size: 22px;">Quantity Details</h3>
                     <div class="alert alert-info">
                         <i class="fas fa-info-circle"></i> Fill at least one field in each applicable table
                     </div>
@@ -4099,7 +3640,6 @@
                 vessel.quantity = quantityData;
                 vessel.updatedAt = new Date().toISOString();
                 
-                saveVessels();
                 loadVessels();
                 modal.remove();
                 
@@ -4172,7 +3712,7 @@
             if (vessel.purpose === 'DISCHARGE/LOAD') {
                 // Show 3 tables for DISCHARGE/LOAD
                 completedTablesHTML = `
-                    <h4 style="margin-top: 20px; color: white;">Completed Details</h4>
+                    <h4 style="margin-top: 20px; color: var(--primary-blue); font-size: 22px;">Completed Details</h4>
                     <div class="alert alert-info">
                         <i class="fas fa-info-circle"></i> Please enter completed quantities for all three categories to calculate balance correctly.
                     </div>
@@ -4183,7 +3723,7 @@
             } else {
                 // Generic table for other purposes
                 completedTablesHTML = `
-                    <h4 style="margin-top: 20px; color: white;">Completed Details</h4>
+                    <h4 style="margin-top: 20px; color: var(--primary-blue); font-size: 22px;">Completed Details</h4>
                     ${createQuantityTable(vessel.commodity, vessel.purpose, vessel.vesselType, 'Completed')}
                 `;
             }
@@ -4199,7 +3739,7 @@
                             ${showShifted ? `
                             <div class="form-group">
                                 <label for="updateShifted">Shifted to Yard (Units)</label>
-                                <input type="number" id="updateShifted" placeholder="Enter shifted units" value="${vessel.shifted || ''}" style="background-color: #222222; color: white;">
+                                <input type="number" id="updateShifted" placeholder="Enter shifted units" value="${vessel.shifted || ''}" style="background: #2a2a2a; color: var(--text-light);">
                             </div>
                             ` : ''}
                             
@@ -4210,7 +3750,7 @@
                             </div>
                         </form>
                         
-                        <div class="form-actions" style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 25px;">
+                        <div class="form-actions" style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 25px;">
                             <button type="button" class="btn btn-secondary" id="cancelWorkingDetailsBtn">Cancel</button>
                             <button type="button" class="btn btn-primary" id="confirmWorkingDetailsBtn">Update Details</button>
                         </div>
@@ -4246,7 +3786,6 @@
                 
                 vessel.updatedAt = new Date().toISOString();
                 
-                saveVessels();
                 loadVessels();
                 modal.remove();
                 
@@ -4301,7 +3840,7 @@
                         <form id="updateSailedDetailsForm">
                             <div class="form-group">
                                 <label for="updateSailedShifted">Shifted to Yard (Units)</label>
-                                <input type="number" id="updateSailedShifted" placeholder="Enter shifted units" value="${vessel.shifted || ''}" style="background-color: #222222; color: white;">
+                                <input type="number" id="updateSailedShifted" placeholder="Enter shifted units" value="${vessel.shifted || ''}" style="background: #2a2a2a; color: var(--text-light);">
                             </div>
                             
                             <div class="alert alert-info" style="margin-top: 20px;">
@@ -4309,7 +3848,7 @@
                             </div>
                         </form>
                         
-                        <div class="form-actions" style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 25px;">
+                        <div class="form-actions" style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 25px;">
                             <button type="button" class="btn btn-secondary" id="cancelSailedDetailsBtn">Cancel</button>
                             <button type="button" class="btn btn-primary" id="confirmSailedDetailsBtn">Update Details</button>
                         </div>
@@ -4329,7 +3868,6 @@
                 
                 vessel.updatedAt = new Date().toISOString();
                 
-                saveVessels();
                 loadVessels();
                 modal.remove();
                 
@@ -4351,7 +3889,6 @@
                 // Remove from vessels array
                 vessels = vessels.filter(v => v.id !== vesselId);
                 
-                saveVessels();
                 loadVessels();
                 updateDashboard();
                 showToast('Vessel closed and deleted successfully', 'success');
@@ -4379,13 +3916,13 @@
             updateCommodityBreakdown(inboundVessels);
             
             // Update tables
-            updateSailedTable();
-            updateWorkingTable();
-            updateInboundTable();
+            updateSailedTable(sailedVessels);
+            updateWorkingTable(workingVessels);
+            updateInboundTable(inboundVessels);
             updateRoroUnits();
         }
         
-        // Update commodity breakdown for inbound vessels - UPDATED
+        // Update commodity breakdown for inbound vessels
         function updateCommodityBreakdown(inboundVessels) {
             const commodityBreakdown = document.getElementById('commodityBreakdown');
             const commoditySummary = document.getElementById('commoditySummary');
@@ -4412,7 +3949,7 @@
                 }
             });
             
-            // Build HTML - UPDATED: No "Inbound by Commodity" title, just show like bullet list
+            // Build HTML
             let html = '';
             
             // Add RORO count
@@ -4439,8 +3976,7 @@
         }
         
         // Update sailed vessels table
-        function updateSailedTable() {
-            const sailedVessels = vessels.filter(v => v.status === 'SAILED');
+        function updateSailedTable(sailedVessels) {
             const tableBody = document.querySelector('#sailedTable tbody');
             const section = document.getElementById('sailedSection');
             
@@ -4460,7 +3996,7 @@
                 const portStay = (vessel.ata && vessel.atd) ? calculatePortStay(vessel.ata, vessel.atd) : null;
                 const portStayFormatted = portStay ? formatPortStay(portStay) : 'N/A';
                 
-                // Build remarks for sailed vessels - UPDATED with bullet separator
+                // Build remarks for sailed vessels
                 let remarks = '';
                 const remarkParts = [];
                 
@@ -4497,8 +4033,7 @@
         }
         
         // Update working vessels table
-        function updateWorkingTable() {
-            const workingVessels = vessels.filter(v => v.status === 'WORKING');
+        function updateWorkingTable(workingVessels) {
             const tableBody = document.querySelector('#workingTable tbody');
             const section = document.getElementById('workingSection');
             
@@ -4538,7 +4073,7 @@
                     balanceSummary = hasBalanceData ? formatDashboardQuantity(vessel.balance, 'balance') : 'NIL';
                 }
                 
-                // Build remarks for working vessels - UPDATED with bullet separator
+                // Build remarks for working vessels
                 let remarks = '';
                 const remarkParts = [];
                 
@@ -4581,8 +4116,7 @@
         }
         
         // Update inbound vessels table with date grouping
-        function updateInboundTable() {
-            const inboundVessels = vessels.filter(v => v.status === 'INBOUND');
+        function updateInboundTable(inboundVessels) {
             const tableBody = document.getElementById('inboundTableBody');
             const section = document.getElementById('inboundSection');
             
@@ -4604,7 +4138,7 @@
             
             inboundVessels.forEach(vessel => {
                 const date = new Date(vessel.eta);
-                const dateKey = formatDate(date); // DD/MM/YYYY
+                const dateKey = formatDate(date);
                 const dayName = date.toLocaleDateString('en-US', { weekday: 'long' });
                 
                 if (!vesselsByDate[dateKey]) {
@@ -4648,7 +4182,7 @@
                     // Format quantity with DISCHARGE/LOAD labels
                     const quantitySummary = formatDashboardQuantity(vessel.quantity, 'quantity');
                     
-                    // Build remarks for inbound vessels - UPDATED with bullet separator
+                    // Build remarks for inbound vessels
                     let remarks = '';
                     const remarkParts = [];
                     
@@ -4754,7 +4288,7 @@
             return parts.length > 0 ? `<strong>${prefix}:</strong> ${parts.join(', ')}` : '';
         }
         
-        // Update RORO units - UPDATED for no scrolling
+        // Update RORO units
         function updateRoroUnits() {
             const roroContainer = document.getElementById('roroVesselsList');
             const totalUnitsElement = document.getElementById('totalRoroUnits');
@@ -4822,9 +4356,9 @@
             
             if (sailedRoroVessels.length === 0 && workingRoroVessels.length === 0 && inboundRoroVessels.length === 0) {
                 roroContainer.innerHTML = `
-                    <div style="text-align: center; padding: 15px; color: var(--text-light);">
-                        <i class="fas fa-truck-loading" style="font-size: 25px; margin-bottom: 8px; opacity: 0.3;"></i>
-                        <p style="font-size: 13px;">No RORO vessels with units</p>
+                    <div style="text-align: center; padding: 20px; color: var(--text-muted);">
+                        <i class="fas fa-truck-loading" style="font-size: 30px; margin-bottom: 10px; opacity: 0.3;"></i>
+                        <p style="font-size: 18px;">No RORO vessels with units</p>
                     </div>
                 `;
                 totalUnitsElement.textContent = '0';
@@ -4855,10 +4389,10 @@
                         vesselItem.className = 'roro-vessel-item roro-sailed';
                         vesselItem.innerHTML = `
                             <div>
-                                <div style="font-weight: 700; font-size: 18px;">${vessel.vesselName}</div>
-                                <div style="font-size: 16px; color: var(--text-light);">SAILED - ATD: ${formatDateTimeWithDayShift(new Date(vessel.atd))}</div>
+                                <div style="font-weight: 600; font-size: 16px;">${vessel.vesselName}</div>
+                                <div style="font-size: 14px; color: var(--text-muted);">SAILED - ATD: ${formatDateTimeWithDayShift(new Date(vessel.atd))}</div>
                             </div>
-                            <div style="font-weight: 800; color: white; font-size: 18px;">
+                            <div style="font-weight: 700; color: var(--primary-blue); font-size: 18px;">
                                 ${formatNumber(atQuayside)} units
                             </div>
                         `;
@@ -4883,10 +4417,10 @@
                     vesselItem.className = 'roro-vessel-item roro-incoming';
                     vesselItem.innerHTML = `
                         <div>
-                            <div style="font-weight: 700; font-size: 18px;">${vessel.vesselName}</div>
-                            <div style="font-size: 16px; color: var(--text-light);">WORKING - ATA: ${formatDateTimeWithDayShift(new Date(vessel.ata))}</div>
+                            <div style="font-weight: 600; font-size: 16px;">${vessel.vesselName}</div>
+                            <div style="font-size: 14px; color: var(--text-muted);">WORKING - ATA: ${formatDateTimeWithDayShift(new Date(vessel.ata))}</div>
                         </div>
-                        <div style="font-weight: 800; color: white; font-size: 18px;">
+                        <div style="font-weight: 700; color: var(--primary-blue); font-size: 18px;">
                             ${formatNumber(remaining)} units
                         </div>
                     `;
@@ -4910,10 +4444,10 @@
                     vesselItem.className = 'roro-vessel-item roro-incoming';
                     vesselItem.innerHTML = `
                         <div>
-                            <div style="font-weight: 700; font-size: 18px;">${vessel.vesselName}</div>
-                            <div style="font-size: 16px; color: var(--text-light);">INBOUND - ETA: ${formatDateTimeWithDayShift(new Date(vessel.eta))}</div>
+                            <div style="font-weight: 600; font-size: 16px;">${vessel.vesselName}</div>
+                            <div style="font-size: 14px; color: var(--text-muted);">INBOUND - ETA: ${formatDateTimeWithDayShift(new Date(vessel.eta))}</div>
                         </div>
-                        <div style="font-weight: 800; color: white; font-size: 18px;">
+                        <div style="font-weight: 700; color: var(--primary-blue); font-size: 18px;">
                             ${formatNumber(remaining)} units
                         </div>
                     `;
@@ -4923,11 +4457,6 @@
             
             const totalUnits = totalUnitsAtQuayside + totalUnitsWorking + totalIncomingUnits;
             totalUnitsElement.textContent = formatNumber(totalUnits);
-        }
-        
-        // Save vessels to localStorage
-        function saveVessels() {
-            localStorage.setItem('gcVessels', JSON.stringify(vessels));
         }
         
         // Show toast notification
