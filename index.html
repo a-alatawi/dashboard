@@ -20,8 +20,8 @@
             --text-dark: #212529;
             --text-light: #6c757d;
             --border-color: #dee2e6;
-            --shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
-            --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.16);
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 6px 16px rgba(0, 0, 0, 0.12);
         }
         
         * {
@@ -36,22 +36,27 @@
             color: var(--text-dark);
             line-height: 1.6;
             overflow-x: hidden;
-            font-size: 20px; /* Base font size increased for TV */
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
         
         .container {
             max-width: 98%;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 15px;
+            flex: 1;
+            overflow: hidden;
         }
         
-        /* Header Styles - ENLARGED FOR TV */
+        /* Header Styles */
         header {
             background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
             color: white;
-            padding: 25px 0;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             width: 100%;
+            flex-shrink: 0;
         }
         
         .header-content {
@@ -59,117 +64,118 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-            gap: 15px;
+            gap: 10px;
         }
         
         .logo-area {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 15px;
             flex-direction: column;
         }
         
         .logo {
-            font-size: 48px; /* Larger for TV */
+            font-size: 32px;
             color: white;
         }
         
         .logo-text h1 {
-            font-size: 42px; /* Larger for TV */
+            font-size: 28px;
             font-weight: 700;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
         }
         
         .current-info {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 8px;
-            margin: 15px 0;
+            gap: 5px;
+            margin: 10px 0;
         }
         
         .current-day {
-            font-size: 32px; /* Larger for TV */
+            font-size: 18px;
             font-weight: 600;
         }
         
         .current-date {
-            font-size: 28px; /* Larger for TV */
+            font-size: 16px;
         }
         
         .current-time {
-            font-size: 42px; /* Larger for TV */
+            font-size: 24px;
             font-weight: 700;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
         }
         
         .current-slot {
-            font-size: 24px; /* Larger for TV */
+            font-size: 14px;
             background: rgba(255, 255, 255, 0.2);
-            padding: 6px 15px;
-            border-radius: 20px;
-            margin-top: 5px;
+            padding: 3px 10px;
+            border-radius: 12px;
+            margin-top: 3px;
         }
         
         .shifts-container {
             display: flex;
             justify-content: center;
-            gap: 30px;
+            gap: 20px;
             flex-wrap: wrap;
-            margin-top: 15px;
+            margin-top: 10px;
         }
         
         .shift-box {
             background: rgba(255, 255, 255, 0.15);
-            padding: 15px 25px;
-            border-radius: 10px;
-            min-width: 220px;
+            padding: 8px 15px;
+            border-radius: 6px;
+            min-width: 140px;
             text-align: center;
         }
         
         .shift-label {
-            font-size: 20px; /* Larger for TV */
+            font-size: 12px;
             opacity: 0.8;
-            margin-bottom: 5px;
+            margin-bottom: 3px;
         }
         
         .shift-value {
-            font-size: 28px; /* Larger for TV */
+            font-size: 16px;
             font-weight: 700;
         }
         
         .shift-slot {
-            font-size: 18px; /* Larger for TV */
-            margin-top: 5px;
+            font-size: 11px;
+            margin-top: 3px;
             opacity: 0.9;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
         }
         
         .current-shift-timer {
-            font-size: 18px; /* Larger for TV */
-            margin-top: 5px;
+            font-size: 12px;
+            margin-top: 3px;
             opacity: 0.9;
         }
         
-        /* Tabs Navigation - ENLARGED */
+        /* Tabs Navigation */
         .tabs-container {
-            margin: 25px 0 25px;
+            margin: 20px 0 20px;
+            flex-shrink: 0;
         }
         
         .tabs {
             display: flex;
-            border-bottom: 3px solid var(--border-color);
+            border-bottom: 2px solid var(--border-color);
         }
         
         .tab {
-            padding: 20px 40px;
-            font-size: 28px; /* Larger for TV */
+            padding: 15px 30px;
+            font-size: 18px;
             font-weight: 600;
             color: var(--text-light);
             cursor: pointer;
             transition: all 0.3s ease;
-            border-bottom: 4px solid transparent;
+            border-bottom: 3px solid transparent;
         }
         
         .tab:hover {
@@ -178,13 +184,15 @@
         
         .tab.active {
             color: var(--primary-blue);
-            border-bottom: 4px solid var(--accent-orange);
+            border-bottom: 3px solid var(--accent-orange);
         }
         
         /* Tab Content */
         .tab-content {
             display: none;
             animation: fadeIn 0.5s;
+            flex: 1;
+            overflow: hidden;
         }
         
         .tab-content.active {
@@ -196,78 +204,77 @@
             to { opacity: 1; }
         }
         
-        /* Section Headers - ENLARGED */
+        /* Section Headers */
         .section-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 3px solid var(--border-color);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border-color);
         }
         
         .section-title {
-            font-size: 32px; /* Larger for TV */
+            font-size: 20px;
             font-weight: 700;
             color: var(--primary-blue);
         }
         
-        /* Form Styles - ENLARGED */
+        /* Form Styles */
         .form-section {
             background: white;
-            border-radius: 15px;
-            padding: 25px;
-            margin-bottom: 30px;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
             box-shadow: var(--shadow);
         }
         
         .form-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-            gap: 20px;
-            margin-bottom: 25px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
         }
         
         .form-group {
-            margin-bottom: 18px;
+            margin-bottom: 12px;
         }
         
         label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             font-weight: 600;
             color: var(--text-dark);
-            font-size: 22px; /* Larger for TV */
         }
         
         input, select, textarea {
             width: 100%;
-            padding: 15px 18px;
-            border: 2px solid var(--border-color);
-            border-radius: 8px;
-            font-size: 22px; /* Larger for TV */
+            padding: 10px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 15px;
             transition: all 0.3s;
         }
         
         input:focus, select:focus, textarea:focus {
             outline: none;
             border-color: var(--secondary-blue);
-            box-shadow: 0 0 0 4px rgba(29, 124, 197, 0.15);
+            box-shadow: 0 0 0 3px rgba(29, 124, 197, 0.1);
         }
         
-        /* Button Styles - ENLARGED */
+        /* Button Styles */
         .btn {
-            padding: 15px 30px;
+            padding: 10px 20px;
             border: none;
-            border-radius: 8px;
-            font-size: 22px; /* Larger for TV */
+            border-radius: 6px;
+            font-size: 15px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 6px;
         }
         
         .btn-primary {
@@ -318,8 +325,8 @@
         }
         
         .btn-small {
-            padding: 10px 15px;
-            font-size: 20px;
+            padding: 5px 10px;
+            font-size: 13px;
         }
         
         /* Export/Import Button Styles */
@@ -344,63 +351,60 @@
         /* Data Actions Section */
         .data-actions {
             display: flex;
-            gap: 15px;
-            margin-top: 20px;
+            gap: 10px;
+            margin-top: 15px;
             flex-wrap: wrap;
-            border-top: 3px solid var(--border-color);
-            padding-top: 20px;
+            border-top: 2px solid var(--border-color);
+            padding-top: 15px;
         }
         
-        /* Table Styles - ENLARGED FOR TV */
+        /* Table Styles */
         .quantity-table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 15px;
-            margin-bottom: 20px;
-            font-size: 20px;
+            margin-top: 12px;
+            margin-bottom: 15px;
         }
         
         .quantity-table th {
             background-color: var(--light-blue);
-            padding: 15px 18px;
+            padding: 10px 12px;
             text-align: left;
             font-weight: 600;
-            border: 2px solid var(--border-color);
-            font-size: 22px;
+            border: 1px solid var(--border-color);
         }
         
         .quantity-table td {
-            padding: 12px 18px;
-            border: 2px solid var(--border-color);
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
         }
         
         .quantity-table input {
             width: 100%;
-            padding: 10px 12px;
-            font-size: 20px;
+            padding: 6px 8px;
+            font-size: 13px;
         }
         
         .table-header {
             background-color: var(--primary-blue);
             color: white;
-            padding: 15px;
+            padding: 10px;
             font-weight: 600;
-            border-radius: 8px 8px 0 0;
-            margin-top: 20px;
-            font-size: 24px;
+            border-radius: 6px 6px 0 0;
+            margin-top: 15px;
         }
         
-        /* Vessel Log Styles - ENLARGED */
+        /* Vessel Log Styles */
         .vessels-container {
             display: flex;
             flex-direction: column;
-            gap: 25px;
-            margin-bottom: 20px;
+            gap: 20px;
+            margin-bottom: 15px;
         }
         
         .vessel-card {
             background: white;
-            border-radius: 15px;
+            border-radius: 10px;
             overflow: hidden;
             box-shadow: var(--shadow);
             transition: transform 0.3s, box-shadow 0.3s;
@@ -413,33 +417,33 @@
         }
         
         .vessel-header {
-            padding: 20px;
+            padding: 15px;
             background: linear-gradient(to right, var(--light-blue), white);
-            border-bottom: 2px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
         }
         
         .vessel-name {
-            font-size: 28px; /* Larger for TV */
+            font-size: 20px;
             font-weight: 700;
             color: var(--primary-blue);
-            margin-bottom: 8px;
+            margin-bottom: 5px;
         }
         
         .vessel-agent {
             color: var(--text-light);
-            font-size: 22px; /* Larger for TV */
+            font-size: 14px;
         }
         
         .vessel-status {
             position: absolute;
-            top: 20px;
-            right: 20px;
-            padding: 8px 18px;
-            border-radius: 25px;
-            font-size: 18px;
+            top: 15px;
+            right: 15px;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
         }
         
         .status-inbound {
@@ -463,134 +467,151 @@
         }
         
         .vessel-body {
-            padding: 20px;
+            padding: 15px;
         }
         
         .vessel-details {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-            margin-bottom: 20px;
+            gap: 12px;
+            margin-bottom: 15px;
         }
         
         .detail-item {
-            margin-bottom: 12px;
+            margin-bottom: 8px;
         }
         
         .detail-label {
             font-weight: 600;
             color: var(--text-light);
-            font-size: 20px; /* Larger for TV */
-            margin-bottom: 5px;
+            font-size: 13px;
+            margin-bottom: 3px;
         }
         
         .detail-value {
             font-weight: 500;
             color: var(--text-dark);
-            min-height: 28px;
-            font-size: 22px; /* Larger for TV */
+            min-height: 22px;
         }
         
         .vessel-actions {
             display: flex;
             flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 20px;
+            gap: 8px;
+            margin-top: 15px;
         }
         
-        /* Alert Styles - ENLARGED */
+        /* Alert Styles */
         .alert {
-            padding: 15px 18px;
-            border-radius: 8px;
-            margin-bottom: 20px;
+            padding: 10px 12px;
+            border-radius: 6px;
+            margin-bottom: 15px;
             font-weight: 500;
             display: flex;
             align-items: center;
-            gap: 12px;
-            font-size: 22px; /* Larger for TV */
+            gap: 8px;
         }
         
         .alert-warning {
             background-color: #fff3cd;
             color: #856404;
-            border-left: 5px solid var(--accent-yellow);
+            border-left: 4px solid var(--accent-yellow);
         }
         
         .alert-info {
             background-color: #d1ecf1;
             color: #0c5460;
-            border-left: 5px solid var(--secondary-blue);
+            border-left: 4px solid var(--secondary-blue);
         }
         
         .notification-badge {
             position: absolute;
-            top: 15px;
-            left: 15px;
+            top: 12px;
+            left: 12px;
             background-color: var(--accent-red);
             color: white;
-            width: 30px;
-            height: 30px;
+            width: 20px;
+            height: 20px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 16px;
+            font-size: 11px;
             font-weight: 700;
         }
         
-        /* DASHBOARD LAYOUT - OPTIMIZED FOR TV */
+        /* DASHBOARD LAYOUT - TV OPTIMIZED */
         .dashboard-container {
             display: grid;
-            grid-template-columns: 1fr 380px;
-            gap: 30px;
-            min-height: calc(100vh - 300px);
+            grid-template-columns: 1fr 320px;
+            gap: 20px;
+            height: calc(100vh - 280px); /* FIXED HEIGHT FOR TV */
+            min-height: 0; /* Critical for grid children */
         }
         
         .main-dashboard {
             display: flex;
             flex-direction: column;
-            gap: 25px;
+            gap: 20px;
+            height: 100%;
+            min-height: 0;
+            overflow: hidden;
         }
         
         .dashboard-section {
             background: white;
-            border-radius: 15px;
-            padding: 20px;
+            border-radius: 10px;
+            padding: 15px;
             box-shadow: var(--shadow);
+            height: 100%; /* Fill available space */
+            min-height: 0;
+            display: flex;
+            flex-direction: column;
         }
         
-        /* RIGHT SIDE SUMMARY SECTION - ENLARGED */
+        /* NEW: Table container for internal scrolling */
+        .table-container {
+            flex: 1;
+            min-height: 0;
+            overflow-y: auto;
+            margin-top: 5px;
+        }
+        
+        /* RIGHT SIDE SUMMARY SECTION - FIXED HEIGHT */
         .dashboard-sidebar {
             display: flex;
             flex-direction: column;
-            gap: 25px;
+            gap: 20px;
+            height: 100%;
+            min-height: 0;
         }
         
         .sidebar-summary {
             background: white;
-            border-radius: 15px;
-            padding: 20px;
+            border-radius: 10px;
+            padding: 15px;
             box-shadow: var(--shadow);
+            min-height: 0;
         }
         
         .sidebar-summary-title {
-            font-size: 24px; /* Larger for TV */
+            font-size: 16px;
             font-weight: 700;
             color: var(--primary-blue);
-            margin-bottom: 15px;
-            padding-bottom: 12px;
-            border-bottom: 3px solid var(--border-color);
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--border-color);
         }
         
         .commodity-summary {
-            margin-top: 15px;
+            margin-top: 10px;
         }
         
         .commodity-item {
             display: flex;
             justify-content: space-between;
-            padding: 6px 0;
-            font-size: 20px; /* Larger for TV */
+            padding: 4px 0;
+            font-size: 13px;
         }
         
         .commodity-item-label {
@@ -606,8 +627,7 @@
         .summary-item {
             display: flex;
             justify-content: space-between;
-            padding: 10px 0;
-            font-size: 22px; /* Larger for TV */
+            padding: 6px 0;
         }
         
         .summary-item-label {
@@ -620,39 +640,40 @@
             color: var(--primary-blue);
         }
         
-        /* DASHBOARD TABLES - WIDER & LARGER FOR TV */
+        /* DASHBOARD TABLES - WITH INTERNAL SCROLLING */
         .dashboard-table {
             width: 100%;
             border-collapse: collapse;
             background: white;
-            border-radius: 15px;
+            border-radius: 10px;
             overflow: hidden;
             box-shadow: var(--shadow);
             margin-bottom: 0;
-            font-size: 20px; /* Larger for TV */
+            font-size: 13px;
             table-layout: auto;
         }
         
         .dashboard-table th {
             background-color: var(--primary-blue);
             color: white;
-            padding: 15px 12px;
+            padding: 10px 10px;
             text-align: left;
             font-weight: 600;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            font-size: 22px; /* Larger for TV */
+            position: sticky;
+            top: 0;
+            z-index: 10;
         }
         
         .dashboard-table td {
-            padding: 12px 12px;
-            border-bottom: 2px solid var(--border-color);
+            padding: 8px 10px;
+            border-bottom: 1px solid var(--border-color);
             vertical-align: middle;
-            line-height: 1.4;
+            line-height: 1.3;
             overflow: hidden;
             text-overflow: ellipsis;
-            font-size: 20px; /* Larger for TV */
         }
         
         .dashboard-table tr:last-child td {
@@ -663,45 +684,44 @@
             background-color: var(--light-gray);
         }
         
-        /* Column width adjustments - WIDER FOR TV */
-        #sailedTable th:nth-child(1) { min-width: 250px; }
-        #sailedTable th:nth-child(2) { min-width: 200px; }
-        #sailedTable th:nth-child(3) { min-width: 200px; }
-        #sailedTable th:nth-child(4) { min-width: 120px; }
-        #sailedTable th:nth-child(5) { min-width: 140px; }
-        #sailedTable th:nth-child(6) { min-width: 160px; }
-        #sailedTable th:nth-child(7) { min-width: 130px; }
-        #sailedTable th:nth-child(8) { min-width: 300px; }
+        /* Column width adjustments - WIDER */
+        #sailedTable th:nth-child(1) { min-width: 200px; }
+        #sailedTable th:nth-child(2) { min-width: 160px; }
+        #sailedTable th:nth-child(3) { min-width: 160px; }
+        #sailedTable th:nth-child(4) { min-width: 90px; }
+        #sailedTable th:nth-child(5) { min-width: 110px; }
+        #sailedTable th:nth-child(6) { min-width: 130px; }
+        #sailedTable th:nth-child(7) { min-width: 100px; }
+        #sailedTable th:nth-child(8) { min-width: 250px; }
         
-        #workingTable th:nth-child(1) { min-width: 60px; }
-        #workingTable th:nth-child(2) { min-width: 250px; }
-        #workingTable th:nth-child(3) { min-width: 180px; }
-        #workingTable th:nth-child(4) { min-width: 100px; }
-        #workingTable th:nth-child(5) { min-width: 180px; }
-        #workingTable th:nth-child(6) { min-width: 130px; }
-        #workingTable th:nth-child(7) { min-width: 140px; }
-        #workingTable th:nth-child(8) { min-width: 180px; }
-        #workingTable th:nth-child(9) { min-width: 180px; }
-        #workingTable th:nth-child(10) { min-width: 180px; }
-        #workingTable th:nth-child(11) { min-width: 80px; }
-        #workingTable th:nth-child(12) { min-width: 300px; }
+        #workingTable th:nth-child(1) { min-width: 40px; }
+        #workingTable th:nth-child(2) { min-width: 200px; }
+        #workingTable th:nth-child(3) { min-width: 140px; }
+        #workingTable th:nth-child(4) { min-width: 80px; }
+        #workingTable th:nth-child(5) { min-width: 140px; }
+        #workingTable th:nth-child(6) { min-width: 100px; }
+        #workingTable th:nth-child(7) { min-width: 110px; }
+        #workingTable th:nth-child(8) { min-width: 140px; }
+        #workingTable th:nth-child(9) { min-width: 140px; }
+        #workingTable th:nth-child(10) { min-width: 140px; }
+        #workingTable th:nth-child(11) { min-width: 60px; }
+        #workingTable th:nth-child(12) { min-width: 250px; }
         
-        #inboundTable th:nth-child(1) { min-width: 140px; }
-        #inboundTable th:nth-child(2) { min-width: 250px; }
-        #inboundTable th:nth-child(3) { min-width: 130px; }
-        #inboundTable th:nth-child(4) { min-width: 140px; }
-        #inboundTable th:nth-child(5) { min-width: 180px; }
-        #inboundTable th:nth-child(6) { min-width: 180px; }
-        #inboundTable th:nth-child(7) { min-width: 300px; }
+        #inboundTable th:nth-child(1) { min-width: 110px; }
+        #inboundTable th:nth-child(2) { min-width: 200px; }
+        #inboundTable th:nth-child(3) { min-width: 100px; }
+        #inboundTable th:nth-child(4) { min-width: 110px; }
+        #inboundTable th:nth-child(5) { min-width: 140px; }
+        #inboundTable th:nth-child(6) { min-width: 140px; }
+        #inboundTable th:nth-child(7) { min-width: 250px; }
         
         /* Combined vessel name/voyage column */
         .vessel-name-voyage {
             font-weight: 600;
             color: var(--primary-blue);
-            font-size: 22px; /* Larger for TV */
         }
         
-        /* Date Group Header in Inbound Table - ENLARGED */
+        /* Date Group Header in Inbound Table */
         .date-group-row {
             background-color: #e9ecef;
             color: var(--primary-blue);
@@ -709,9 +729,9 @@
         }
         
         .date-group-cell {
-            padding: 15px 20px;
+            padding: 10px 15px;
             text-align: left;
-            font-size: 24px; /* Larger for TV */
+            font-size: 14px;
         }
         
         /* Highlight today's date in inbound table */
@@ -724,61 +744,72 @@
             color: white;
         }
         
-        /* UPDATED: Incoming RORO Styles - ENLARGED FOR TV */
+        /* UPDATED: Incoming RORO Styles - PROPER HEIGHT */
         .roro-card {
             background: white;
-            border-radius: 15px;
-            padding: 20px;
+            border-radius: 10px;
+            padding: 15px;
             box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            min-height: 0;
         }
         
         .roro-total {
             background: linear-gradient(to right, var(--primary-blue), var(--secondary-blue));
             color: white;
-            padding: 15px;
-            border-radius: 12px;
+            padding: 12px;
+            border-radius: 8px;
             text-align: center;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
+            flex-shrink: 0;
         }
         
         .roro-total-number {
-            font-size: 42px; /* Larger for TV */
+            font-size: 28px;
             font-weight: 700;
-            margin-bottom: 8px;
+            margin-bottom: 5px;
         }
         
         .roro-total-label {
-            font-size: 22px; /* Larger for TV */
+            font-size: 14px;
             opacity: 0.9;
+        }
+        
+        .roro-vessels-container {
+            flex: 1;
+            min-height: 0;
+            overflow-y: auto;
         }
         
         .roro-vessels {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 8px;
         }
         
         .roro-vessel-item {
             display: flex;
             justify-content: space-between;
-            padding: 10px 0;
+            padding: 6px 0; /* Reduced padding */
             align-items: center;
-            font-size: 18px; /* Larger for TV */
+            font-size: 12px; /* Smaller font size */
         }
         
         /* RORO vessel status indicators */
         .roro-sailed {
             background-color: #fff3cd;
-            border-left: 4px solid #ffc107;
-            border-radius: 5px;
-            padding-left: 12px;
+            border-left: 3px solid #ffc107;
+            border-radius: 3px;
+            padding-left: 8px;
         }
         
         .roro-incoming {
             background-color: #d1ecf1;
-            border-left: 4px solid #0dcaf0;
-            border-radius: 5px;
-            padding-left: 12px;
+            border-left: 3px solid #0dcaf0;
+            border-radius: 3px;
+            padding-left: 8px;
         }
         
         /* Activity Log Styles - REMOVED */
@@ -786,7 +817,7 @@
             display: none;
         }
         
-        /* Modal Styles - ENLARGED FOR TV */
+        /* Modal Styles */
         .modal {
             display: none;
             position: fixed;
@@ -794,7 +825,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: rgba(0, 0, 0, 0.5);
             z-index: 1000;
             align-items: center;
             justify-content: center;
@@ -806,26 +837,26 @@
         
         .modal-content {
             background: white;
-            border-radius: 15px;
+            border-radius: 10px;
             width: 90%;
-            max-width: 1000px;
+            max-width: 800px;
             max-height: 90vh;
             overflow-y: auto;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
         
         .modal-header {
-            padding: 20px 25px;
+            padding: 15px 20px;
             background-color: var(--primary-blue);
             color: white;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-radius: 15px 15px 0 0;
+            border-radius: 10px 10px 0 0;
         }
         
         .modal-title {
-            font-size: 28px;
+            font-size: 18px;
             font-weight: 700;
         }
         
@@ -833,36 +864,34 @@
             background: none;
             border: none;
             color: white;
-            font-size: 32px;
+            font-size: 24px;
             cursor: pointer;
         }
         
         .modal-body {
-            padding: 25px;
-            font-size: 22px;
+            padding: 20px;
         }
         
-        /* Toast Notification - ENLARGED */
+        /* Toast Notification */
         .toast-container {
             position: fixed;
-            top: 30px;
-            right: 30px;
+            top: 20px;
+            right: 20px;
             z-index: 9999;
         }
         
         .toast {
             background: white;
-            border-radius: 10px;
-            padding: 18px 22px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            padding: 12px 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
             display: flex;
             align-items: center;
-            gap: 15px;
-            margin-bottom: 15px;
+            gap: 10px;
+            margin-bottom: 10px;
             transform: translateX(400px);
             transition: transform 0.4s;
-            min-width: 350px;
-            font-size: 22px;
+            min-width: 280px;
         }
         
         .toast.show {
@@ -870,19 +899,19 @@
         }
         
         .toast-success {
-            border-left: 5px solid var(--accent-green);
+            border-left: 4px solid var(--accent-green);
         }
         
         .toast-warning {
-            border-left: 5px solid var(--accent-yellow);
+            border-left: 4px solid var(--accent-yellow);
         }
         
         .toast-error {
-            border-left: 5px solid var(--accent-red);
+            border-left: 4px solid var(--accent-red);
         }
         
         .toast-icon {
-            font-size: 24px;
+            font-size: 18px;
         }
         
         .toast-success .toast-icon {
@@ -901,48 +930,98 @@
             font-weight: 500;
         }
         
-        /* Responsive Styles for TV - Adjusted breakpoints */
-        @media (max-width: 1920px) {
-            .container {
-                max-width: 98%;
-            }
-            
-            .dashboard-table {
-                font-size: 18px;
-            }
-            
-            .dashboard-table th,
-            .dashboard-table td {
-                padding: 12px 10px;
-            }
-        }
-        
-        @media (max-width: 1600px) {
+        /* TV-SPECIFIC OPTIMIZATIONS */
+        @media (min-width: 1200px) {
             body {
                 font-size: 18px;
             }
             
             .logo-text h1 {
-                font-size: 36px;
+                font-size: 32px;
             }
             
             .current-time {
-                font-size: 36px;
+                font-size: 32px;
+            }
+            
+            .current-day {
+                font-size: 24px;
+            }
+            
+            .current-date {
+                font-size: 20px;
             }
             
             .tab {
-                font-size: 24px;
-                padding: 15px 30px;
+                font-size: 22px;
+                padding: 18px 35px;
+            }
+            
+            .dashboard-container {
+                height: calc(100vh - 260px);
+                grid-template-columns: 1fr 360px;
             }
             
             .dashboard-table {
                 font-size: 16px;
             }
+            
+            .dashboard-table th,
+            .dashboard-table td {
+                padding: 10px 12px;
+            }
+            
+            .sidebar-summary-title {
+                font-size: 20px;
+            }
+            
+            .summary-item {
+                font-size: 18px;
+            }
+            
+            .roro-total-number {
+                font-size: 32px;
+            }
+            
+            .roro-vessel-item {
+                font-size: 14px;
+            }
+            
+            /* Auto-switch to dashboard on TV */
+            .tab[data-tab="addVessel"] {
+                display: none;
+            }
+            
+            #addVessel {
+                display: none !important;
+            }
+            
+            #dashboard {
+                display: block !important;
+            }
         }
         
+        /* Responsive Styles */
         @media (max-width: 1400px) {
+            .container {
+                max-width: 98%;
+            }
+            
+            .dashboard-table {
+                font-size: 12px;
+            }
+            
+            .dashboard-table th,
+            .dashboard-table td {
+                padding: 8px 8px;
+            }
+        }
+        
+        @media (max-width: 1200px) {
             .dashboard-container {
                 grid-template-columns: 1fr;
+                height: auto;
+                min-height: 0;
             }
             
             .vessel-details {
@@ -950,7 +1029,7 @@
             }
         }
         
-        @media (max-width: 1200px) {
+        @media (max-width: 992px) {
             .vessel-details {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -958,25 +1037,25 @@
             .shifts-container {
                 flex-direction: column;
                 align-items: center;
-                gap: 15px;
-            }
-            
-            .shift-box {
-                min-width: 300px;
-            }
-        }
-        
-        @media (max-width: 992px) {
-            .header-content {
                 gap: 10px;
             }
             
+            .shift-box {
+                min-width: 200px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                gap: 5px;
+            }
+            
             .logo-text h1 {
-                font-size: 32px;
+                font-size: 24px;
             }
             
             .current-info {
-                gap: 5px;
+                gap: 3px;
             }
             
             .tabs {
@@ -985,11 +1064,11 @@
             
             .tab {
                 text-align: center;
-                border-bottom: 2px solid var(--border-color);
+                border-bottom: 1px solid var(--border-color);
             }
             
             .tab.active {
-                border-bottom: 4px solid var(--accent-orange);
+                border-bottom: 3px solid var(--accent-orange);
             }
             
             .form-grid {
@@ -1013,9 +1092,6 @@
     </style>
 </head>
 <body>
-    <!-- THE REST OF YOUR HTML CONTENT REMAINS THE SAME -->
-    <!-- Only the CSS above has been modified for TV display -->
-    
     <header>
         <div class="container header-content">
             <div class="logo-area">
@@ -1058,226 +1134,95 @@
     <main class="container">
         <div class="tabs-container">
             <div class="tabs">
-                <div class="tab active" data-tab="addVessel">Add a Vessel</div>
-                <div class="tab" data-tab="dashboard">Dashboard</div>
-            </div>
-        </div>
-        
-        <!-- Add Vessel Tab -->
-        <div class="tab-content active" id="addVessel">
-            <div class="form-section">
-                <div class="section-header">
-                    <h2 class="section-title">Add a Vessel</h2>
-                </div>
-                
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label for="vesselName">Vessel Name *</label>
-                        <input type="text" id="vesselName" placeholder="Enter vessel name">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="voyage">VOY. *</label>
-                        <input type="text" id="voyage" placeholder="Enter voyage number">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="agent">Agent *</label>
-                        <input type="text" id="agent" placeholder="Enter agent name">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="eta">ETA *</label>
-                        <input type="datetime-local" id="eta">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="vesselType">Vessel Type *</label>
-                        <select id="vesselType">
-                            <option value="">Select vessel type</option>
-                            <option value="RORO">RORO</option>
-                            <option value="GENERAL CARGO">General Cargo</option>
-                            <option value="DHOW">Dhow</option>
-                            <option value="NAVAL">Naval</option>
-                            <option value="TUG BOAT">Tug Boat</option>
-                            <option value="CRUISE">Cruise</option>
-                            <option value="TUG&BARGE">Tug & Barge</option>
-                            <option value="TANKER">Tanker</option>
-                            <option value="RIG">Rig</option>
-                            <option value="CONTAINER">Container</option>
-                            <option value="OTHER">Other</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="commodity">Commodity *</label>
-                        <select id="commodity">
-                            <option value="">Select commodity</option>
-                            <option value="UNITS">Units</option>
-                            <option value="PACKAGES">Packages</option>
-                            <option value="UNITS AND PACKAGES">Units and Packages</option>
-                            <option value="LIVESTOCK">Livestock</option>
-                            <option value="LAY BY">Lay By</option>
-                            <option value="NAVAL CREW">Naval Crew</option>
-                            <option value="PASSENGERS">Passengers</option>
-                            <option value="OVER DIMENSION">Over Dimension</option>
-                            <option value="STEEL PIPE">Steel Pipe</option>
-                            <option value="PORT CLEARANCE">Port Clearance</option>
-                            <option value="SULPHUR">Sulphur</option>
-                            <option value="ALUMINIUM">Aluminium</option>
-                            <option value="CREW CHANGE">Crew Change</option>
-                            <option value="STEEL BILLET">Steel Billet</option>
-                            <option value="TOWING">Towing</option>
-                            <option value="TIMBER">Timber</option>
-                            <option value="SUGAR">Sugar</option>
-                            <option value="STEEL PLATE">Steel Plate</option>
-                            <option value="IRON ORE CAKE">Iron Ore Cake</option>
-                            <option value="HOLD INSPECTION">Hold Inspection</option>
-                            <option value="AQIS – AUSTRALIAN QUARANTINE">AQIS – Australian Quarantine</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="purpose">Purpose of Call *</label>
-                        <select id="purpose">
-                            <option value="">Select purpose</option>
-                            <option value="DISCHARGE">Discharge</option>
-                            <option value="LOAD">Load</option>
-                            <option value="DISCHARGE/LOAD">Discharge/Load</option>
-                            <option value="N/A">N/A</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="etd">ETD</label>
-                        <input type="datetime-local" id="etd">
-                    </div>
-                </div>
-                
-                <!-- Quantity Section (dynamically generated) -->
-                <div id="quantitySection"></div>
-                
-                <div class="form-actions">
-                    <button class="btn btn-primary" id="addVesselBtn">
-                        <i class="fas fa-plus-circle"></i> Add Vessel
-                    </button>
-                    <button class="btn btn-secondary" id="clearFormBtn">
-                        <i class="fas fa-redo"></i> Clear Form
-                    </button>
-                </div>
-                
-                <!-- Data Export/Import Section -->
-                <div class="data-actions">
-                    <button class="btn btn-export" id="exportDataBtn">
-                        <i class="fas fa-file-export"></i> Export Data
-                    </button>
-                    <button class="btn btn-import" id="importDataBtn">
-                        <i class="fas fa-file-import"></i> Import Data
-                    </button>
-                    <button class="btn btn-danger" id="clearAllDataBtn">
-                        <i class="fas fa-trash"></i> Clear All Data
-                    </button>
-                </div>
-            </div>
-            
-            <!-- Vessels Log Section -->
-            <div class="form-section">
-                <div class="section-header">
-                    <h2 class="section-title">Vessels Log</h2>
-                    <div class="vessel-count">
-                        <span id="vesselCount">0 vessels</span>
-                    </div>
-                </div>
-                
-                <!-- Vertical Vessels Container -->
-                <div class="vessels-container" id="vesselsLog">
-                    <div class="empty-state" style="text-align: center; padding: 60px; color: var(--text-light);">
-                        <i class="fas fa-ship" style="font-size: 80px; margin-bottom: 30px; opacity: 0.3;"></i>
-                        <h3 style="margin-bottom: 15px; font-size: 28px;">No vessels added yet</h3>
-                        <p style="font-size: 22px;">Add a vessel using the form above to see it appear here.</p>
-                    </div>
-                </div>
+                <div class="tab" data-tab="addVessel">Add a Vessel</div>
+                <div class="tab active" data-tab="dashboard">Dashboard</div>
             </div>
         </div>
         
         <!-- Dashboard Tab -->
-        <div class="tab-content" id="dashboard">
+        <div class="tab-content active" id="dashboard">
             <div class="dashboard-container">
                 <!-- LEFT SIDE: Vessel Tables -->
                 <div class="main-dashboard">
                     <!-- Sailed Vessels Table -->
                     <div class="dashboard-section" id="sailedSection" style="display: none;">
-                        <h3 class="section-title" style="margin-bottom: 15px;">Sailed Vessels</h3>
-                        <table class="dashboard-table" id="sailedTable">
-                            <thead>
-                                <tr>
-                                    <th>Vessel / Voy.</th>
-                                    <th>ATA</th>
-                                    <th>ATD</th>
-                                    <th>Port Stay</th>
-                                    <th>Vessel Type</th>
-                                    <th>Commodity</th>
-                                    <th>Berth</th>
-                                    <th>Remarks</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- Sailed vessels will be added here -->
-                            </tbody>
-                        </table>
+                        <h3 class="section-title" style="margin-bottom: 12px;">Sailed Vessels</h3>
+                        <div class="table-container">
+                            <table class="dashboard-table" id="sailedTable">
+                                <thead>
+                                    <tr>
+                                        <th>Vessel / Voy.</th>
+                                        <th>ATA</th>
+                                        <th>ATD</th>
+                                        <th>Port Stay</th>
+                                        <th>Vessel Type</th>
+                                        <th>Commodity</th>
+                                        <th>Berth</th>
+                                        <th>Remarks</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Sailed vessels will be added here -->
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                     
                     <!-- Working Vessels Table -->
                     <div class="dashboard-section" id="workingSection" style="display: none;">
-                        <h3 class="section-title" style="margin-bottom: 15px;">Working Vessels</h3>
-                        <table class="dashboard-table" id="workingTable">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Vessel / Voy.</th>
-                                    <th>ATA</th>
-                                    <th>Port Stay</th>
-                                    <th>ETD</th>
-                                    <th>Vessel Type</th>
-                                    <th>Commodity</th>
-                                    <th>Quantity</th>
-                                    <th>Completed</th>
-                                    <th>Balance</th>
-                                    <th>Berth</th>
-                                    <th>Remarks</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- Working vessels will be added here -->
-                            </tbody>
-                        </table>
+                        <h3 class="section-title" style="margin-bottom: 12px;">Working Vessels</h3>
+                        <div class="table-container">
+                            <table class="dashboard-table" id="workingTable">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Vessel / Voy.</th>
+                                        <th>ATA</th>
+                                        <th>Port Stay</th>
+                                        <th>ETD</th>
+                                        <th>Vessel Type</th>
+                                        <th>Commodity</th>
+                                        <th>Quantity</th>
+                                        <th>Completed</th>
+                                        <th>Balance</th>
+                                        <th>Berth</th>
+                                        <th>Remarks</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Working vessels will be added here -->
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                     
                     <!-- Inbound Vessels Table with Date Grouping -->
                     <div class="dashboard-section" id="inboundSection" style="display: none;">
-                        <h3 class="section-title" style="margin-bottom: 15px;">Inbound Vessels</h3>
-                        <table class="dashboard-table" id="inboundTable">
-                            <thead>
-                                <tr>
-                                    <th>ETA</th>
-                                    <th>Vessel / Voy.</th>
-                                    <th>Vessel Type</th>
-                                    <th>Commodity</th>
-                                    <th>Quantity</th>
-                                    <th>ETD</th>
-                                    <th>Remarks</th>
-                                </tr>
-                            </thead>
-                            <tbody id="inboundTableBody">
-                                <!-- Inbound vessels will be added here -->
-                            </tbody>
-                        </table>
+                        <h3 class="section-title" style="margin-bottom: 12px;">Inbound Vessels</h3>
+                        <div class="table-container">
+                            <table class="dashboard-table" id="inboundTable">
+                                <thead>
+                                    <tr>
+                                        <th>ETA</th>
+                                        <th>Vessel / Voy.</th>
+                                        <th>Vessel Type</th>
+                                        <th>Commodity</th>
+                                        <th>Quantity</th>
+                                        <th>ETD</th>
+                                        <th>Remarks</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="inboundTableBody">
+                                    <!-- Inbound vessels will be added here -->
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
                 
                 <!-- RIGHT SIDE: Summary and RORO -->
                 <div class="dashboard-sidebar">
-                    <!-- Summary Card - UPDATED -->
+                    <!-- Summary Card -->
                     <div class="sidebar-summary">
                         <div class="sidebar-summary-title">Vessel Summary</div>
                         <div class="summary-item">
@@ -1293,21 +1238,20 @@
                             <span class="summary-item-value" id="sidebarInboundCount">0</span>
                         </div>
                         
-                        <!-- Commodity Breakdown - UPDATED (No "Inbound by Commodity" title) -->
+                        <!-- Commodity Breakdown -->
                         <div class="commodity-summary" id="commoditySummary" style="display: none;">
-                            <!-- UPDATED: No header title, just show commodities like bullet list -->
                             <div id="commodityBreakdown">
                                 <!-- Commodity items will be added here -->
                             </div>
                         </div>
                         
-                        <div class="summary-item" style="border-top: 3px solid var(--border-color); margin-top: 15px; padding-top: 15px;">
+                        <div class="summary-item" style="border-top: 2px solid var(--border-color); margin-top: 10px; padding-top: 10px;">
                             <span class="summary-item-label" style="font-weight: 700;">Total Vessels</span>
-                            <span class="summary-item-value" id="sidebarTotalCount" style="font-size: 28px;">0</span>
+                            <span class="summary-item-value" id="sidebarTotalCount" style="font-size: 18px;">0</span>
                         </div>
                     </div>
                     
-                    <!-- Incoming RORO Units - COMPACT WITHOUT SCROLL -->
+                    <!-- Incoming RORO Units -->
                     <div class="sidebar-summary roro-card">
                         <div class="sidebar-summary-title">RORO Units Summary</div>
                         <div class="roro-total">
@@ -1315,10 +1259,12 @@
                             <div class="roro-total-label">Total RORO Units</div>
                         </div>
                         
-                        <div class="roro-vessels" id="roroVesselsList">
-                            <div style="text-align: center; padding: 20px; color: var(--text-light);">
-                                <i class="fas fa-truck-loading" style="font-size: 35px; margin-bottom: 12px; opacity: 0.3;"></i>
-                                <p style="font-size: 20px;">No RORO vessels with units</p>
+                        <div class="roro-vessels-container">
+                            <div class="roro-vessels" id="roroVesselsList">
+                                <div style="text-align: center; padding: 15px; color: var(--text-light);">
+                                    <i class="fas fa-truck-loading" style="font-size: 25px; margin-bottom: 8px; opacity: 0.3;"></i>
+                                    <p style="font-size: 13px;">No RORO vessels with units</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1330,8 +1276,31 @@
     <!-- Toast Notification Container -->
     <div class="toast-container" id="toastContainer"></div>
     
-    <!-- THE REST OF YOUR JAVASCRIPT REMAINS THE SAME -->
     <script>
+        // TV Optimization: Auto-switch to dashboard on large screens
+        document.addEventListener('DOMContentLoaded', function() {
+            // Auto-show dashboard on TV-sized screens
+            if (window.innerWidth >= 1200) {
+                // Force dashboard view
+                document.querySelectorAll('.tab').forEach(tab => {
+                    tab.classList.remove('active');
+                    if (tab.dataset.tab === 'dashboard') {
+                        tab.classList.add('active');
+                    }
+                });
+                
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.remove('active');
+                    if (content.id === 'dashboard') {
+                        content.classList.add('active');
+                    }
+                });
+            }
+            
+            // Then initialize the app
+            initializeApp();
+        });
+
         // Global variables
         let vessels = JSON.parse(localStorage.getItem('gcVessels')) || [];
         let currentDate = new Date();
@@ -1382,11 +1351,6 @@
                 'night': {shift: 'A', time: '22:00-06:00'}
             }
         };
-        
-        // Initialize the application
-        document.addEventListener('DOMContentLoaded', function() {
-            initializeApp();
-        });
         
         // Main initialization function
         function initializeApp() {
@@ -1694,20 +1658,20 @@
         // Setup form interactions
         function setupFormInteractions() {
             // Add vessel button
-            document.getElementById('addVesselBtn').addEventListener('click', addVessel);
+            document.getElementById('addVesselBtn')?.addEventListener('click', addVessel);
             
             // Clear form button
-            document.getElementById('clearFormBtn').addEventListener('click', clearForm);
+            document.getElementById('clearFormBtn')?.addEventListener('click', clearForm);
             
             // Commodity and purpose change listeners to update quantity section
-            document.getElementById('commodity').addEventListener('change', updateQuantitySection);
-            document.getElementById('purpose').addEventListener('change', updateQuantitySection);
-            document.getElementById('vesselType').addEventListener('change', updateQuantitySection);
+            document.getElementById('commodity')?.addEventListener('change', updateQuantitySection);
+            document.getElementById('purpose')?.addEventListener('change', updateQuantitySection);
+            document.getElementById('vesselType')?.addEventListener('change', updateQuantitySection);
             
-// Export/Import buttons
-document.getElementById('exportDataBtn').addEventListener('click', exportData);
-document.getElementById('importDataBtn').addEventListener('click', importData); // THIS LINE
-            document.getElementById('clearAllDataBtn').addEventListener('click', clearAllData);
+            // Export/Import buttons
+            document.getElementById('exportDataBtn')?.addEventListener('click', exportData);
+            document.getElementById('importDataBtn')?.addEventListener('click', importData);
+            document.getElementById('clearAllDataBtn')?.addEventListener('click', clearAllData);
         }
         
         // Export data function
@@ -1742,65 +1706,65 @@ document.getElementById('importDataBtn').addEventListener('click', importData); 
             showToast('Data exported successfully', 'success');
         }
         
-  // Import data function
-function importData() {
-    // Ask for password for security
-    const password = prompt('Enter password to import data:');
-    if (password !== 'GC123') {
-        showToast('Incorrect password', 'error');
-        return;
-    }
-    
-    // Create file input element
-    const fileInput = document.createElement('input');
-    fileInput.type = 'file';
-    fileInput.accept = '.json';
-    
-    fileInput.onchange = function(event) {
-        const file = event.target.files[0];
-        if (!file) return;
-        
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            try {
-                const importedData = JSON.parse(e.target.result);
-                
-                // Validate the imported data
-                if (!importedData.vessels || !Array.isArray(importedData.vessels)) {
-                    showToast('Invalid data file format', 'error');
-                    return;
-                }
-                
-                // Ask for confirmation
-                if (!confirm(`This will replace all current data with ${importedData.vessels.length} vessels. Continue?`)) {
-                    return;
-                }
-                
-                // Remove existing modal if any
-                const existingModal = document.querySelector('.modal');
-                if (existingModal) existingModal.remove();
-                
-                // Replace current vessels with imported data
-                vessels = importedData.vessels;
-                
-                // Save to localStorage
-                saveVessels();
-                
-                // Reload display
-                loadVessels();
-                updateDashboard();
-                
-                showToast(`Successfully imported ${vessels.length} vessels`, 'success');
-            } catch (error) {
-                showToast('Error reading data file: ' + error.message, 'error');
+        // Import data function
+        function importData() {
+            // Ask for password for security
+            const password = prompt('Enter password to import data:');
+            if (password !== 'GC123') {
+                showToast('Incorrect password', 'error');
+                return;
             }
-        };
-        
-        reader.readAsText(file);
-    };
-    
-    fileInput.click();
-}
+            
+            // Create file input element
+            const fileInput = document.createElement('input');
+            fileInput.type = 'file';
+            fileInput.accept = '.json';
+            
+            fileInput.onchange = function(event) {
+                const file = event.target.files[0];
+                if (!file) return;
+                
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    try {
+                        const importedData = JSON.parse(e.target.result);
+                        
+                        // Validate the imported data
+                        if (!importedData.vessels || !Array.isArray(importedData.vessels)) {
+                            showToast('Invalid data file format', 'error');
+                            return;
+                        }
+                        
+                        // Ask for confirmation
+                        if (!confirm(`This will replace all current data with ${importedData.vessels.length} vessels. Continue?`)) {
+                            return;
+                        }
+                        
+                        // Remove existing modal if any
+                        const existingModal = document.querySelector('.modal');
+                        if (existingModal) existingModal.remove();
+                        
+                        // Replace current vessels with imported data
+                        vessels = importedData.vessels;
+                        
+                        // Save to localStorage
+                        saveVessels();
+                        
+                        // Reload display
+                        loadVessels();
+                        updateDashboard();
+                        
+                        showToast(`Successfully imported ${vessels.length} vessels`, 'success');
+                    } catch (error) {
+                        showToast('Error reading data file: ' + error.message, 'error');
+                    }
+                };
+                
+                reader.readAsText(file);
+            };
+            
+            fileInput.click();
+        }
         
         // Clear all data function
         function clearAllData() {
@@ -1859,7 +1823,7 @@ function importData() {
             }
             
             quantitySection.innerHTML = `
-                <h3 style="margin-bottom: 15px; color: var(--primary-blue); font-size: 26px;">Quantity Details</h3>
+                <h3 style="margin-bottom: 12px; color: var(--primary-blue);">Quantity Details</h3>
                 <div class="alert alert-info">
                     <i class="fas fa-info-circle"></i> Fill at least one field in each applicable table
                 </div>
@@ -2203,6 +2167,8 @@ function importData() {
         // Load vessels from localStorage and display them vertically
         function loadVessels() {
             const vesselsLog = document.getElementById('vesselsLog');
+            if (!vesselsLog) return;
+            
             vesselsLog.innerHTML = '';
             
             // Sort vessels by recently added (newest first)
@@ -2220,10 +2186,10 @@ function importData() {
             // If no vessels, show empty state
             if (vessels.length === 0) {
                 vesselsLog.innerHTML = `
-                    <div class="empty-state" style="text-align: center; padding: 60px; color: var(--text-light);">
-                        <i class="fas fa-ship" style="font-size: 80px; margin-bottom: 30px; opacity: 0.3;"></i>
-                        <h3 style="margin-bottom: 15px; font-size: 28px;">No vessels added yet</h3>
-                        <p style="font-size: 22px;">Add a vessel using the form above to see it appear here.</p>
+                    <div class="empty-state" style="text-align: center; padding: 40px; color: var(--text-light);">
+                        <i class="fas fa-ship" style="font-size: 60px; margin-bottom: 20px; opacity: 0.3;"></i>
+                        <h3 style="margin-bottom: 10px;">No vessels added yet</h3>
+                        <p>Add a vessel using the form above to see it appear here.</p>
                     </div>
                 `;
             }
@@ -2376,18 +2342,18 @@ function importData() {
                     </div>
                     
                     <!-- Pre-Arrival Checks for INBOUND vessels -->
-                    <div class="vessel-checks" style="margin: 15px 0; padding: 15px; background-color: var(--light-gray); border-radius: 8px;">
-                        <div style="font-weight: 600; margin-bottom: 10px; font-size: 22px;">Pre-Arrival Checks:</div>
-                        <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-                            <label style="display: flex; align-items: center; gap: 8px; font-size: 20px;">
+                    <div class="vessel-checks" style="margin: 12px 0; padding: 12px; background-color: var(--light-gray); border-radius: 6px;">
+                        <div style="font-weight: 600; margin-bottom: 8px;">Pre-Arrival Checks:</div>
+                        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                            <label style="display: flex; align-items: center; gap: 5px;">
                                 <input type="checkbox" class="pre-arrival-check" ${vessel.checks.preArrival ? 'checked' : ''} data-id="${vessel.id}">
                                 Pre-Arrival Notification Received
                             </label>
-                            <label style="display: flex; align-items: center; gap: 8px; font-size: 20px;">
+                            <label style="display: flex; align-items: center; gap: 5px;">
                                 <input type="checkbox" class="manifest-check" ${vessel.checks.manifest ? 'checked' : ''} data-id="${vessel.id}">
                                 Manifest Received
                             </label>
-                            <label style="display: flex; align-items: center; gap: 8px; font-size: 20px;">
+                            <label style="display: flex; align-items: center; gap: 5px;">
                                 <input type="checkbox" class="print-file-check" ${vessel.checks.printFile ? 'checked' : ''} data-id="${vessel.id}">
                                 Print File Sent
                             </label>
@@ -2582,14 +2548,14 @@ function importData() {
                     </div>
                     
                     <!-- TDR Checks for SAILED vessels -->
-                    <div class="vessel-checks" style="margin: 15px 0; padding: 15px; background-color: var(--light-gray); border-radius: 8px;">
-                        <div style="font-weight: 600; margin-bottom: 10px; font-size: 22px;">TDR Status:</div>
-                        <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-                            <label style="display: flex; align-items: center; gap: 8px; font-size: 20px;">
+                    <div class="vessel-checks" style="margin: 12px 0; padding: 12px; background-color: var(--light-gray); border-radius: 6px;">
+                        <div style="font-weight: 600; margin-bottom: 8px;">TDR Status:</div>
+                        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                            <label style="display: flex; align-items: center; gap: 5px;">
                                 <input type="checkbox" class="tdr-agent-check" ${vessel.checks.tdrAgent ? 'checked' : ''} data-id="${vessel.id}">
                                 TDR Sent to Agent
                             </label>
-                            <label style="display: flex; align-items: center; gap: 8px; font-size: 20px;">
+                            <label style="display: flex; align-items: center; gap: 5px;">
                                 <input type="checkbox" class="tdr-finance-check" ${vessel.checks.tdrFinance ? 'checked' : ''} data-id="${vessel.id}">
                                 TDR Sent to Finance
                             </label>
@@ -2697,11 +2663,11 @@ function importData() {
                         <form id="updateRemarksForm">
                             <div class="form-group">
                                 <label for="remarks">Remarks</label>
-                                <textarea id="remarks" rows="4" placeholder="Enter remarks for this vessel" style="width: 100%; padding: 15px 18px; border: 2px solid var(--border-color); border-radius: 8px; font-size: 22px;">${vessel.remarks || ''}</textarea>
+                                <textarea id="remarks" rows="4" placeholder="Enter remarks for this vessel" style="width: 100%; padding: 10px 12px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 15px;">${vessel.remarks || ''}</textarea>
                             </div>
                         </form>
                         
-                        <div class="form-actions" style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 25px;">
+                        <div class="form-actions" style="display: flex; justify-content: flex-end; gap: 8px; margin-top: 20px;">
                             <button type="button" class="btn btn-secondary" id="cancelRemarksBtn">Cancel</button>
                             <button type="button" class="btn btn-primary" id="confirmRemarksBtn">Update Remarks</button>
                         </div>
@@ -2768,7 +2734,7 @@ function importData() {
                             </div>
                         </form>
                         
-                        <div class="form-actions" style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 25px;">
+                        <div class="form-actions" style="display: flex; justify-content: flex-end; gap: 8px; margin-top: 20px;">
                             <button type="button" class="btn btn-secondary" id="cancelETABtn">Cancel</button>
                             <button type="button" class="btn btn-primary" id="confirmETABtn">Update ETA</button>
                         </div>
@@ -3116,7 +3082,7 @@ function importData() {
                                 </div>
                             </div>
                             
-                            <div class="form-actions" style="display: flex; justify-content: space-between; margin-top: 25px;">
+                            <div class="form-actions" style="display: flex; justify-content: space-between; margin-top: 20px;">
                                 <button type="button" class="btn btn-danger" id="deleteVesselBtn">
                                     <i class="fas fa-trash"></i> Delete Vessel
                                 </button>
@@ -3248,7 +3214,7 @@ function importData() {
             let optionsHTML = '';
             availableStatuses.forEach(status => {
                 optionsHTML += `
-                    <button type="button" class="btn btn-primary" style="width: 100%; margin-bottom: 12px; font-size: 22px;" data-status="${status}">
+                    <button type="button" class="btn btn-primary" style="width: 100%; margin-bottom: 8px;" data-status="${status}">
                         Change to ${status}
                     </button>
                 `;
@@ -3261,12 +3227,12 @@ function importData() {
                         <button class="modal-close">&times;</button>
                     </div>
                     <div class="modal-body">
-                        <p style="font-size: 22px;">Current status: <strong>${vessel.status}</strong></p>
-                        <p style="font-size: 22px;">Select new status:</p>
-                        <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 20px;">
+                        <p>Current status: <strong>${vessel.status}</strong></p>
+                        <p>Select new status:</p>
+                        <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 15px;">
                             ${optionsHTML}
                         </div>
-                        <div class="form-actions" style="display: flex; justify-content: flex-end; margin-top: 25px;">
+                        <div class="form-actions" style="display: flex; justify-content: flex-end; margin-top: 20px;">
                             <button type="button" class="btn btn-secondary" id="cancelStatusBtn">Cancel</button>
                         </div>
                     </div>
@@ -3345,12 +3311,12 @@ function importData() {
                                 <input type="datetime-local" id="etdUpdate" value="${formatForInput(vessel.etd)}">
                             </div>
                             
-                            <div class="alert alert-info" style="margin-top: 20px;">
+                            <div class="alert alert-info" style="margin-top: 15px;">
                                 <i class="fas fa-info-circle"></i> Completed quantities are not required when updating to WORKING status. You can add them later.
                             </div>
                         </form>
                         
-                        <div class="form-actions" style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 25px;">
+                        <div class="form-actions" style="display: flex; justify-content: flex-end; gap: 8px; margin-top: 20px;">
                             <button type="button" class="btn btn-secondary" id="cancelWorkingBtn">Cancel</button>
                             <button type="button" class="btn btn-primary" id="confirmWorkingBtn">Update to WORKING</button>
                         </div>
@@ -3426,12 +3392,12 @@ function importData() {
                             </div>
                             ` : ''}
                             
-                            <div class="alert alert-info" style="margin-top: 20px;">
+                            <div class="alert alert-info" style="margin-top: 15px;">
                                 <i class="fas fa-info-circle"></i> After updating to SAILED, you'll need to complete TDR checks before closing the vessel.
                             </div>
                         </form>
                         
-                        <div class="form-actions" style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 25px;">
+                        <div class="form-actions" style="display: flex; justify-content: flex-end; gap: 8px; margin-top: 20px;">
                             <button type="button" class="btn btn-secondary" id="cancelSailedBtn">Cancel</button>
                             <button type="button" class="btn btn-primary" id="confirmSailedBtn">Update to SAILED</button>
                         </div>
@@ -3505,7 +3471,7 @@ function importData() {
                             <div id="updateQuantitySection"></div>
                         </form>
                         
-                        <div class="form-actions" style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 25px;">
+                        <div class="form-actions" style="display: flex; justify-content: flex-end; gap: 8px; margin-top: 20px;">
                             <button type="button" class="btn btn-secondary" id="cancelCommodityBtn">Cancel</button>
                             <button type="button" class="btn btn-primary" id="confirmCommodityBtn">Update Commodity</button>
                         </div>
@@ -3549,7 +3515,7 @@ function importData() {
                 }
                 
                 updateQuantitySection.innerHTML = `
-                    <h3 style="margin-bottom: 15px; color: var(--primary-blue); font-size: 26px;">Quantity Details</h3>
+                    <h3 style="margin-bottom: 12px; color: var(--primary-blue);">Quantity Details</h3>
                     <div class="alert alert-info">
                         <i class="fas fa-info-circle"></i> Fill at least one field in each applicable table
                     </div>
@@ -3656,7 +3622,7 @@ function importData() {
             if (vessel.purpose === 'DISCHARGE/LOAD') {
                 // Show 3 tables for DISCHARGE/LOAD
                 completedTablesHTML = `
-                    <h4 style="margin-top: 20px; color: var(--primary-blue); font-size: 24px;">Completed Details</h4>
+                    <h4 style="margin-top: 15px; color: var(--primary-blue);">Completed Details</h4>
                     <div class="alert alert-info">
                         <i class="fas fa-info-circle"></i> Please enter completed quantities for all three categories to calculate balance correctly.
                     </div>
@@ -3667,7 +3633,7 @@ function importData() {
             } else {
                 // Generic table for other purposes
                 completedTablesHTML = `
-                    <h4 style="margin-top: 20px; color: var(--primary-blue); font-size: 24px;">Completed Details</h4>
+                    <h4 style="margin-top: 15px; color: var(--primary-blue);">Completed Details</h4>
                     ${createQuantityTable(vessel.commodity, vessel.purpose, vessel.vesselType, 'Completed')}
                 `;
             }
@@ -3694,7 +3660,7 @@ function importData() {
                             </div>
                         </form>
                         
-                        <div class="form-actions" style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 25px;">
+                        <div class="form-actions" style="display: flex; justify-content: flex-end; gap: 8px; margin-top: 20px;">
                             <button type="button" class="btn btn-secondary" id="cancelWorkingDetailsBtn">Cancel</button>
                             <button type="button" class="btn btn-primary" id="confirmWorkingDetailsBtn">Update Details</button>
                         </div>
@@ -3788,12 +3754,12 @@ function importData() {
                                 <input type="number" id="updateSailedShifted" placeholder="Enter shifted units" value="${vessel.shifted || ''}">
                             </div>
                             
-                            <div class="alert alert-info" style="margin-top: 20px;">
+                            <div class="alert alert-info" style="margin-top: 15px;">
                                 <i class="fas fa-info-circle"></i> To close this vessel, both TDR checks must be completed.
                             </div>
                         </form>
                         
-                        <div class="form-actions" style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 25px;">
+                        <div class="form-actions" style="display: flex; justify-content: flex-end; gap: 8px; margin-top: 20px;">
                             <button type="button" class="btn btn-secondary" id="cancelSailedDetailsBtn">Cancel</button>
                             <button type="button" class="btn btn-primary" id="confirmSailedDetailsBtn">Update Details</button>
                         </div>
@@ -3869,7 +3835,7 @@ function importData() {
             updateRoroUnits();
         }
         
-        // Update commodity breakdown for inbound vessels - UPDATED
+        // Update commodity breakdown for inbound vessels
         function updateCommodityBreakdown(inboundVessels) {
             const commodityBreakdown = document.getElementById('commodityBreakdown');
             const commoditySummary = document.getElementById('commoditySummary');
@@ -3896,7 +3862,7 @@ function importData() {
                 }
             });
             
-            // Build HTML - UPDATED: No "Inbound by Commodity" title, just show like bullet list
+            // Build HTML
             let html = '';
             
             // Add RORO count
@@ -3944,7 +3910,7 @@ function importData() {
                 const portStay = (vessel.ata && vessel.atd) ? calculatePortStay(vessel.ata, vessel.atd) : null;
                 const portStayFormatted = portStay ? formatPortStay(portStay) : 'N/A';
                 
-                // Build remarks for sailed vessels - UPDATED with bullet separator
+                // Build remarks for sailed vessels
                 let remarks = '';
                 const remarkParts = [];
                 
@@ -4022,7 +3988,7 @@ function importData() {
                     balanceSummary = hasBalanceData ? formatDashboardQuantity(vessel.balance, 'balance') : 'NIL';
                 }
                 
-                // Build remarks for working vessels - UPDATED with bullet separator
+                // Build remarks for working vessels
                 let remarks = '';
                 const remarkParts = [];
                 
@@ -4132,7 +4098,7 @@ function importData() {
                     // Format quantity with DISCHARGE/LOAD labels
                     const quantitySummary = formatDashboardQuantity(vessel.quantity, 'quantity');
                     
-                    // Build remarks for inbound vessels - UPDATED with bullet separator
+                    // Build remarks for inbound vessels
                     let remarks = '';
                     const remarkParts = [];
                     
@@ -4238,7 +4204,7 @@ function importData() {
             return parts.length > 0 ? `<strong>${prefix}:</strong> ${parts.join(', ')}` : '';
         }
         
-        // Update RORO units - UPDATED for no scrolling
+        // Update RORO units
         function updateRoroUnits() {
             const roroContainer = document.getElementById('roroVesselsList');
             const totalUnitsElement = document.getElementById('totalRoroUnits');
@@ -4306,9 +4272,9 @@ function importData() {
             
             if (sailedRoroVessels.length === 0 && workingRoroVessels.length === 0 && inboundRoroVessels.length === 0) {
                 roroContainer.innerHTML = `
-                    <div style="text-align: center; padding: 25px; color: var(--text-light);">
-                        <i class="fas fa-truck-loading" style="font-size: 35px; margin-bottom: 12px; opacity: 0.3;"></i>
-                        <p style="font-size: 20px;">No RORO vessels with units</p>
+                    <div style="text-align: center; padding: 15px; color: var(--text-light);">
+                        <i class="fas fa-truck-loading" style="font-size: 25px; margin-bottom: 8px; opacity: 0.3;"></i>
+                        <p style="font-size: 13px;">No RORO vessels with units</p>
                     </div>
                 `;
                 totalUnitsElement.textContent = '0';
@@ -4339,10 +4305,10 @@ function importData() {
                         vesselItem.className = 'roro-vessel-item roro-sailed';
                         vesselItem.innerHTML = `
                             <div>
-                                <div style="font-weight: 600; font-size: 20px;">${vessel.vesselName}</div>
-                                <div style="font-size: 18px; color: var(--text-light);">SAILED - ATD: ${formatDateTimeWithDayShift(new Date(vessel.atd))}</div>
+                                <div style="font-weight: 600; font-size: 12px;">${vessel.vesselName}</div>
+                                <div style="font-size: 11px; color: var(--text-light);">SAILED - ATD: ${formatDateTimeWithDayShift(new Date(vessel.atd))}</div>
                             </div>
-                            <div style="font-weight: 700; color: var(--primary-blue); font-size: 20px;">
+                            <div style="font-weight: 700; color: var(--primary-blue); font-size: 12px;">
                                 ${formatNumber(atQuayside)} units
                             </div>
                         `;
@@ -4367,10 +4333,10 @@ function importData() {
                     vesselItem.className = 'roro-vessel-item roro-incoming';
                     vesselItem.innerHTML = `
                         <div>
-                            <div style="font-weight: 600; font-size: 20px;">${vessel.vesselName}</div>
-                            <div style="font-size: 18px; color: var(--text-light);">WORKING - ATA: ${formatDateTimeWithDayShift(new Date(vessel.ata))}</div>
+                            <div style="font-weight: 600; font-size: 12px;">${vessel.vesselName}</div>
+                            <div style="font-size: 11px; color: var(--text-light);">WORKING - ATA: ${formatDateTimeWithDayShift(new Date(vessel.ata))}</div>
                         </div>
-                        <div style="font-weight: 700; color: var(--primary-blue); font-size: 20px;">
+                        <div style="font-weight: 700; color: var(--primary-blue); font-size: 12px;">
                             ${formatNumber(remaining)} units
                         </div>
                     `;
@@ -4394,10 +4360,10 @@ function importData() {
                     vesselItem.className = 'roro-vessel-item roro-incoming';
                     vesselItem.innerHTML = `
                         <div>
-                            <div style="font-weight: 600; font-size: 20px;">${vessel.vesselName}</div>
-                            <div style="font-size: 18px; color: var(--text-light);">INBOUND - ETA: ${formatDateTimeWithDayShift(new Date(vessel.eta))}</div>
+                            <div style="font-weight: 600; font-size: 12px;">${vessel.vesselName}</div>
+                            <div style="font-size: 11px; color: var(--text-light);">INBOUND - ETA: ${formatDateTimeWithDayShift(new Date(vessel.eta))}</div>
                         </div>
-                        <div style="font-weight: 700; color: var(--primary-blue); font-size: 20px;">
+                        <div style="font-weight: 700; color: var(--primary-blue); font-size: 12px;">
                             ${formatNumber(remaining)} units
                         </div>
                     `;
@@ -4409,10 +4375,10 @@ function importData() {
             totalUnitsElement.textContent = formatNumber(totalUnits);
         }
         
-// Save vessels to localStorage
-function saveVessels() {
-    localStorage.setItem('gcVessels', JSON.stringify(vessels));
-}
+        // Save vessels to localStorage
+        function saveVessels() {
+            localStorage.setItem('gcVessels', JSON.stringify(vessels));
+        }
         
         // Show toast notification
         function showToast(message, type = 'info') {
