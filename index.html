@@ -320,6 +320,35 @@
             font-size: 13px;
         }
         
+        /* Export/Import Button Styles */
+        .btn-export {
+            background-color: #17a2b8;
+            color: white;
+        }
+        
+        .btn-export:hover {
+            background-color: #138496;
+        }
+        
+        .btn-import {
+            background-color: #6f42c1;
+            color: white;
+        }
+        
+        .btn-import:hover {
+            background-color: #5a32a3;
+        }
+        
+        /* Data Actions Section */
+        .data-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+            border-top: 2px solid var(--border-color);
+            padding-top: 15px;
+        }
+        
         /* Table Styles */
         .quantity-table {
             width: 100%;
@@ -941,6 +970,10 @@
                 overflow-x: auto;
                 table-layout: auto;
             }
+            
+            .data-actions {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -1092,6 +1125,19 @@
                     </button>
                     <button class="btn btn-secondary" id="clearFormBtn">
                         <i class="fas fa-redo"></i> Clear Form
+                    </button>
+                </div>
+                
+                <!-- Data Export/Import Section -->
+                <div class="data-actions">
+                    <button class="btn btn-export" id="exportDataBtn">
+                        <i class="fas fa-file-export"></i> Export Data
+                    </button>
+                    <button class="btn btn-import" id="importDataBtn">
+                        <i class="fas fa-file-import"></i> Import Data
+                    </button>
+                    <button class="btn btn-danger" id="clearAllDataBtn">
+                        <i class="fas fa-trash"></i> Clear All Data
                     </button>
                 </div>
             </div>
@@ -1618,6 +1664,127 @@
             document.getElementById('commodity').addEventListener('change', updateQuantitySection);
             document.getElementById('purpose').addEventListener('change', updateQuantitySection);
             document.getElementById('vesselType').addEventListener('change', updateQuantitySection);
+            
+// Export/Import buttons
+document.getElementById('exportDataBtn').addEventListener('click', exportData);
+document.getElementById('importDataBtn').addEventListener('click', importData); // THIS LINE
+            document.getElementById('clearAllDataBtn').addEventListener('click', clearAllData);
+        }
+        
+        // Export data function
+        function exportData() {
+            // Create export data object
+            const exportData = {
+                version: '1.0',
+                exportDate: new Date().toISOString(),
+                vessels: vessels
+            };
+            
+            // Convert to JSON string
+            const dataStr = JSON.stringify(exportData, null, 2);
+            
+            // Create blob and download link
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            const url = URL.createObjectURL(dataBlob);
+            
+            // Create download link and trigger download
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `gc-vessel-data-${formatDate(new Date())}.json`;
+            document.body.appendChild(a);
+            a.click();
+            
+            // Clean up
+            setTimeout(() => {
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            }, 100);
+            
+            showToast('Data exported successfully', 'success');
+        }
+        
+  // Import data function
+function importData() {
+    // Ask for password for security
+    const password = prompt('Enter password to import data:');
+    if (password !== 'GC123') {
+        showToast('Incorrect password', 'error');
+        return;
+    }
+    
+    // Create file input element
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = '.json';
+    
+    fileInput.onchange = function(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+        
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            try {
+                const importedData = JSON.parse(e.target.result);
+                
+                // Validate the imported data
+                if (!importedData.vessels || !Array.isArray(importedData.vessels)) {
+                    showToast('Invalid data file format', 'error');
+                    return;
+                }
+                
+                // Ask for confirmation
+                if (!confirm(`This will replace all current data with ${importedData.vessels.length} vessels. Continue?`)) {
+                    return;
+                }
+                
+                // Remove existing modal if any
+                const existingModal = document.querySelector('.modal');
+                if (existingModal) existingModal.remove();
+                
+                // Replace current vessels with imported data
+                vessels = importedData.vessels;
+                
+                // Save to localStorage
+                saveVessels();
+                
+                // Reload display
+                loadVessels();
+                updateDashboard();
+                
+                showToast(`Successfully imported ${vessels.length} vessels`, 'success');
+            } catch (error) {
+                showToast('Error reading data file: ' + error.message, 'error');
+            }
+        };
+        
+        reader.readAsText(file);
+    };
+    
+    fileInput.click();
+}
+        
+        // Clear all data function
+        function clearAllData() {
+            // Ask for password for security
+            const password = prompt('Enter password to clear all data:');
+            if (password !== 'GC123') {
+                showToast('Incorrect password', 'error');
+                return;
+            }
+            
+            if (confirm('Are you sure you want to clear ALL data? This cannot be undone.')) {
+                // Clear vessels array
+                vessels = [];
+                
+                // Save to localStorage
+                saveVessels();
+                
+                // Reload display
+                loadVessels();
+                updateDashboard();
+                
+                showToast('All data cleared successfully', 'success');
+            }
         }
         
         // Update quantity section based on selected commodity and purpose
@@ -4203,10 +4370,10 @@
             totalUnitsElement.textContent = formatNumber(totalUnits);
         }
         
-        // Save vessels to localStorage
-        function saveVessels() {
-            localStorage.setItem('gcVessels', JSON.stringify(vessels));
-        }
+// Save vessels to localStorage
+function saveVessels() {
+    localStorage.setItem('gcVessels', JSON.stringify(vessels));
+}
         
         // Show toast notification
         function showToast(message, type = 'info') {
