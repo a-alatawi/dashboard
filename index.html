@@ -1334,6 +1334,7 @@
         let currentDate = new Date();
         let db = null;
         let firebaseInitialized = false;
+        let isUserAction = false;
         
         // Firebase configuration (YOUR CONFIG)
         const firebaseConfig = {
@@ -1412,8 +1413,8 @@
             // Set up form interactions
             setupFormInteractions();
             
-            // Load existing vessels from Firestore
-            await loadVesselsFromFirestore();
+            // Setup real-time Firestore listeners
+            await setupFirestoreListeners();
             
             // Update dashboard counts
             updateDashboard();
@@ -1461,6 +1462,67 @@
             }
         }
         
+        // Load vessels from Firestore with real-time updates
+        async function setupFirestoreListeners() {
+            if (!firebaseInitialized) {
+                // Fallback to localStorage
+                const localVessels = JSON.parse(localStorage.getItem('gcVessels')) || [];
+                vessels = localVessels;
+                loadVesselsUI();
+                updateDashboard();
+                updateFirebaseStatus('offline');
+                return false;
+            }
+            
+            try {
+                const vesselsRef = db.collection('vessels');
+                
+                // Set up real-time listener
+                vesselsRef.onSnapshot((snapshot) => {
+                    vessels = [];
+                    snapshot.forEach(doc => {
+                        vessels.push(doc.data());
+                    });
+                    
+                    console.log(`Real-time update: ${vessels.length} vessels loaded`);
+                    updateFirebaseStatus('connected');
+                    
+                    // Update UI with new data
+                    loadVesselsUI();
+                    updateDashboard();
+                    
+                    // Show notification if not from current user's action
+                    if (!isUserAction) {
+                        showToast('Vessels updated from cloud', 'info');
+                    }
+                    isUserAction = false;
+                }, (error) => {
+                    console.error("Firestore listener error:", error);
+                    updateFirebaseStatus('error');
+                    
+                    // Fallback to localStorage
+                    const localVessels = JSON.parse(localStorage.getItem('gcVessels')) || [];
+                    vessels = localVessels;
+                    loadVesselsUI();
+                    updateDashboard();
+                    showToast('Loaded from local storage (offline mode)', 'warning');
+                });
+                
+                return true;
+            } catch (error) {
+                console.error("Error setting up Firestore listeners:", error);
+                updateFirebaseStatus('error');
+                
+                // Fallback to localStorage
+                const localVessels = JSON.parse(localStorage.getItem('gcVessels')) || [];
+                vessels = localVessels;
+                loadVesselsUI();
+                updateDashboard();
+                showToast('Loaded from local storage (offline mode)', 'warning');
+                return false;
+            }
+        }
+        
         // Update Firebase connection status display
         function updateFirebaseStatus(status) {
             const statusElement = document.getElementById('firebaseStatus');
@@ -1483,161 +1545,6 @@
                     statusElement.className = 'firebase-status firebase-disconnected';
                     statusElement.innerHTML = '<i class="fas fa-exclamation-triangle"></i> <span>Cloud Error - Using Local Storage</span>';
                     break;
-            }
-        }
-        
-        // ========== FIRESTORE FUNCTIONS ==========
-        
-        // Save vessels to Firestore
-        async function saveVessels() {
-            if (!firebaseInitialized) {
-                // Fallback to localStorage
-                localStorage.setItem('gcVessels', JSON.stringify(vessels));
-                updateFirebaseStatus('offline');
-                return false;
-            }
-            
-            try {
-                // Save all vessels to Firestore
-                const batch = db.batch();
-                const vesselsRef = db.collection('vessels');
-                
-                // First, get all existing documents
-                const snapshot = await vesselsRef.get();
-                
-                // Create a map of existing vessels for efficient deletion
-                const existingVessels = new Map();
-                snapshot.forEach(doc => {
-                    existingVessels.set(doc.id, doc.ref);
-                });
-                
-                // Delete vessels that are no longer in the local array
-                const currentVesselIds = new Set(vessels.map(v => v.id));
-                existingVessels.forEach((ref, id) => {
-                    if (!currentVesselIds.has(id)) {
-                        batch.delete(ref);
-                    }
-                });
-                
-                // Add/update all current vessels
-                vessels.forEach(vessel => {
-                    const docRef = vesselsRef.doc(vessel.id);
-                    batch.set(docRef, vessel);
-                });
-                
-                await batch.commit();
-                console.log("Vessels saved to Firestore");
-                updateFirebaseStatus('connected');
-                return true;
-            } catch (error) {
-                console.error("Error saving to Firestore:", error);
-                updateFirebaseStatus('error');
-                
-                // Fallback to localStorage
-                localStorage.setItem('gcVessels', JSON.stringify(vessels));
-                showToast('Saved to local storage (offline mode)', 'warning');
-                return false;
-            }
-        }
-        
-        // Load vessels from Firestore
-        async function loadVesselsFromFirestore() {
-            if (!firebaseInitialized) {
-                // Fallback to localStorage
-                const localVessels = JSON.parse(localStorage.getItem('gcVessels')) || [];
-                vessels = localVessels;
-                loadVesselsUI();
-                updateFirebaseStatus('offline');
-                return false;
-            }
-            
-            try {
-                const vesselsRef = db.collection('vessels');
-                const snapshot = await vesselsRef.get();
-                
-                vessels = [];
-                snapshot.forEach(doc => {
-                    vessels.push(doc.data());
-                });
-                
-                console.log(`Loaded ${vessels.length} vessels from Firestore`);
-                updateFirebaseStatus('connected');
-                
-                // Update the UI
-                loadVesselsUI();
-                return true;
-            } catch (error) {
-                console.error("Error loading from Firestore:", error);
-                updateFirebaseStatus('error');
-                
-                // Fallback to localStorage
-                const localVessels = JSON.parse(localStorage.getItem('gcVessels')) || [];
-                vessels = localVessels;
-                loadVesselsUI();
-                showToast('Loaded from local storage (offline mode)', 'warning');
-                return false;
-            }
-        }
-        
-        // Save a single vessel to Firestore
-        async function saveVesselToFirestore(vessel) {
-            if (!firebaseInitialized) {
-                // Update local array and save to localStorage
-                const index = vessels.findIndex(v => v.id === vessel.id);
-                if (index !== -1) {
-                    vessels[index] = vessel;
-                } else {
-                    vessels.push(vessel);
-                }
-                localStorage.setItem('gcVessels', JSON.stringify(vessels));
-                updateFirebaseStatus('offline');
-                return true;
-            }
-            
-            try {
-                await db.collection('vessels').doc(vessel.id).set(vessel);
-                console.log(`Vessel ${vessel.vesselName} saved to Firestore`);
-                updateFirebaseStatus('connected');
-                return true;
-            } catch (error) {
-                console.error("Error saving vessel to Firestore:", error);
-                updateFirebaseStatus('error');
-                
-                // Fallback to localStorage
-                const index = vessels.findIndex(v => v.id === vessel.id);
-                if (index !== -1) {
-                    vessels[index] = vessel;
-                } else {
-                    vessels.push(vessel);
-                }
-                localStorage.setItem('gcVessels', JSON.stringify(vessels));
-                return false;
-            }
-        }
-        
-        // Delete a vessel from Firestore
-        async function deleteVesselFromFirestore(vesselId) {
-            if (!firebaseInitialized) {
-                // Remove from local array and save to localStorage
-                vessels = vessels.filter(v => v.id !== vesselId);
-                localStorage.setItem('gcVessels', JSON.stringify(vessels));
-                updateFirebaseStatus('offline');
-                return true;
-            }
-            
-            try {
-                await db.collection('vessels').doc(vesselId).delete();
-                console.log(`Vessel ${vesselId} deleted from Firestore`);
-                updateFirebaseStatus('connected');
-                return true;
-            } catch (error) {
-                console.error("Error deleting vessel from Firestore:", error);
-                updateFirebaseStatus('error');
-                
-                // Fallback to localStorage
-                vessels = vessels.filter(v => v.id !== vesselId);
-                localStorage.setItem('gcVessels', JSON.stringify(vessels));
-                return false;
             }
         }
         
@@ -2158,8 +2065,10 @@
             }
         }
         
-        // Add vessel to the system - UPDATED FOR FIRESTORE
+        // Add vessel to the system - UPDATED FOR REAL-TIME FIRESTORE
         async function addVessel() {
+            isUserAction = true;
+            
             const vesselName = document.getElementById('vesselName').value.trim();
             const voyage = document.getElementById('voyage').value.trim();
             const agent = document.getElementById('agent').value.trim();
@@ -2171,6 +2080,7 @@
             
             if (!vesselName || !voyage || !agent || !eta || !vesselType || !commodity || !purpose) {
                 showToast('Please fill all required fields', 'error');
+                isUserAction = false;
                 return;
             }
             
@@ -2200,22 +2110,17 @@
                 updatedAt: new Date().toISOString()
             };
             
-            // Add to local array
-            vessels.push(vessel);
-            
             // Save to Firestore
             const success = await saveVesselToFirestore(vessel);
             
             if (success) {
                 clearForm();
                 showToast(`Vessel ${vesselName} added successfully`, 'success');
-                loadVesselsUI();
-                updateDashboard();
             } else {
                 showToast(`Vessel ${vesselName} added (offline mode)`, 'warning');
-                loadVesselsUI();
-                updateDashboard();
             }
+            
+            // Note: UI will update automatically via real-time listener
         }
         
         // Get quantity data from form
@@ -2713,6 +2618,8 @@
         
         // NEW: Update ETD for WORKING vessel
         async function updateETD(vesselId) {
+            isUserAction = true;
+            
             const vessel = vessels.find(v => v.id === vesselId);
             if (!vessel || vessel.status !== 'WORKING') return;
             
@@ -2762,6 +2669,7 @@
                 
                 if (!newETD) {
                     showToast('New ETD is required', 'error');
+                    isUserAction = false;
                     return;
                 }
                 
@@ -2771,13 +2679,6 @@
                 // Save to Firestore
                 await saveVesselToFirestore(vessel);
                 
-                // Update local array
-                const index = vessels.findIndex(v => v.id === vesselId);
-                if (index !== -1) {
-                    vessels[index] = vessel;
-                }
-                
-                loadVesselsUI();
                 modal.remove();
                 
                 let message = 'ETD updated successfully';
@@ -2791,6 +2692,8 @@
         
         // Update remarks for vessel
         async function updateRemarks(vesselId) {
+            isUserAction = true;
+            
             const vessel = vessels.find(v => v.id === vesselId);
             if (!vessel) return;
             
@@ -2832,14 +2735,6 @@
                 // Save to Firestore
                 await saveVesselToFirestore(vessel);
                 
-                // Update local array
-                const index = vessels.findIndex(v => v.id === vesselId);
-                if (index !== -1) {
-                    vessels[index] = vessel;
-                }
-                
-                loadVesselsUI();
-                updateDashboard();
                 modal.remove();
                 
                 showToast('Remarks updated successfully', 'success');
@@ -2848,6 +2743,8 @@
         
         // Update ETA for INBOUND vessel
         async function updateETA(vesselId) {
+            isUserAction = true;
+            
             const vessel = vessels.find(v => v.id === vesselId);
             if (!vessel || vessel.status !== 'INBOUND') return;
             
@@ -2897,12 +2794,14 @@
                 
                 if (!newETA) {
                     showToast('New ETA is required', 'error');
+                    isUserAction = false;
                     return;
                 }
                 
                 // Validate that ETD is not before ETA
                 if (newETD && newETD < newETA) {
                     showToast('ETD cannot be before ETA', 'error');
+                    isUserAction = false;
                     return;
                 }
                 
@@ -2913,13 +2812,6 @@
                 // Save to Firestore
                 await saveVesselToFirestore(vessel);
                 
-                // Update local array
-                const index = vessels.findIndex(v => v.id === vesselId);
-                if (index !== -1) {
-                    vessels[index] = vessel;
-                }
-                
-                loadVesselsUI();
                 modal.remove();
                 
                 showToast('ETA updated successfully', 'success');
@@ -3092,8 +2984,10 @@
             return formatNumberWithDecimals(average, 3);
         }
         
-        // Update vessel check status - UPDATED FOR FIRESTORE
+        // Update vessel check status - UPDATED FOR REAL-TIME FIRESTORE
         async function updateVesselCheck(vesselId, className, checked) {
+            isUserAction = true;
+            
             const vesselIndex = vessels.findIndex(v => v.id === vesselId);
             if (vesselIndex === -1) return;
             
@@ -3122,11 +3016,7 @@
             // Update in Firestore
             await saveVesselToFirestore(vessel);
             
-            // Update local array
-            vessels[vesselIndex] = vessel;
-            
             if (vessel.status === 'SAILED' && vessel.checks.tdrAgent && vessel.checks.tdrFinance) {
-                loadVesselsUI();
                 showToast('Both TDR checks completed. You can now close the vessel.', 'info');
             }
         }
@@ -3275,8 +3165,10 @@
             ).join('');
         }
         
-        // Save vessel changes - UPDATED FOR FIRESTORE
+        // Save vessel changes - UPDATED FOR REAL-TIME FIRESTORE
         async function saveVesselChanges(vesselId, modal) {
+            isUserAction = true;
+            
             const vesselIndex = vessels.findIndex(v => v.id === vesselId);
             if (vesselIndex === -1) return;
             
@@ -3295,27 +3187,20 @@
             // Save to Firestore
             await saveVesselToFirestore(vessel);
             
-            // Update local array
-            vessels[vesselIndex] = vessel;
-            
-            loadVesselsUI();
             modal.remove();
             showToast('Vessel updated successfully', 'success');
         }
         
-        // Delete vessel - UPDATED FOR FIRESTORE
+        // Delete vessel - UPDATED FOR REAL-TIME FIRESTORE
         async function deleteVessel(vesselId) {
+            isUserAction = true;
+            
             const vesselIndex = vessels.findIndex(v => v.id === vesselId);
             if (vesselIndex === -1) return;
             
             // Delete from Firestore
             await deleteVesselFromFirestore(vesselId);
             
-            // Remove from local array
-            vessels.splice(vesselIndex, 1);
-            
-            loadVesselsUI();
-            updateDashboard();
             showToast('Vessel deleted successfully', 'success');
         }
         
@@ -3393,7 +3278,6 @@
                             vessel.updatedAt = new Date().toISOString();
                             
                             saveVesselToFirestore(vessel);
-                            loadVesselsUI();
                             showToast(`Vessel status changed to INBOUND`, 'success');
                         }
                     }
@@ -3458,12 +3342,15 @@
             
             const confirmBtn = modal.querySelector('#confirmWorkingBtn');
             confirmBtn.addEventListener('click', async () => {
+                isUserAction = true;
+                
                 const ata = modal.querySelector('#ata').value;
                 const berth = modal.querySelector('#berth').value;
                 const etd = modal.querySelector('#etdUpdate').value;
                 
                 if (!ata || !berth) {
                     showToast('ATA and Berth are required', 'error');
+                    isUserAction = false;
                     return;
                 }
                 
@@ -3472,6 +3359,7 @@
                 const now = new Date();
                 if (ataDate > now) {
                     showToast('ATA cannot be in the future. Please select a current or past date/time.', 'error');
+                    isUserAction = false;
                     return;
                 }
                 
@@ -3485,13 +3373,6 @@
                 // Save to Firestore
                 await saveVesselToFirestore(vessel);
                 
-                // Update local array
-                const index = vessels.findIndex(v => v.id === vessel.id);
-                if (index !== -1) {
-                    vessels[index] = vessel;
-                }
-                
-                loadVesselsUI();
                 modal.remove();
                 showToast(`Vessel status updated to WORKING`, 'success');
             });
@@ -3552,11 +3433,14 @@
             modal.querySelector('.modal-close').addEventListener('click', () => modal.remove());
             modal.querySelector('#cancelSailedBtn').addEventListener('click', () => modal.remove());
             modal.querySelector('#confirmSailedBtn').addEventListener('click', async () => {
+                isUserAction = true;
+                
                 const atd = modal.querySelector('#atd').value;
                 const shiftedUnits = showShifted ? modal.querySelector('#shiftedUnits').value : null;
                 
                 if (!atd) {
                     showToast('ATD is required', 'error');
+                    isUserAction = false;
                     return;
                 }
                 
@@ -3565,6 +3449,7 @@
                 const now = new Date();
                 if (atdDate > now) {
                     showToast('ATD cannot be in the future. Please select a current or past date/time.', 'error');
+                    isUserAction = false;
                     return;
                 }
                 
@@ -3577,13 +3462,6 @@
                 // Save to Firestore
                 await saveVesselToFirestore(vessel);
                 
-                // Update local array
-                const index = vessels.findIndex(v => v.id === vessel.id);
-                if (index !== -1) {
-                    vessels[index] = vessel;
-                }
-                
-                loadVesselsUI();
                 modal.remove();
                 showToast(`Vessel status updated to SAILED`, 'success');
             });
@@ -3684,6 +3562,8 @@
             modal.querySelector('.modal-close').addEventListener('click', () => modal.remove());
             modal.querySelector('#cancelCommodityBtn').addEventListener('click', () => modal.remove());
             modal.querySelector('#confirmCommodityBtn').addEventListener('click', async () => {
+                isUserAction = true;
+                
                 const oldCommodity = vessel.commodity;
                 const oldPurpose = vessel.purpose;
                 
@@ -3697,13 +3577,6 @@
                 // Save to Firestore
                 await saveVesselToFirestore(vessel);
                 
-                // Update local array
-                const index = vessels.findIndex(v => v.id === vessel.id);
-                if (index !== -1) {
-                    vessels[index] = vessel;
-                }
-                
-                loadVesselsUI();
                 modal.remove();
                 
                 showToast('Commodity and quantity updated successfully', 'success');
@@ -3756,6 +3629,8 @@
         
         // Update working details (completed, shifted, balance)
         async function updateWorkingDetails(vesselId) {
+            isUserAction = true;
+            
             const vessel = vessels.find(v => v.id === vesselId);
             if (!vessel || vessel.status !== 'WORKING') return;
             
@@ -3822,6 +3697,8 @@
             modal.querySelector('.modal-close').addEventListener('click', () => modal.remove());
             modal.querySelector('#cancelWorkingDetailsBtn').addEventListener('click', () => modal.remove());
             modal.querySelector('#confirmWorkingDetailsBtn').addEventListener('click', async () => {
+                isUserAction = true;
+                
                 if (showShifted) {
                     const shiftedUnits = modal.querySelector('#updateShifted').value;
                     if (shiftedUnits) vessel.shifted = parseInt(shiftedUnits);
@@ -3838,13 +3715,6 @@
                 // Save to Firestore
                 await saveVesselToFirestore(vessel);
                 
-                // Update local array
-                const index = vessels.findIndex(v => v.id === vessel.id);
-                if (index !== -1) {
-                    vessels[index] = vessel;
-                }
-                
-                loadVesselsUI();
                 modal.remove();
                 showToast('Working details updated successfully', 'success');
             });
@@ -3873,6 +3743,8 @@
         
         // Update sailed details - Only show for UNITS or UNITS AND PACKAGES
         async function updateSailedDetails(vesselId) {
+            isUserAction = true;
+            
             const vessel = vessels.find(v => v.id === vesselId);
             if (!vessel || vessel.status !== 'SAILED') return;
             
@@ -3915,6 +3787,8 @@
             modal.querySelector('.modal-close').addEventListener('click', () => modal.remove());
             modal.querySelector('#cancelSailedDetailsBtn').addEventListener('click', () => modal.remove());
             modal.querySelector('#confirmSailedDetailsBtn').addEventListener('click', async () => {
+                isUserAction = true;
+                
                 const shiftedUnits = modal.querySelector('#updateSailedShifted').value;
                 if (shiftedUnits) vessel.shifted = parseInt(shiftedUnits);
                 
@@ -3923,13 +3797,6 @@
                 // Save to Firestore
                 await saveVesselToFirestore(vessel);
                 
-                // Update local array
-                const index = vessels.findIndex(v => v.id === vessel.id);
-                if (index !== -1) {
-                    vessels[index] = vessel;
-                }
-                
-                loadVesselsUI();
                 modal.remove();
                 showToast('Sailed details updated successfully', 'success');
             });
@@ -3937,6 +3804,8 @@
         
         // Close vessel (after both TDR checks are completed)
         async function closeVessel(vesselId) {
+            isUserAction = true;
+            
             const vessel = vessels.find(v => v.id === vesselId);
             if (!vessel || vessel.status !== 'SAILED') return;
             
@@ -3949,11 +3818,6 @@
                 // Delete from Firestore
                 await deleteVesselFromFirestore(vesselId);
                 
-                // Remove from local array
-                vessels = vessels.filter(v => v.id !== vesselId);
-                
-                loadVesselsUI();
-                updateDashboard();
                 showToast('Vessel closed and deleted successfully', 'success');
             }
         }
@@ -4505,6 +4369,70 @@
             }, 5000);
         }
         
+        // ========== FIRESTORE FUNCTIONS ==========
+        
+        // Save a single vessel to Firestore
+        async function saveVesselToFirestore(vessel) {
+            if (!firebaseInitialized) {
+                // Update local array and save to localStorage
+                const index = vessels.findIndex(v => v.id === vessel.id);
+                if (index !== -1) {
+                    vessels[index] = vessel;
+                } else {
+                    vessels.push(vessel);
+                }
+                localStorage.setItem('gcVessels', JSON.stringify(vessels));
+                updateFirebaseStatus('offline');
+                return true;
+            }
+            
+            try {
+                await db.collection('vessels').doc(vessel.id).set(vessel);
+                console.log(`Vessel ${vessel.vesselName} saved to Firestore`);
+                updateFirebaseStatus('connected');
+                return true;
+            } catch (error) {
+                console.error("Error saving vessel to Firestore:", error);
+                updateFirebaseStatus('error');
+                
+                // Fallback to localStorage
+                const index = vessels.findIndex(v => v.id === vessel.id);
+                if (index !== -1) {
+                    vessels[index] = vessel;
+                } else {
+                    vessels.push(vessel);
+                }
+                localStorage.setItem('gcVessels', JSON.stringify(vessels));
+                return false;
+            }
+        }
+        
+        // Delete a vessel from Firestore
+        async function deleteVesselFromFirestore(vesselId) {
+            if (!firebaseInitialized) {
+                // Remove from local array and save to localStorage
+                vessels = vessels.filter(v => v.id !== vesselId);
+                localStorage.setItem('gcVessels', JSON.stringify(vessels));
+                updateFirebaseStatus('offline');
+                return true;
+            }
+            
+            try {
+                await db.collection('vessels').doc(vesselId).delete();
+                console.log(`Vessel ${vesselId} deleted from Firestore`);
+                updateFirebaseStatus('connected');
+                return true;
+            } catch (error) {
+                console.error("Error deleting vessel from Firestore:", error);
+                updateFirebaseStatus('error');
+                
+                // Fallback to localStorage
+                vessels = vessels.filter(v => v.id !== vesselId);
+                localStorage.setItem('gcVessels', JSON.stringify(vessels));
+                return false;
+            }
+        }
+        
         // Setup sample data for demonstration
         async function setupSampleData() {
             if (vessels.length > 0) return;
@@ -4680,9 +4608,6 @@
                 }
             ];
             
-            // Add to local array
-            vessels.push(...sampleVessels);
-            
             // Save all sample vessels to Firestore
             if (firebaseInitialized) {
                 try {
@@ -4696,22 +4621,16 @@
                     
                     await batch.commit();
                     console.log("Sample data saved to Firestore");
-                    loadVesselsUI();
-                    updateDashboard();
                     showToast('Sample data loaded for demonstration', 'info');
                 } catch (error) {
                     console.error("Error saving sample data to Firestore:", error);
                     // Save to localStorage as fallback
-                    localStorage.setItem('gcVessels', JSON.stringify(vessels));
-                    loadVesselsUI();
-                    updateDashboard();
+                    localStorage.setItem('gcVessels', JSON.stringify(sampleVessels));
                     showToast('Sample data loaded (offline mode)', 'warning');
                 }
             } else {
                 // Save to localStorage as fallback
-                localStorage.setItem('gcVessels', JSON.stringify(vessels));
-                loadVesselsUI();
-                updateDashboard();
+                localStorage.setItem('gcVessels', JSON.stringify(sampleVessels));
                 showToast('Sample data loaded (offline mode)', 'warning');
             }
         }
