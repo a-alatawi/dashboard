@@ -7,21 +7,21 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-blue: #1e90ff;
-            --secondary-blue: #00bfff;
-            --light-blue: #0a2647;
-            --accent-orange: #ff7f50;
-            --accent-green: #32cd32;
-            --accent-yellow: #ffd700;
-            --accent-red: #ff4500;
-            --light-gray: #222;
-            --medium-gray: #333;
-            --dark-gray: #444;
-            --text-dark: #e0e0e0;
-            --text-light: #b0b0b0;
-            --border-color: #555;
-            --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            --shadow-hover: 0 6px 16px rgba(0, 0, 0, 0.4);
+            --primary-blue: #0d3b66;
+            --secondary-blue: #1d7cc5;
+            --light-blue: #e6f2ff;
+            --accent-orange: #f95738;
+            --accent-green: #28a745;
+            --accent-yellow: #ffc107;
+            --accent-red: #dc3545;
+            --light-gray: #f8f9fa;
+            --medium-gray: #e9ecef;
+            --dark-gray: #495057;
+            --text-dark: #212529;
+            --text-light: #6c757d;
+            --border-color: #dee2e6;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 6px 16px rgba(0, 0, 0, 0.12);
         }
         
         * {
@@ -32,28 +32,25 @@
         }
         
         body {
-            background-color: #000;
+            background-color: #f5f7fa;
             color: var(--text-dark);
             line-height: 1.6;
-            min-width: 100%;
-            overflow-x: auto;
+            overflow-x: hidden;
         }
         
         .container {
-            width: 100%;
-            min-width: 1200px;
+            max-width: 98%;
             margin: 0 auto;
             padding: 0 15px;
         }
         
         /* Header Styles */
         header {
-            background: linear-gradient(135deg, #001f3f 0%, #003366 100%);
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
             color: white;
             padding: 15px 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             width: 100%;
-            min-width: 1200px;
         }
         
         .header-content {
@@ -157,13 +154,11 @@
         /* Tabs Navigation */
         .tabs-container {
             margin: 20px 0 20px;
-            width: 100%;
         }
         
         .tabs {
             display: flex;
             border-bottom: 2px solid var(--border-color);
-            width: 100%;
         }
         
         .tab {
@@ -174,7 +169,6 @@
             cursor: pointer;
             transition: all 0.3s ease;
             border-bottom: 3px solid transparent;
-            white-space: nowrap;
         }
         
         .tab:hover {
@@ -190,7 +184,6 @@
         .tab-content {
             display: none;
             animation: fadeIn 0.5s;
-            width: 100%;
         }
         
         .tab-content.active {
@@ -210,24 +203,21 @@
             margin-bottom: 15px;
             padding-bottom: 10px;
             border-bottom: 2px solid var(--border-color);
-            width: 100%;
         }
         
         .section-title {
             font-size: 20px;
             font-weight: 700;
             color: var(--primary-blue);
-            white-space: nowrap;
         }
         
         /* Form Styles */
         .form-section {
-            background: #111;
+            background: white;
             border-radius: 10px;
             padding: 20px;
             margin-bottom: 25px;
             box-shadow: var(--shadow);
-            width: 100%;
         }
         
         .form-grid {
@@ -255,14 +245,12 @@
             border-radius: 6px;
             font-size: 15px;
             transition: all 0.3s;
-            background-color: #222;
-            color: var(--text-dark);
         }
         
         input:focus, select:focus, textarea:focus {
             outline: none;
             border-color: var(--secondary-blue);
-            box-shadow: 0 0 0 3px rgba(0, 191, 255, 0.1);
+            box-shadow: 0 0 0 3px rgba(29, 124, 197, 0.1);
         }
         
         /* Button Styles */
@@ -278,7 +266,6 @@
             align-items: center;
             justify-content: center;
             gap: 6px;
-            white-space: nowrap;
         }
         
         .btn-primary {
@@ -312,7 +299,7 @@
         
         .btn-warning {
             background-color: var(--accent-yellow);
-            color: #333;
+            color: var(--text-dark);
         }
         
         .btn-warning:hover {
@@ -339,7 +326,6 @@
             border-collapse: collapse;
             margin-top: 12px;
             margin-bottom: 15px;
-            background-color: #222;
         }
         
         .quantity-table th {
@@ -348,7 +334,6 @@
             text-align: left;
             font-weight: 600;
             border: 1px solid var(--border-color);
-            color: white;
         }
         
         .quantity-table td {
@@ -377,17 +362,15 @@
             flex-direction: column;
             gap: 20px;
             margin-bottom: 15px;
-            width: 100%;
         }
         
         .vessel-card {
-            background: #111;
+            background: white;
             border-radius: 10px;
             overflow: hidden;
             box-shadow: var(--shadow);
             transition: transform 0.3s, box-shadow 0.3s;
             position: relative;
-            width: 100%;
         }
         
         .vessel-card:hover {
@@ -397,7 +380,7 @@
         
         .vessel-header {
             padding: 15px;
-            background: linear-gradient(to right, #0a2647, #111);
+            background: linear-gradient(to right, var(--light-blue), white);
             border-bottom: 1px solid var(--border-color);
         }
         
@@ -406,17 +389,11 @@
             font-weight: 700;
             color: var(--primary-blue);
             margin-bottom: 5px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
         }
         
         .vessel-agent {
             color: var(--text-light);
             font-size: 14px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
         }
         
         .vessel-status {
@@ -429,27 +406,26 @@
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            white-space: nowrap;
         }
         
         .status-inbound {
-            background-color: #0a2647;
-            color: #add8e6;
+            background-color: #d1ecf1;
+            color: #0c5460;
         }
         
         .status-working {
-            background-color: #1a472a;
-            color: #90ee90;
+            background-color: #d4edda;
+            color: #155724;
         }
         
         .status-sailed {
-            background-color: #7d6608;
-            color: #ffd700;
+            background-color: #fff3cd;
+            color: #856404;
         }
         
         .status-closed {
-            background-color: #78281f;
-            color: #ff9999;
+            background-color: #f8d7da;
+            color: #721c24;
         }
         
         .vessel-body {
@@ -465,7 +441,6 @@
         
         .detail-item {
             margin-bottom: 8px;
-            min-width: 0;
         }
         
         .detail-label {
@@ -473,16 +448,12 @@
             color: var(--text-light);
             font-size: 13px;
             margin-bottom: 3px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
         }
         
         .detail-value {
             font-weight: 500;
             color: var(--text-dark);
             min-height: 22px;
-            word-break: break-word;
         }
         
         .vessel-actions {
@@ -504,14 +475,14 @@
         }
         
         .alert-warning {
-            background-color: #332701;
-            color: #ffd700;
+            background-color: #fff3cd;
+            color: #856404;
             border-left: 4px solid var(--accent-yellow);
         }
         
         .alert-info {
-            background-color: #0a2647;
-            color: #add8e6;
+            background-color: #d1ecf1;
+            color: #0c5460;
             border-left: 4px solid var(--secondary-blue);
         }
         
@@ -537,24 +508,19 @@
             grid-template-columns: 1fr 320px;
             gap: 20px;
             min-height: calc(100vh - 250px);
-            width: 100%;
         }
         
         .main-dashboard {
             display: flex;
             flex-direction: column;
             gap: 20px;
-            width: 100%;
-            min-width: 0;
         }
         
         .dashboard-section {
-            background: #111;
+            background: white;
             border-radius: 10px;
             padding: 15px;
             box-shadow: var(--shadow);
-            width: 100%;
-            overflow: visible;
         }
         
         /* RIGHT SIDE SUMMARY SECTION */
@@ -562,15 +528,13 @@
             display: flex;
             flex-direction: column;
             gap: 20px;
-            min-width: 320px;
         }
         
         .sidebar-summary {
-            background: #111;
+            background: white;
             border-radius: 10px;
             padding: 15px;
             box-shadow: var(--shadow);
-            width: 100%;
         }
         
         .sidebar-summary-title {
@@ -580,7 +544,6 @@
             margin-bottom: 12px;
             padding-bottom: 8px;
             border-bottom: 2px solid var(--border-color);
-            white-space: nowrap;
         }
         
         .commodity-summary {
@@ -592,14 +555,11 @@
             justify-content: space-between;
             padding: 4px 0;
             font-size: 13px;
-            white-space: nowrap;
         }
         
         .commodity-item-label {
             color: var(--text-dark);
             font-weight: 500;
-            overflow: hidden;
-            text-overflow: ellipsis;
         }
         
         .commodity-item-value {
@@ -611,14 +571,11 @@
             display: flex;
             justify-content: space-between;
             padding: 6px 0;
-            white-space: nowrap;
         }
         
         .summary-item-label {
             color: var(--text-light);
             font-weight: 500;
-            overflow: hidden;
-            text-overflow: ellipsis;
         }
         
         .summary-item-value {
@@ -626,24 +583,21 @@
             color: var(--primary-blue);
         }
         
-        /* DASHBOARD TABLES - NO HORIZONTAL SCROLLBAR */
-        .table-wrapper {
-            width: 100%;
-            overflow: visible;
-            margin-bottom: 15px;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-        }
-        
+        /* DASHBOARD TABLES - WIDER */
         .dashboard-table {
             width: 100%;
             border-collapse: collapse;
-            background: #111;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin-bottom: 0;
+            font-size: 13px;
             table-layout: auto;
         }
         
         .dashboard-table th {
-            background-color: #001f3f;
+            background-color: var(--primary-blue);
             color: white;
             padding: 10px 10px;
             text-align: left;
@@ -651,9 +605,6 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            position: sticky;
-            top: 0;
-            z-index: 10;
         }
         
         .dashboard-table td {
@@ -663,9 +614,6 @@
             line-height: 1.3;
             overflow: hidden;
             text-overflow: ellipsis;
-            white-space: normal;
-            word-break: break-word;
-            color: var(--text-dark);
         }
         
         .dashboard-table tr:last-child td {
@@ -676,33 +624,46 @@
             background-color: var(--light-gray);
         }
         
-        /* TEXT BLINKING ANIMATION FOR OVERDUE VESSELS */
-        @keyframes textBlink {
-            0% { color: inherit; }
-            50% { color: transparent; }
-            100% { color: inherit; }
-        }
+        /* Column width adjustments - WIDER */
+        #sailedTable th:nth-child(1) { min-width: 200px; }
+        #sailedTable th:nth-child(2) { min-width: 160px; }
+        #sailedTable th:nth-child(3) { min-width: 160px; }
+        #sailedTable th:nth-child(4) { min-width: 90px; }
+        #sailedTable th:nth-child(5) { min-width: 110px; }
+        #sailedTable th:nth-child(6) { min-width: 130px; }
+        #sailedTable th:nth-child(7) { min-width: 100px; }
+        #sailedTable th:nth-child(8) { min-width: 250px; }
         
-        .overdue-text-blink td {
-            animation: textBlink 1.5s infinite;
-        }
+        #workingTable th:nth-child(1) { min-width: 40px; }
+        #workingTable th:nth-child(2) { min-width: 200px; }
+        #workingTable th:nth-child(3) { min-width: 140px; }
+        #workingTable th:nth-child(4) { min-width: 80px; }
+        #workingTable th:nth-child(5) { min-width: 140px; }
+        #workingTable th:nth-child(6) { min-width: 100px; }
+        #workingTable th:nth-child(7) { min-width: 110px; }
+        #workingTable th:nth-child(8) { min-width: 140px; }
+        #workingTable th:nth-child(9) { min-width: 140px; }
+        #workingTable th:nth-child(10) { min-width: 140px; }
+        #workingTable th:nth-child(11) { min-width: 60px; }
+        #workingTable th:nth-child(12) { min-width: 250px; }
         
-        .overdue-text-blink:hover td {
-            animation: textBlink 1.5s infinite;
-        }
+        #inboundTable th:nth-child(1) { min-width: 110px; }
+        #inboundTable th:nth-child(2) { min-width: 200px; }
+        #inboundTable th:nth-child(3) { min-width: 100px; }
+        #inboundTable th:nth-child(4) { min-width: 110px; }
+        #inboundTable th:nth-child(5) { min-width: 140px; }
+        #inboundTable th:nth-child(6) { min-width: 140px; }
+        #inboundTable th:nth-child(7) { min-width: 250px; }
         
         /* Combined vessel name/voyage column */
         .vessel-name-voyage {
             font-weight: 600;
             color: var(--primary-blue);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
         }
         
         /* Date Group Header in Inbound Table */
         .date-group-row {
-            background-color: #001f3f;
+            background-color: #e9ecef;
             color: var(--primary-blue);
             font-weight: bold;
         }
@@ -711,7 +672,6 @@
             padding: 10px 15px;
             text-align: left;
             font-size: 14px;
-            white-space: nowrap;
         }
         
         /* Highlight today's date in inbound table */
@@ -726,14 +686,15 @@
         
         /* UPDATED: Incoming RORO Styles - COMPACT WITHOUT SCROLL */
         .roro-card {
-            background: #111;
+            background: white;
             border-radius: 10px;
             padding: 15px;
             box-shadow: var(--shadow);
+            /* REMOVED max-height and overflow to eliminate scrolling */
         }
         
         .roro-total {
-            background: linear-gradient(to right, #001f3f, #003366);
+            background: linear-gradient(to right, var(--primary-blue), var(--secondary-blue));
             color: white;
             padding: 12px;
             border-radius: 8px;
@@ -761,21 +722,21 @@
         .roro-vessel-item {
             display: flex;
             justify-content: space-between;
-            padding: 6px 0;
+            padding: 6px 0; /* Reduced padding */
             align-items: center;
-            font-size: 12px;
+            font-size: 12px; /* Smaller font size */
         }
         
         /* RORO vessel status indicators */
         .roro-sailed {
-            background-color: #332701;
+            background-color: #fff3cd;
             border-left: 3px solid #ffc107;
             border-radius: 3px;
             padding-left: 8px;
         }
         
         .roro-incoming {
-            background-color: #0a2647;
+            background-color: #d1ecf1;
             border-left: 3px solid #0dcaf0;
             border-radius: 3px;
             padding-left: 8px;
@@ -794,7 +755,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(0, 0, 0, 0.5);
             z-index: 1000;
             align-items: center;
             justify-content: center;
@@ -805,19 +766,18 @@
         }
         
         .modal-content {
-            background: #111;
+            background: white;
             border-radius: 10px;
             width: 90%;
             max-width: 800px;
             max-height: 90vh;
             overflow-y: auto;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            color: var(--text-dark);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
         
         .modal-header {
             padding: 15px 20px;
-            background-color: #001f3f;
+            background-color: var(--primary-blue);
             color: white;
             display: flex;
             justify-content: space-between;
@@ -851,10 +811,10 @@
         }
         
         .toast {
-            background: #111;
+            background: white;
             border-radius: 8px;
             padding: 12px 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
             display: flex;
             align-items: center;
             gap: 10px;
@@ -862,7 +822,6 @@
             transform: translateX(400px);
             transition: transform 0.4s;
             min-width: 280px;
-            color: var(--text-dark);
         }
         
         .toast.show {
@@ -904,7 +863,7 @@
         /* Responsive Styles */
         @media (max-width: 1400px) {
             .container {
-                min-width: 100%;
+                max-width: 98%;
             }
             
             .dashboard-table {
@@ -920,10 +879,6 @@
         @media (max-width: 1200px) {
             .dashboard-container {
                 grid-template-columns: 1fr;
-            }
-            
-            .dashboard-sidebar {
-                min-width: 100%;
             }
             
             .vessel-details {
@@ -979,6 +934,12 @@
             
             .vessel-details {
                 grid-template-columns: 1fr;
+            }
+            
+            .dashboard-table {
+                display: block;
+                overflow-x: auto;
+                table-layout: auto;
             }
         }
     </style>
@@ -1163,76 +1124,70 @@
                     <!-- Sailed Vessels Table -->
                     <div class="dashboard-section" id="sailedSection" style="display: none;">
                         <h3 class="section-title" style="margin-bottom: 12px;">Sailed Vessels</h3>
-                        <div class="table-wrapper">
-                            <table class="dashboard-table" id="sailedTable">
-                                <thead>
-                                    <tr>
-                                        <th>Vessel / Voy.</th>
-                                        <th>ATA</th>
-                                        <th>ATD</th>
-                                        <th>Port Stay</th>
-                                        <th>Vessel Type</th>
-                                        <th>Commodity</th>
-                                        <th>Berth</th>
-                                        <th>Remarks</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <!-- Sailed vessels will be added here -->
-                                </tbody>
-                            </table>
-                        </div>
+                        <table class="dashboard-table" id="sailedTable">
+                            <thead>
+                                <tr>
+                                    <th>Vessel / Voy.</th>
+                                    <th>ATA</th>
+                                    <th>ATD</th>
+                                    <th>Port Stay</th>
+                                    <th>Vessel Type</th>
+                                    <th>Commodity</th>
+                                    <th>Berth</th>
+                                    <th>Remarks</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Sailed vessels will be added here -->
+                            </tbody>
+                        </table>
                     </div>
                     
                     <!-- Working Vessels Table -->
                     <div class="dashboard-section" id="workingSection" style="display: none;">
                         <h3 class="section-title" style="margin-bottom: 12px;">Working Vessels</h3>
-                        <div class="table-wrapper">
-                            <table class="dashboard-table" id="workingTable">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Vessel / Voy.</th>
-                                        <th>ATA</th>
-                                        <th>Port Stay</th>
-                                        <th>ETD</th>
-                                        <th>Vessel Type</th>
-                                        <th>Commodity</th>
-                                        <th>Quantity</th>
-                                        <th>Completed</th>
-                                        <th>Balance</th>
-                                        <th>Berth</th>
-                                        <th>Remarks</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <!-- Working vessels will be added here -->
-                                </tbody>
-                            </table>
-                        </div>
+                        <table class="dashboard-table" id="workingTable">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Vessel / Voy.</th>
+                                    <th>ATA</th>
+                                    <th>Port Stay</th>
+                                    <th>ETD</th>
+                                    <th>Vessel Type</th>
+                                    <th>Commodity</th>
+                                    <th>Quantity</th>
+                                    <th>Completed</th>
+                                    <th>Balance</th>
+                                    <th>Berth</th>
+                                    <th>Remarks</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Working vessels will be added here -->
+                            </tbody>
+                        </table>
                     </div>
                     
                     <!-- Inbound Vessels Table with Date Grouping -->
                     <div class="dashboard-section" id="inboundSection" style="display: none;">
                         <h3 class="section-title" style="margin-bottom: 12px;">Inbound Vessels</h3>
-                        <div class="table-wrapper">
-                            <table class="dashboard-table" id="inboundTable">
-                                <thead>
-                                    <tr>
-                                        <th>ETA</th>
-                                        <th>Vessel / Voy.</th>
-                                        <th>Vessel Type</th>
-                                        <th>Commodity</th>
-                                        <th>Quantity</th>
-                                        <th>ETD</th>
-                                        <th>Remarks</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="inboundTableBody">
-                                    <!-- Inbound vessels will be added here -->
-                                </tbody>
-                            </table>
-                        </div>
+                        <table class="dashboard-table" id="inboundTable">
+                            <thead>
+                                <tr>
+                                    <th>ETA</th>
+                                    <th>Vessel / Voy.</th>
+                                    <th>Vessel Type</th>
+                                    <th>Commodity</th>
+                                    <th>Quantity</th>
+                                    <th>ETD</th>
+                                    <th>Remarks</th>
+                                </tr>
+                            </thead>
+                            <tbody id="inboundTableBody">
+                                <!-- Inbound vessels will be added here -->
+                            </tbody>
+                        </table>
                     </div>
                 </div>
                 
@@ -1256,6 +1211,7 @@
                         
                         <!-- Commodity Breakdown - UPDATED (No "Inbound by Commodity" title) -->
                         <div class="commodity-summary" id="commoditySummary" style="display: none;">
+                            <!-- UPDATED: No header title, just show commodities like bullet list -->
                             <div id="commodityBreakdown">
                                 <!-- Commodity items will be added here -->
                             </div>
@@ -1371,8 +1327,11 @@
         
         // Calculate day in cycle (1-8)
         function getDayInCycle(selectedDate) {
+            // Calculate days difference from reference date
             const timeDiff = selectedDate.getTime() - REFERENCE_DATE.getTime();
             const dayDiff = Math.floor(timeDiff / (1000 * 3600 * 24));
+            
+            // Calculate day in cycle (1-8)
             let dayInCycle = ((dayDiff % 8) + 8) % 8 + 1;
             return dayInCycle;
         }
@@ -1385,13 +1344,18 @@
             
             let slot, shiftData;
             
+            // Check time slots
             if (hours >= 6 && hours < 14) {
+                // Morning slot: 06:00-14:00
                 slot = 'morning';
             } else if (hours >= 14 && hours < 22) {
+                // Evening slot: 14:00-22:00
                 slot = 'evening';
             } else {
+                // Night slot: 22:00-06:00
                 slot = 'night';
                 
+                // If it's between 00:00-06:00, it belongs to the PREVIOUS DAY'S night shift
                 if (hours < 6) {
                     const previousDate = new Date(date);
                     previousDate.setDate(previousDate.getDate() - 1);
@@ -1468,6 +1432,7 @@
         function updateCurrentTime() {
             currentDate = new Date();
             
+            // Update day, date and time in separate lines
             const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
             const dayName = dayNames[currentDate.getDay()];
             const dateFormatted = formatDate(currentDate);
@@ -1477,12 +1442,17 @@
             document.getElementById('currentDate').textContent = dateFormatted;
             document.getElementById('currentTime').textContent = timeFormatted;
             
+            // Get current shift
             const shiftResult = getShiftForTime(currentDate);
+            
+            // Calculate shift timer
             const shiftTimer = calculateShiftTimer(shiftResult.slot, currentDate);
             
+            // Calculate previous and next shifts
             const prevShift = calculatePreviousShift(currentDate);
             const nextShift = calculateNextShift(currentDate);
             
+            // Update display
             document.getElementById('prevShift').textContent = `Shift ${prevShift.shift}`;
             document.getElementById('prevShiftSlot').textContent = getSlotName(prevShift.slot);
             
@@ -1502,6 +1472,7 @@
             
             let startHour, endHour, currentHour;
             
+            // Adjust for night shift that spans days
             if (slot === 'morning') {
                 startHour = 6;
                 endHour = 14;
@@ -1511,17 +1482,19 @@
                 endHour = 22;
                 currentHour = hours;
             } else {
+                // Night slot: 22:00-06:00
                 if (hours >= 22) {
                     startHour = 22;
-                    endHour = 30;
+                    endHour = 30; // 6 AM next day (24 + 6)
                     currentHour = hours;
                 } else {
                     startHour = 22;
-                    endHour = 30;
+                    endHour = 30; // 6 AM current day (24 + 6)
                     currentHour = hours + 24;
                 }
             }
             
+            // Calculate current time in minutes
             const currentTotalMinutes = currentHour * 60 + minutes;
             const startTotalMinutes = startHour * 60;
             const endTotalMinutes = endHour * 60;
@@ -1617,12 +1590,15 @@
                 tab.addEventListener('click', function() {
                     const tabId = this.getAttribute('data-tab');
                     
+                    // Remove active class from all tabs and contents
                     tabs.forEach(t => t.classList.remove('active'));
                     tabContents.forEach(c => c.classList.remove('active'));
                     
+                    // Add active class to clicked tab and corresponding content
                     this.classList.add('active');
                     document.getElementById(tabId).classList.add('active');
                     
+                    // Update dashboard when dashboard tab is opened
                     if (tabId === 'dashboard') {
                         updateDashboard();
                     }
@@ -1632,8 +1608,13 @@
         
         // Setup form interactions
         function setupFormInteractions() {
+            // Add vessel button
             document.getElementById('addVesselBtn').addEventListener('click', addVessel);
+            
+            // Clear form button
             document.getElementById('clearFormBtn').addEventListener('click', clearForm);
+            
+            // Commodity and purpose change listeners to update quantity section
             document.getElementById('commodity').addEventListener('change', updateQuantitySection);
             document.getElementById('purpose').addEventListener('change', updateQuantitySection);
             document.getElementById('vesselType').addEventListener('change', updateQuantitySection);
@@ -1648,6 +1629,7 @@
             const quantitySection = document.getElementById('quantitySection');
             quantitySection.innerHTML = '';
             
+            // Don't show quantity section for certain commodities
             const noQuantityCommodities = [
                 'NAVAL CREW', 'PASSENGERS', 'CREW CHANGE', 'LAY BY', 
                 'PORT CLEARANCE', 'TOWING', 'HOLD INSPECTION', 'AQIS – AUSTRALIAN QUARANTINE'
@@ -1657,6 +1639,7 @@
                 return;
             }
             
+            // Create appropriate tables based on commodity and purpose
             let tablesHTML = '';
             
             if (purpose === 'DISCHARGE' || purpose === 'LOAD') {
@@ -1677,6 +1660,7 @@
                 ${tablesHTML}
             `;
             
+            // Add event listeners for freight ton calculation
             setupFreightTonCalculators();
         }
         
@@ -1688,6 +1672,7 @@
             
             let tableHTML = '';
             
+            // Determine columns based on commodity
             if (commodity === 'UNITS') {
                 tableHTML = createUnitsTable(header);
             } else if (['PACKAGES', 'OVER DIMENSION', 'STEEL PIPE', 'TIMBER'].includes(commodity)) {
@@ -1745,7 +1730,7 @@
                             <td><input type="number" min="0" data-field="packages" placeholder="Enter packages"></td>
                             <td><input type="number" min="0" step="0.001" data-field="weight" placeholder="Enter weight"></td>
                             <td><input type="number" min="0" step="0.001" data-field="volume" placeholder="Enter volume"></td>
-                            <td><input type="number" min="0" step="0.001" data-field="freightTon" readonly style="background-color: #333;"></td>
+                            <td><input type="number" min="0" step="0.001" data-field="freightTon" readonly style="background-color: #f8f9fa;"></td>
                         </tr>
                     </tbody>
                 </table>
@@ -1775,7 +1760,7 @@
                             <td><input type="number" min="0" data-field="packages" placeholder="Enter packages"></td>
                             <td><input type="number" min="0" step="0.001" data-field="weight" placeholder="Enter weight"></td>
                             <td><input type="number" min="0" step="0.001" data-field="volume" placeholder="Enter volume"></td>
-                            <td><input type="number" min="0" step="0.001" data-field="freightTon" readonly style="background-color: #333;"></td>
+                            <td><input type="number" min="0" step="0.001" data-field="freightTon" readonly style="background-color: #f8f9fa;"></td>
                         </tr>
                     </tbody>
                 </table>
@@ -1843,6 +1828,7 @@
         
         // Setup freight ton calculators
         function setupFreightTonCalculators() {
+            // Add event listeners to weight and volume inputs
             document.querySelectorAll('input[data-field="weight"], input[data-field="volume"]').forEach(input => {
                 input.addEventListener('input', calculateFreightTon);
             });
@@ -1862,6 +1848,7 @@
             const volume = parseFloat(volumeInput.value) || 0;
             const freightTon = Math.max(weight, volume);
             
+            // Format with up to 3 decimal places, removing trailing zeros
             freightTonInput.value = formatNumberWithDecimals(freightTon, 3);
         }
         
@@ -1869,7 +1856,10 @@
         function formatNumberWithDecimals(num, maxDecimals = 3) {
             if (num === undefined || num === null) return '';
             
+            // Convert to string with specified decimal places
             let formatted = num.toFixed(maxDecimals);
+            
+            // Remove trailing zeros and decimal point if not needed
             formatted = formatted.replace(/(\.\d*?[1-9])0+$/, "$1").replace(/\.$/, "");
             
             return formatted;
@@ -1879,15 +1869,18 @@
         function formatNumberDisplay(num) {
             if (num === undefined || num === null) return '';
             
+            // Check if it's a whole number
             if (num % 1 === 0) {
                 return num.toString();
             } else {
+                // Format with up to 3 decimal places, removing trailing zeros
                 return formatNumberWithDecimals(num, 3);
             }
         }
         
         // Add vessel to the system
         function addVessel() {
+            // Get form values
             const vesselName = document.getElementById('vesselName').value.trim();
             const voyage = document.getElementById('voyage').value.trim();
             const agent = document.getElementById('agent').value.trim();
@@ -1897,13 +1890,16 @@
             const purpose = document.getElementById('purpose').value;
             const etd = document.getElementById('etd').value;
             
+            // Validate required fields
             if (!vesselName || !voyage || !agent || !eta || !vesselType || !commodity || !purpose) {
                 showToast('Please fill all required fields', 'error');
                 return;
             }
             
+            // Get quantity data
             const quantityData = getQuantityData(commodity, purpose);
             
+            // Create vessel object
             const vessel = {
                 id: Date.now().toString(),
                 vesselName,
@@ -1928,16 +1924,27 @@
                 updatedAt: new Date().toISOString()
             };
             
+            // Add to vessels array
             vessels.push(vessel);
+            
+            // Save to localStorage
             saveVessels();
+            
+            // Clear form
             clearForm();
+            
+            // Show success message
             showToast(`Vessel ${vesselName} added successfully`, 'success');
+            
+            // Update vessels log
             loadVessels();
         }
         
         // Get quantity data from form
         function getQuantityData(commodity, purpose) {
             const quantityData = {};
+            
+            // Get all quantity tables
             const tables = document.querySelectorAll('.quantity-table');
             
             tables.forEach((table, index) => {
@@ -1949,10 +1956,12 @@
                     const value = input.value.trim();
                     
                     if (value) {
+                        // Store as number with original precision
                         tableData[field] = isNaN(Number(value)) ? value : Number(value);
                     }
                 });
                 
+                // Determine table type based on index and purpose
                 let tableType;
                 if (purpose === 'DISCHARGE') {
                     tableType = 'import';
@@ -1990,14 +1999,19 @@
             const vesselsLog = document.getElementById('vesselsLog');
             vesselsLog.innerHTML = '';
             
+            // Sort vessels by recently added (newest first)
             const sortedVessels = [...vessels].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+            
+            // Update vessel count
             document.getElementById('vesselCount').textContent = `${vessels.length} vessel${vessels.length !== 1 ? 's' : ''}`;
             
+            // Display each vessel
             sortedVessels.forEach(vessel => {
                 const vesselCard = createVesselCard(vessel);
                 vesselsLog.appendChild(vesselCard);
             });
             
+            // If no vessels, show empty state
             if (vessels.length === 0) {
                 vesselsLog.innerHTML = `
                     <div class="empty-state" style="text-align: center; padding: 40px; color: var(--text-light);">
@@ -2015,11 +2029,17 @@
             card.className = 'vessel-card';
             card.dataset.id = vessel.id;
             
+            // Check for notifications
             const notifications = checkVesselNotifications(vessel);
+            
+            // Format ETA and ETD with new format
             const etaFormatted = formatDateTimeWithDayShift(new Date(vessel.eta));
             const etdFormatted = vessel.etd ? formatDateTimeWithDayShift(new Date(vessel.etd)) : 'N/A';
+            
+            // Create status badge
             const statusClass = `status-${vessel.status.toLowerCase()}`;
             
+            // Create card HTML based on status
             let cardHTML = '';
             
             if (vessel.status === 'INBOUND') {
@@ -2034,42 +2054,67 @@
             
             card.innerHTML = cardHTML;
             
+            // Add event listeners to buttons
             setTimeout(() => {
+                // Edit button
                 const editBtn = card.querySelector('.edit-vessel-btn');
-                if (editBtn) editBtn.addEventListener('click', () => editVessel(vessel.id));
+                if (editBtn) {
+                    editBtn.addEventListener('click', () => editVessel(vessel.id));
+                }
                 
+                // Update status button
                 const statusBtn = card.querySelector('.update-status-btn');
-                if (statusBtn) statusBtn.addEventListener('click', () => updateVesselStatus(vessel.id));
+                if (statusBtn) {
+                    statusBtn.addEventListener('click', () => updateVesselStatus(vessel.id));
+                }
                 
+                // Update commodity button (for INBOUND vessels)
                 const commodityBtn = card.querySelector('.update-commodity-btn');
-                if (commodityBtn) commodityBtn.addEventListener('click', () => updateCommodity(vessel.id));
+                if (commodityBtn) {
+                    commodityBtn.addEventListener('click', () => updateCommodity(vessel.id));
+                }
                 
+                // Update working details button (for WORKING vessels)
                 const workingDetailsBtn = card.querySelector('.update-working-details-btn');
-                if (workingDetailsBtn) workingDetailsBtn.addEventListener('click', () => updateWorkingDetails(vessel.id));
+                if (workingDetailsBtn) {
+                    workingDetailsBtn.addEventListener('click', () => updateWorkingDetails(vessel.id));
+                }
                 
+                // Update sailed details button (for SAILED vessels)
                 const sailedDetailsBtn = card.querySelector('.update-sailed-details-btn');
-                if (sailedDetailsBtn) sailedDetailsBtn.addEventListener('click', () => updateSailedDetails(vessel.id));
+                if (sailedDetailsBtn) {
+                    sailedDetailsBtn.addEventListener('click', () => updateSailedDetails(vessel.id));
+                }
                 
+                // Close vessel button (for SAILED vessels with both TDR checks)
                 const closeVesselBtn = card.querySelector('.close-vessel-btn');
-                if (closeVesselBtn) closeVesselBtn.addEventListener('click', () => closeVessel(vessel.id));
+                if (closeVesselBtn) {
+                    closeVesselBtn.addEventListener('click', () => closeVessel(vessel.id));
+                }
                 
+                // Delete button for CLOSED vessels
                 const deleteBtn = card.querySelector('.delete-vessel-btn');
-                if (deleteBtn) deleteBtn.addEventListener('click', () => {
-                    if (confirm('Are you sure you want to delete this vessel?')) {
-                        deleteVessel(vessel.id);
-                    }
-                });
+                if (deleteBtn) {
+                    deleteBtn.addEventListener('click', () => {
+                        if (confirm('Are you sure you want to delete this vessel?')) {
+                            deleteVessel(vessel.id);
+                        }
+                    });
+                }
                 
+                // Add ETA update button for INBOUND vessels
                 const updateETABtn = card.querySelector('.update-eta-btn');
-                if (updateETABtn) updateETABtn.addEventListener('click', () => updateETA(vessel.id));
+                if (updateETABtn) {
+                    updateETABtn.addEventListener('click', () => updateETA(vessel.id));
+                }
                 
+                // Add remarks button for all statuses
                 const updateRemarksBtn = card.querySelector('.update-remarks-btn');
-                if (updateRemarksBtn) updateRemarksBtn.addEventListener('click', () => updateRemarks(vessel.id));
+                if (updateRemarksBtn) {
+                    updateRemarksBtn.addEventListener('click', () => updateRemarks(vessel.id));
+                }
                 
-                // NEW: Update ETD button for WORKING vessels
-                const updateETDBtn = card.querySelector('.update-etd-btn');
-                if (updateETDBtn) updateETDBtn.addEventListener('click', () => updateETD(vessel.id));
-                
+                // Add event listeners for checkboxes
                 const checkboxes = card.querySelectorAll('input[type="checkbox"]');
                 checkboxes.forEach(checkbox => {
                     checkbox.addEventListener('change', function() {
@@ -2125,7 +2170,7 @@
                     </div>
                     
                     <!-- Pre-Arrival Checks for INBOUND vessels -->
-                    <div class="vessel-checks" style="margin: 12px 0; padding: 12px; background-color: #222; border-radius: 6px;">
+                    <div class="vessel-checks" style="margin: 12px 0; padding: 12px; background-color: var(--light-gray); border-radius: 6px;">
                         <div style="font-weight: 600; margin-bottom: 8px;">Pre-Arrival Checks:</div>
                         <div style="display: flex; gap: 15px; flex-wrap: wrap;">
                             <label style="display: flex; align-items: center; gap: 5px;">
@@ -2170,9 +2215,11 @@
             const completedSummary = vessel.completed ? formatQuantitySummary({ quantity: vessel.completed }) : 'N/A';
             const balanceSummary = vessel.balance ? formatQuantitySummary({ quantity: vessel.balance }) : 'N/A';
             
+            // Only show Shifted if commodity is UNITS or UNITS AND PACKAGES
             const showShifted = ['UNITS', 'UNITS AND PACKAGES'].includes(vessel.commodity);
             const shiftedUnits = showShifted && vessel.shifted ? formatNumber(vessel.shifted) + ' units' : 'N/A';
             
+            // Calculate port stay
             const portStay = vessel.ata ? calculatePortStay(vessel.ata, new Date()) : null;
             const portStayFormatted = portStay ? formatPortStay(portStay) : 'N/A';
             
@@ -2251,10 +2298,6 @@
                         <button class="btn btn-primary btn-small update-working-details-btn" data-id="${vessel.id}">
                             <i class="fas fa-tasks"></i> Update Working Details
                         </button>
-                        <!-- NEW: Update ETD button for WORKING vessels -->
-                        <button class="btn btn-primary btn-small update-etd-btn" data-id="${vessel.id}">
-                            <i class="fas fa-clock"></i> Update ETD
-                        </button>
                         <button class="btn btn-primary btn-small update-remarks-btn" data-id="${vessel.id}">
                             <i class="fas fa-comment"></i> Update Remarks
                         </button>
@@ -2267,9 +2310,11 @@
         function createSailedVesselCard(vessel, notifications, etaFormatted, statusClass) {
             const quantitySummary = formatQuantitySummary(vessel);
             
+            // Only show Shifted if commodity is UNITS or UNITS AND PACKAGES
             const showShifted = ['UNITS', 'UNITS AND PACKAGES'].includes(vessel.commodity);
             const shiftedUnits = showShifted && vessel.shifted ? formatNumber(vessel.shifted) + ' units' : 'N/A';
             
+            // Calculate port stay
             const portStay = (vessel.ata && vessel.atd) ? calculatePortStay(vessel.ata, vessel.atd) : null;
             const portStayFormatted = portStay ? formatPortStay(portStay) : 'N/A';
             
@@ -2331,7 +2376,7 @@
                     </div>
                     
                     <!-- TDR Checks for SAILED vessels -->
-                    <div class="vessel-checks" style="margin: 12px 0; padding: 12px; background-color: #222; border-radius: 6px;">
+                    <div class="vessel-checks" style="margin: 12px 0; padding: 12px; background-color: var(--light-gray); border-radius: 6px;">
                         <div style="font-weight: 600; margin-bottom: 8px;">TDR Status:</div>
                         <div style="display: flex; gap: 15px; flex-wrap: wrap;">
                             <label style="display: flex; align-items: center; gap: 5px;">
@@ -2428,76 +2473,6 @@
             `;
         }
         
-        // NEW: Update ETD for WORKING vessel
-        function updateETD(vesselId) {
-            const vessel = vessels.find(v => v.id === vesselId);
-            if (!vessel || vessel.status !== 'WORKING') return;
-            
-            const modal = document.createElement('div');
-            modal.className = 'modal active';
-            
-            const formatForInput = (dateStr) => {
-                if (!dateStr) return '';
-                const date = new Date(dateStr);
-                return date.toISOString().slice(0, 16);
-            };
-            
-            modal.innerHTML = `
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div class="modal-title">Update ETD for ${vessel.vesselName}</div>
-                        <button class="modal-close">&times;</button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="updateETDForm">
-                            <div class="form-group">
-                                <label for="newETD">New ETD *</label>
-                                <input type="datetime-local" id="newETD" value="${formatForInput(vessel.etd)}" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="etdReason">Reason for ETD Change (Optional)</label>
-                                <input type="text" id="etdReason" placeholder="e.g., Loading delay, weather conditions">
-                            </div>
-                        </form>
-                        
-                        <div class="form-actions" style="display: flex; justify-content: flex-end; gap: 8px; margin-top: 20px;">
-                            <button type="button" class="btn btn-secondary" id="cancelETDBtn">Cancel</button>
-                            <button type="button" class="btn btn-primary" id="confirmETDBtn">Update ETD</button>
-                        </div>
-                    </div>
-                </div>
-            `;
-            
-            document.body.appendChild(modal);
-            
-            modal.querySelector('.modal-close').addEventListener('click', () => modal.remove());
-            modal.querySelector('#cancelETDBtn').addEventListener('click', () => modal.remove());
-            
-            modal.querySelector('#confirmETDBtn').addEventListener('click', () => {
-                const newETD = modal.querySelector('#newETD').value;
-                const reason = modal.querySelector('#etdReason').value;
-                
-                if (!newETD) {
-                    showToast('New ETD is required', 'error');
-                    return;
-                }
-                
-                vessel.etd = newETD;
-                vessel.updatedAt = new Date().toISOString();
-                
-                saveVessels();
-                loadVessels();
-                modal.remove();
-                
-                let message = 'ETD updated successfully';
-                if (reason) {
-                    message += ` (${reason})`;
-                }
-                
-                showToast(message, 'success');
-            });
-        }
-        
         // Update remarks for vessel
         function updateRemarks(vesselId) {
             const vessel = vessels.find(v => v.id === vesselId);
@@ -2530,11 +2505,14 @@
             
             document.body.appendChild(modal);
             
+            // Add event listeners
             modal.querySelector('.modal-close').addEventListener('click', () => modal.remove());
             modal.querySelector('#cancelRemarksBtn').addEventListener('click', () => modal.remove());
             
             modal.querySelector('#confirmRemarksBtn').addEventListener('click', () => {
                 const remarks = modal.querySelector('#remarks').value.trim();
+                
+                // Update vessel
                 vessel.remarks = remarks;
                 vessel.updatedAt = new Date().toISOString();
                 
@@ -2547,7 +2525,7 @@
             });
         }
         
-        // Update ETA for INBOUND vessel - UPDATED: Removed reason field and added ETD validation
+        // Update ETA for INBOUND vessel
         function updateETA(vesselId) {
             const vessel = vessels.find(v => v.id === vesselId);
             if (!vessel || vessel.status !== 'INBOUND') return;
@@ -2555,6 +2533,7 @@
             const modal = document.createElement('div');
             modal.className = 'modal active';
             
+            // Format date for datetime-local input
             const formatForInput = (dateStr) => {
                 if (!dateStr) return '';
                 const date = new Date(dateStr);
@@ -2577,6 +2556,10 @@
                                 <label for="updateETD">Update ETD (Optional)</label>
                                 <input type="datetime-local" id="updateETD" value="${formatForInput(vessel.etd)}">
                             </div>
+                            <div class="form-group">
+                                <label for="etaReason">Reason for ETA Change (Optional)</label>
+                                <input type="text" id="etaReason" placeholder="e.g., Weather delay, mechanical issue">
+                            </div>
                         </form>
                         
                         <div class="form-actions" style="display: flex; justify-content: flex-end; gap: 8px; margin-top: 20px;">
@@ -2589,24 +2572,21 @@
             
             document.body.appendChild(modal);
             
+            // Add event listeners
             modal.querySelector('.modal-close').addEventListener('click', () => modal.remove());
             modal.querySelector('#cancelETABtn').addEventListener('click', () => modal.remove());
             
             modal.querySelector('#confirmETABtn').addEventListener('click', () => {
                 const newETA = modal.querySelector('#newETA').value;
                 const newETD = modal.querySelector('#updateETD').value;
+                const reason = modal.querySelector('#etaReason').value;
                 
                 if (!newETA) {
                     showToast('New ETA is required', 'error');
                     return;
                 }
                 
-                // Validate that ETD is not before ETA
-                if (newETD && newETD < newETA) {
-                    showToast('ETD cannot be before ETA', 'error');
-                    return;
-                }
-                
+                // Update vessel
                 vessel.eta = newETA;
                 if (newETD) vessel.etd = newETD;
                 vessel.updatedAt = new Date().toISOString();
@@ -2615,7 +2595,12 @@
                 loadVessels();
                 modal.remove();
                 
-                showToast('ETA updated successfully', 'success');
+                let message = 'ETA updated successfully';
+                if (reason) {
+                    message += ` (${reason})`;
+                }
+                
+                showToast(message, 'success');
             });
         }
         
@@ -2629,6 +2614,7 @@
                 const timeDiff = etaTime - currentTime;
                 const hoursDiff = timeDiff / (1000 * 60 * 60);
                 
+                // Check if any of the three checks are not done and ETA is less than 24 hours away
                 if (hoursDiff < 24 && hoursDiff > 0) {
                     if (!vessel.checks.preArrival) notifications++;
                     if (!vessel.checks.manifest) notifications++;
@@ -2640,6 +2626,7 @@
                 const timeDiff = currentTime - atdTime;
                 const hoursDiff = timeDiff / (1000 * 60 * 60);
                 
+                // Check if TDR checks are not done and ATD was more than 24 hours ago
                 if (hoursDiff > 24) {
                     if (!vessel.checks.tdrAgent) notifications++;
                     if (!vessel.checks.tdrFinance) notifications++;
@@ -2716,10 +2703,13 @@
         function formatNumber(num) {
             if (num === undefined || num === null) return '';
             
+            // Check if it's a whole number
             if (num % 1 === 0) {
                 return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
             } else {
+                // Format with up to 3 decimal places, removing trailing zeros
                 const formatted = formatNumberWithDecimals(num, 3);
+                // Add commas for thousands
                 const parts = formatted.split('.');
                 parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
                 return parts.join('.');
@@ -2759,6 +2749,7 @@
                 return null;
             }
             
+            // Get completed weight
             let completedWeight = 0;
             if (vessel.purpose === 'DISCHARGE' || vessel.purpose === 'DISCHARGE/LOAD') {
                 if (vessel.completed.import && vessel.completed.import.weight) {
@@ -2774,6 +2765,7 @@
                 return null;
             }
             
+            // Calculate port stay in days
             const portStayMs = calculatePortStay(vessel.ata, new Date());
             const portStayDays = portStayMs / (1000 * 60 * 60 * 24);
             
@@ -2782,7 +2774,7 @@
             }
             
             const average = completedWeight / portStayDays;
-            return formatNumberWithDecimals(average, 3);
+            return formatNumberWithDecimals(average, 3); // 3 decimal places
         }
         
         // Update vessel check status
@@ -2818,7 +2810,9 @@
             vessel.updatedAt = new Date().toISOString();
             saveVessels();
             
+            // If both TDR checks are checked for a SAILED vessel, show option to close
             if (vessel.status === 'SAILED' && vessel.checks.tdrAgent && vessel.checks.tdrFinance) {
+                // Reload vessel to show close button
                 loadVessels();
                 showToast('Both TDR checks completed. You can now close the vessel.', 'info');
             }
@@ -2829,23 +2823,28 @@
             const vessel = vessels.find(v => v.id === vesselId);
             if (!vessel) return;
             
+            // Show password prompt
             const password = prompt('Enter password to edit vessel:');
             if (password !== 'GC123') {
                 showToast('Incorrect password', 'error');
                 return;
             }
             
+            // Create edit modal
             createEditModal(vessel);
         }
         
         // Create edit modal
         function createEditModal(vessel) {
+            // Remove existing modal if any
             const existingModal = document.querySelector('.modal.edit-modal');
             if (existingModal) existingModal.remove();
             
+            // Create modal
             const modal = document.createElement('div');
             modal.className = 'modal active edit-modal';
             
+            // Format date for datetime-local input (YYYY-MM-DDTHH:mm)
             const formatForInput = (dateStr) => {
                 if (!dateStr) return '';
                 const date = new Date(dateStr);
@@ -2927,6 +2926,7 @@
             
             document.body.appendChild(modal);
             
+            // Add event listeners
             modal.querySelector('.modal-close').addEventListener('click', () => modal.remove());
             modal.querySelector('#cancelEditBtn').addEventListener('click', () => modal.remove());
             modal.querySelector('#editVesselForm').addEventListener('submit', (e) => {
@@ -2973,6 +2973,7 @@
             const vesselIndex = vessels.findIndex(v => v.id === vesselId);
             if (vesselIndex === -1) return;
             
+            // Get updated values
             const vessel = vessels[vesselIndex];
             const oldVesselName = vessel.vesselName;
             const oldVoyage = vessel.voyage;
@@ -2987,9 +2988,16 @@
             vessel.etd = modal.querySelector('#editEtd').value || null;
             vessel.updatedAt = new Date().toISOString();
             
+            // Save to localStorage
             saveVessels();
+            
+            // Update display
             loadVessels();
+            
+            // Close modal
             modal.remove();
+            
+            // Show success message
             showToast('Vessel updated successfully', 'success');
         }
         
@@ -2999,6 +3007,7 @@
             if (vesselIndex === -1) return;
             
             const vessel = vessels[vesselIndex];
+            
             vessels.splice(vesselIndex, 1);
             saveVessels();
             
@@ -3012,11 +3021,15 @@
             const vessel = vessels.find(v => v.id === vesselId);
             if (!vessel) return;
             
+            // Determine available status changes based on current status
             if (vessel.status === 'INBOUND') {
+                // INBOUND can only change to WORKING
                 createUpdateToWorkingModal(vessel);
             } else if (vessel.status === 'WORKING') {
+                // WORKING can change to SAILED or INBOUND
                 createStatusSelectionModal(vessel, ['SAILED', 'INBOUND']);
             } else if (vessel.status === 'SAILED') {
+                // SAILED can change to WORKING or INBOUND
                 createStatusSelectionModal(vessel, ['WORKING', 'INBOUND']);
             }
         }
@@ -3056,9 +3069,11 @@
             
             document.body.appendChild(modal);
             
+            // Add event listeners
             modal.querySelector('.modal-close').addEventListener('click', () => modal.remove());
             modal.querySelector('#cancelStatusBtn').addEventListener('click', () => modal.remove());
             
+            // Add event listeners to status buttons
             modal.querySelectorAll('button[data-status]').forEach(button => {
                 button.addEventListener('click', () => {
                     const newStatus = button.getAttribute('data-status');
@@ -3069,6 +3084,7 @@
                     } else if (newStatus === 'SAILED') {
                         createUpdateToSailedModal(vessel);
                     } else if (newStatus === 'INBOUND') {
+                        // Change back to INBOUND
                         if (confirm(`Change ${vessel.vesselName} back to INBOUND status?`)) {
                             const oldStatus = vessel.status;
                             vessel.status = 'INBOUND';
@@ -3082,6 +3098,7 @@
                             
                             saveVessels();
                             loadVessels();
+                            
                             showToast(`Vessel status changed to INBOUND`, 'success');
                         }
                     }
@@ -3094,15 +3111,12 @@
             const modal = document.createElement('div');
             modal.className = 'modal active';
             
+            // Format date for datetime-local input
             const formatForInput = (dateStr) => {
                 if (!dateStr) return '';
                 const date = new Date(dateStr);
                 return date.toISOString().slice(0, 16);
             };
-            
-            // Get current datetime for the input (to restrict future dates)
-            const now = new Date();
-            const currentDateTime = now.toISOString().slice(0, 16);
             
             modal.innerHTML = `
                 <div class="modal-content">
@@ -3114,8 +3128,7 @@
                         <form id="updateToWorkingForm">
                             <div class="form-group">
                                 <label for="ata">ATA (Actual Time of Arrival) *</label>
-                                <input type="datetime-local" id="ata" value="${currentDateTime}" max="${currentDateTime}" required>
-                                <small style="color: var(--accent-red); margin-top: 5px; display: block;">ATA cannot be in the future. Select current or past date/time.</small>
+                                <input type="datetime-local" id="ata" value="${formatForInput(new Date())}" required>
                             </div>
                             <div class="form-group">
                                 <label for="berth">Berth *</label>
@@ -3141,6 +3154,7 @@
             
             document.body.appendChild(modal);
             
+            // Add event listeners
             modal.querySelector('.modal-close').addEventListener('click', () => modal.remove());
             modal.querySelector('#cancelWorkingBtn').addEventListener('click', () => modal.remove());
             
@@ -3155,15 +3169,9 @@
                     return;
                 }
                 
-                // Validate ATA is not in the future
-                const ataDate = new Date(ata);
-                const now = new Date();
-                if (ataDate > now) {
-                    showToast('ATA cannot be in the future. Please select a current or past date/time.', 'error');
-                    return;
-                }
-                
                 const oldStatus = vessel.status;
+                
+                // Update vessel
                 vessel.status = 'WORKING';
                 vessel.ata = ata;
                 vessel.berth = berth;
@@ -3173,6 +3181,7 @@
                 saveVessels();
                 loadVessels();
                 modal.remove();
+                
                 showToast(`Vessel status updated to WORKING`, 'success');
             });
         }
@@ -3182,16 +3191,14 @@
             const modal = document.createElement('div');
             modal.className = 'modal active';
             
+            // Format date for datetime-local input
             const formatForInput = (dateStr) => {
                 if (!dateStr) return '';
                 const date = new Date(dateStr);
                 return date.toISOString().slice(0, 16);
             };
             
-            // Get current datetime for the input (to restrict future dates)
-            const now = new Date();
-            const currentDateTime = now.toISOString().slice(0, 16);
-            
+            // Only ask for shifted if commodity is UNITS or UNITS AND PACKAGES
             const showShifted = ['UNITS', 'UNITS AND PACKAGES'].includes(vessel.commodity);
             
             modal.innerHTML = `
@@ -3204,8 +3211,7 @@
                         <form id="updateToSailedForm">
                             <div class="form-group">
                                 <label for="atd">ATD (Actual Time of Departure) *</label>
-                                <input type="datetime-local" id="atd" value="${currentDateTime}" max="${currentDateTime}" required>
-                                <small style="color: var(--accent-red); margin-top: 5px; display: block;">ATD cannot be in the future. Select current or past date/time.</small>
+                                <input type="datetime-local" id="atd" value="${formatForInput(new Date())}" required>
                             </div>
                             ${showShifted ? `
                             <div class="form-group">
@@ -3229,6 +3235,7 @@
             
             document.body.appendChild(modal);
             
+            // Add event listeners
             modal.querySelector('.modal-close').addEventListener('click', () => modal.remove());
             modal.querySelector('#cancelSailedBtn').addEventListener('click', () => modal.remove());
             modal.querySelector('#confirmSailedBtn').addEventListener('click', () => {
@@ -3240,15 +3247,9 @@
                     return;
                 }
                 
-                // Validate ATD is not in the future
-                const atdDate = new Date(atd);
-                const now = new Date();
-                if (atdDate > now) {
-                    showToast('ATD cannot be in the future. Please select a current or past date/time.', 'error');
-                    return;
-                }
-                
                 const oldStatus = vessel.status;
+                
+                // Update vessel
                 vessel.status = 'SAILED';
                 vessel.atd = atd;
                 if (showShifted && shiftedUnits) vessel.shifted = parseInt(shiftedUnits);
@@ -3257,6 +3258,7 @@
                 saveVessels();
                 loadVessels();
                 modal.remove();
+                
                 showToast(`Vessel status updated to SAILED`, 'success');
             });
         }
@@ -3307,6 +3309,7 @@
             
             document.body.appendChild(modal);
             
+            // Initialize quantity section
             const updateCommoditySelect = modal.querySelector('#updateCommodity');
             const updatePurposeSelect = modal.querySelector('#updatePurpose');
             const updateQuantitySection = modal.querySelector('#updateQuantitySection');
@@ -3315,6 +3318,7 @@
                 const commodity = updateCommoditySelect.value;
                 const purpose = updatePurposeSelect.value;
                 
+                // Don't show quantity section for certain commodities
                 const noQuantityCommodities = [
                     'NAVAL CREW', 'PASSENGERS', 'CREW CHANGE', 'LAY BY', 
                     'PORT CLEARANCE', 'TOWING', 'HOLD INSPECTION', 'AQIS – AUSTRALIAN QUARANTINE'
@@ -3325,6 +3329,7 @@
                     return;
                 }
                 
+                // Create appropriate tables based on commodity and purpose
                 let tablesHTML = '';
                 
                 if (purpose === 'DISCHARGE' || purpose === 'LOAD') {
@@ -3345,23 +3350,29 @@
                     ${tablesHTML}
                 `;
                 
+                // Setup freight ton calculators
                 setupFreightTonCalculatorsInModal(modal);
             };
             
+            // Set initial display
             updateQuantityDisplay();
             
+            // Add event listeners for changes
             updateCommoditySelect.addEventListener('change', updateQuantityDisplay);
             updatePurposeSelect.addEventListener('change', updateQuantityDisplay);
             
+            // Add event listeners for modal buttons
             modal.querySelector('.modal-close').addEventListener('click', () => modal.remove());
             modal.querySelector('#cancelCommodityBtn').addEventListener('click', () => modal.remove());
             modal.querySelector('#confirmCommodityBtn').addEventListener('click', () => {
                 const oldCommodity = vessel.commodity;
                 const oldPurpose = vessel.purpose;
                 
+                // Update vessel commodity and purpose
                 vessel.commodity = updateCommoditySelect.value;
                 vessel.purpose = updatePurposeSelect.value;
                 
+                // Get quantity data
                 const quantityData = getQuantityDataFromModal(modal, vessel.commodity, vessel.purpose);
                 vessel.quantity = quantityData;
                 vessel.updatedAt = new Date().toISOString();
@@ -3376,6 +3387,7 @@
         
         // Setup freight ton calculators in modal
         function setupFreightTonCalculatorsInModal(modal) {
+            // Add event listeners to weight and volume inputs
             modal.querySelectorAll('input[data-field="weight"], input[data-field="volume"]').forEach(input => {
                 input.addEventListener('input', calculateFreightTon);
             });
@@ -3384,6 +3396,8 @@
         // Get quantity data from modal
         function getQuantityDataFromModal(modal, commodity, purpose) {
             const quantityData = {};
+            
+            // Get all quantity tables in the modal
             const tables = modal.querySelectorAll('.quantity-table');
             
             tables.forEach((table, index) => {
@@ -3399,6 +3413,7 @@
                     }
                 });
                 
+                // Determine table type based on index and purpose
                 let tableType;
                 if (purpose === 'DISCHARGE') {
                     tableType = 'import';
@@ -3426,11 +3441,14 @@
             const modal = document.createElement('div');
             modal.className = 'modal active';
             
+            // Only show shifted if commodity is UNITS or UNITS AND PACKAGES
             const showShifted = ['UNITS', 'UNITS AND PACKAGES'].includes(vessel.commodity);
             
+            // Create tables for completed based on vessel's commodity and purpose
             let completedTablesHTML = '';
             
             if (vessel.purpose === 'DISCHARGE/LOAD') {
+                // Show 3 tables for DISCHARGE/LOAD
                 completedTablesHTML = `
                     <h4 style="margin-top: 15px; color: var(--primary-blue);">Completed Details</h4>
                     <div class="alert alert-info">
@@ -3441,6 +3459,7 @@
                     ${createQuantityTable(vessel.commodity, 'TRANSSHIPMENT', vessel.vesselType, 'TRANSSHIPMENT - Completed')}
                 `;
             } else {
+                // Generic table for other purposes
                 completedTablesHTML = `
                     <h4 style="margin-top: 15px; color: var(--primary-blue);">Completed Details</h4>
                     ${createQuantityTable(vessel.commodity, vessel.purpose, vessel.vesselType, 'Completed')}
@@ -3479,28 +3498,36 @@
             
             document.body.appendChild(modal);
             
+            // Setup freight ton calculators
             setTimeout(() => {
                 setupFreightTonCalculatorsInModal(modal);
             }, 100);
             
+            // Add event listeners for modal buttons
             modal.querySelector('.modal-close').addEventListener('click', () => modal.remove());
             modal.querySelector('#cancelWorkingDetailsBtn').addEventListener('click', () => modal.remove());
             modal.querySelector('#confirmWorkingDetailsBtn').addEventListener('click', () => {
+                // Get shifted units if applicable
                 if (showShifted) {
                     const shiftedUnits = modal.querySelector('#updateShifted').value;
                     if (shiftedUnits) vessel.shifted = parseInt(shiftedUnits);
                 }
                 
+                // Get completed data
                 const completedData = getQuantityDataFromModal(modal, vessel.commodity, vessel.purpose);
                 if (Object.keys(completedData).length > 0) {
                     vessel.completed = completedData;
+                    
+                    // Calculate balance (quantity - completed)
                     vessel.balance = calculateBalance(vessel.quantity, vessel.completed);
                 }
                 
                 vessel.updatedAt = new Date().toISOString();
+                
                 saveVessels();
                 loadVessels();
                 modal.remove();
+                
                 showToast('Working details updated successfully', 'success');
             });
         }
@@ -3511,10 +3538,12 @@
             
             const balance = {};
             
+            // Calculate for each table type (import, export, transshipment)
             ['import', 'export', 'transshipment'].forEach(tableType => {
                 if (quantity[tableType] && completed[tableType]) {
                     balance[tableType] = {};
                     
+                    // Subtract each field
                     for (const field in quantity[tableType]) {
                         const qtyValue = quantity[tableType][field] || 0;
                         const compValue = completed[tableType][field] || 0;
@@ -3531,6 +3560,7 @@
             const vessel = vessels.find(v => v.id === vesselId);
             if (!vessel || vessel.status !== 'SAILED') return;
             
+            // Only allow update for UNITS or UNITS AND PACKAGES
             if (!['UNITS', 'UNITS AND PACKAGES'].includes(vessel.commodity)) {
                 showToast('Shifted units can only be updated for UNITS or UNITS AND PACKAGES commodities', 'warning');
                 return;
@@ -3567,16 +3597,20 @@
             
             document.body.appendChild(modal);
             
+            // Add event listeners for modal buttons
             modal.querySelector('.modal-close').addEventListener('click', () => modal.remove());
             modal.querySelector('#cancelSailedDetailsBtn').addEventListener('click', () => modal.remove());
             modal.querySelector('#confirmSailedDetailsBtn').addEventListener('click', () => {
+                // Get shifted units
                 const shiftedUnits = modal.querySelector('#updateSailedShifted').value;
                 if (shiftedUnits) vessel.shifted = parseInt(shiftedUnits);
                 
                 vessel.updatedAt = new Date().toISOString();
+                
                 saveVessels();
                 loadVessels();
                 modal.remove();
+                
                 showToast('Sailed details updated successfully', 'success');
             });
         }
@@ -3592,7 +3626,9 @@
             }
             
             if (confirm('Do you want to close and delete this vessel?')) {
+                // Remove from vessels array
                 vessels = vessels.filter(v => v.id !== vesselId);
+                
                 saveVessels();
                 loadVessels();
                 updateDashboard();
@@ -3602,6 +3638,7 @@
         
         // Update dashboard
         function updateDashboard() {
+            // Count vessels by status
             const sailedVessels = vessels.filter(v => v.status === 'SAILED');
             const workingVessels = vessels.filter(v => v.status === 'WORKING');
             const inboundVessels = vessels.filter(v => v.status === 'INBOUND');
@@ -3610,19 +3647,23 @@
             const workingCount = workingVessels.length;
             const inboundCount = inboundVessels.length;
             
+            // Update sidebar summary
             document.getElementById('sidebarSailedCount').textContent = sailedCount;
             document.getElementById('sidebarWorkingCount').textContent = workingCount;
             document.getElementById('sidebarInboundCount').textContent = inboundCount;
             document.getElementById('sidebarTotalCount').textContent = vessels.length;
             
+            // Update commodity breakdown for inbound vessels
             updateCommodityBreakdown(inboundVessels);
+            
+            // Update tables
             updateSailedTable();
             updateWorkingTable();
             updateInboundTable();
             updateRoroUnits();
         }
         
-        // Update commodity breakdown for inbound vessels
+        // Update commodity breakdown for inbound vessels - UPDATED
         function updateCommodityBreakdown(inboundVessels) {
             const commodityBreakdown = document.getElementById('commodityBreakdown');
             const commoditySummary = document.getElementById('commoditySummary');
@@ -3634,12 +3675,14 @@
             
             commoditySummary.style.display = 'block';
             
+            // Count commodities
             const commodityCounts = {};
             let roroCount = 0;
             
             inboundVessels.forEach(vessel => {
                 const commodity = vessel.commodity;
                 
+                // Count RORO separately (UNITS or UNITS AND PACKAGES)
                 if (commodity === 'UNITS' || commodity === 'UNITS AND PACKAGES') {
                     roroCount++;
                 } else {
@@ -3647,8 +3690,10 @@
                 }
             });
             
+            // Build HTML - UPDATED: No "Inbound by Commodity" title, just show like bullet list
             let html = '';
             
+            // Add RORO count
             if (roroCount > 0) {
                 html += `
                     <div class="commodity-item">
@@ -3658,6 +3703,7 @@
                 `;
             }
             
+            // Add other commodities
             Object.keys(commodityCounts).sort().forEach(commodity => {
                 html += `
                     <div class="commodity-item">
@@ -3684,20 +3730,25 @@
             section.style.display = 'block';
             tableBody.innerHTML = '';
             
+            // Sort by ATD (oldest first)
             sailedVessels.sort((a, b) => new Date(a.atd) - new Date(b.atd));
             
             sailedVessels.forEach(vessel => {
+                // Calculate port stay
                 const portStay = (vessel.ata && vessel.atd) ? calculatePortStay(vessel.ata, vessel.atd) : null;
                 const portStayFormatted = portStay ? formatPortStay(portStay) : 'N/A';
                 
+                // Build remarks for sailed vessels - UPDATED with bullet separator
                 let remarks = '';
                 const remarkParts = [];
                 
+                // Check for unchecked TDR checks
                 if (!vessel.checks.tdrAgent || !vessel.checks.tdrFinance) {
                     if (!vessel.checks.tdrAgent) remarkParts.push('TDR not sent to agent');
                     if (!vessel.checks.tdrFinance) remarkParts.push('TDR not sent to finance');
                 }
                 
+                // Add user remarks
                 if (vessel.remarks) {
                     remarkParts.push(vessel.remarks);
                 }
@@ -3723,7 +3774,7 @@
             });
         }
         
-        // Update working vessels table with text blinking for overdue ETD
+        // Update working vessels table
         function updateWorkingTable() {
             const workingVessels = vessels.filter(v => v.status === 'WORKING');
             const tableBody = document.querySelector('#workingTable tbody');
@@ -3737,14 +3788,18 @@
             section.style.display = 'block';
             tableBody.innerHTML = '';
             
+            // Sort by ATA (oldest first)
             workingVessels.sort((a, b) => new Date(a.ata) - new Date(b.ata));
             
             workingVessels.forEach((vessel, index) => {
+                // Calculate port stay
                 const portStay = vessel.ata ? calculatePortStay(vessel.ata, new Date()) : null;
                 const portStayFormatted = portStay ? formatPortStay(portStay) : 'N/A';
                 
+                // Format quantity, completed, and balance with DISCHARGE/LOAD labels
                 const quantitySummary = formatDashboardQuantity(vessel.quantity, 'quantity');
                 
+                // Show NIL if completed and balance are zero or not entered
                 let completedSummary = '-';
                 if (vessel.completed) {
                     const hasCompletedData = Object.values(vessel.completed).some(table => 
@@ -3761,9 +3816,11 @@
                     balanceSummary = hasBalanceData ? formatDashboardQuantity(vessel.balance, 'balance') : 'NIL';
                 }
                 
+                // Build remarks for working vessels - UPDATED with bullet separator
                 let remarks = '';
                 const remarkParts = [];
                 
+                // Calculate average per day for SULPHUR or ALUMINIUM
                 if (['SULPHUR', 'ALUMINIUM'].includes(vessel.commodity)) {
                     const average = calculateAveragePerDay(vessel);
                     if (average) {
@@ -3771,6 +3828,7 @@
                     }
                 }
                 
+                // Add user remarks
                 if (vessel.remarks) {
                     remarkParts.push(vessel.remarks);
                 }
@@ -3782,21 +3840,6 @@
                 }
                 
                 const row = document.createElement('tr');
-                
-                // Check if ETD is overdue (ETD is in the past)
-                let isOverdue = false;
-                if (vessel.etd) {
-                    const etdDate = new Date(vessel.etd);
-                    const now = new Date();
-                    if (etdDate < now) {
-                        isOverdue = true;
-                    }
-                }
-                
-                if (isOverdue) {
-                    row.className = 'overdue-text-blink';
-                }
-                
                 row.innerHTML = `
                     <td>${index + 1}</td>
                     <td class="vessel-name-voyage">${vessel.vesselName} / ${vessel.voyage}</td>
@@ -3815,7 +3858,7 @@
             });
         }
         
-        // Update inbound vessels table with date grouping and text blinking for overdue ETA
+        // Update inbound vessels table with date grouping
         function updateInboundTable() {
             const inboundVessels = vessels.filter(v => v.status === 'INBOUND');
             const tableBody = document.getElementById('inboundTableBody');
@@ -3830,14 +3873,16 @@
             section.style.display = 'block';
             tableBody.innerHTML = '';
             
+            // Sort by ETA (closest first)
             inboundVessels.sort((a, b) => new Date(a.eta) - new Date(b.eta));
             
+            // Group vessels by date
             const vesselsByDate = {};
             const dateDayMap = {};
             
             inboundVessels.forEach(vessel => {
                 const date = new Date(vessel.eta);
-                const dateKey = formatDate(date);
+                const dateKey = formatDate(date); // DD/MM/YYYY
                 const dayName = date.toLocaleDateString('en-US', { weekday: 'long' });
                 
                 if (!vesselsByDate[dateKey]) {
@@ -3848,15 +3893,19 @@
                 vesselsByDate[dateKey].push(vessel);
             });
             
+            // Get current date for highlighting
             const currentDateFormatted = formatDate(new Date());
             
+            // Create rows for each date
             Object.keys(vesselsByDate).sort((a, b) => {
                 const dateA = parseDate(a);
                 const dateB = parseDate(b);
                 return dateA - dateB;
             }).forEach(dateKey => {
+                // Check if this is today's date
                 const isToday = dateKey === currentDateFormatted;
                 
+                // Add date group row
                 const dateGroupRow = document.createElement('tr');
                 dateGroupRow.className = isToday ? 'date-group-row today-date-group' : 'date-group-row';
                 dateGroupRow.innerHTML = `
@@ -3866,20 +3915,29 @@
                 `;
                 tableBody.appendChild(dateGroupRow);
                 
+                // Add vessel rows for this date
                 vesselsByDate[dateKey].forEach(vessel => {
+                    // Format ETA as time and shift only (HH:MM (X))
                     const etaDisplay = formatTimeWithShift(vessel.eta);
+                    
+                    // Format ETD as Date, Time, Shift, Day
                     const etdDisplay = formatETDForInbound(vessel.etd);
+                    
+                    // Format quantity with DISCHARGE/LOAD labels
                     const quantitySummary = formatDashboardQuantity(vessel.quantity, 'quantity');
                     
+                    // Build remarks for inbound vessels - UPDATED with bullet separator
                     let remarks = '';
                     const remarkParts = [];
                     
+                    // Check for unchecked pre-arrival checks
                     if (!vessel.checks.preArrival || !vessel.checks.manifest || !vessel.checks.printFile) {
                         if (!vessel.checks.preArrival) remarkParts.push('Pre-arrival not received');
                         if (!vessel.checks.manifest) remarkParts.push('Manifest not received');
                         if (!vessel.checks.printFile) remarkParts.push('Print file not sent');
                     }
                     
+                    // Add user remarks
                     if (vessel.remarks) {
                         remarkParts.push(vessel.remarks);
                     }
@@ -3891,21 +3949,6 @@
                     }
                     
                     const row = document.createElement('tr');
-                    
-                    // Check if ETA is overdue (ETA is in the past)
-                    let isOverdue = false;
-                    if (vessel.eta) {
-                        const etaDate = new Date(vessel.eta);
-                        const now = new Date();
-                        if (etaDate < now) {
-                            isOverdue = true;
-                        }
-                    }
-                    
-                    if (isOverdue) {
-                        row.className = 'overdue-text-blink';
-                    }
-                    
                     row.innerHTML = `
                         <td>${etaDisplay}</td>
                         <td class="vessel-name-voyage">${vessel.vesselName} / ${vessel.voyage}</td>
@@ -3989,37 +4032,69 @@
             return parts.length > 0 ? `<strong>${prefix}:</strong> ${parts.join(', ')}` : '';
         }
         
-        // Update RORO units
+        // Update RORO units - UPDATED for no scrolling
         function updateRoroUnits() {
             const roroContainer = document.getElementById('roroVesselsList');
             const totalUnitsElement = document.getElementById('totalRoroUnits');
             
+            // Filter vessels that are in vessels log (all non-closed vessels)
             const vesselsInLog = vessels.filter(v => v.status !== 'CLOSED');
             
+            // Separate vessels by status for proper sorting
             const sailedRoroVessels = vesselsInLog.filter(v => {
+                // Check if vessel is SAILED
                 if (v.status !== 'SAILED') return false;
+                
+                // Check if vessel type is RORO
                 if (v.vesselType !== 'RORO') return false;
+                
+                // Check if commodity is UNITS or UNITS AND PACKAGES
                 if (!['UNITS', 'UNITS AND PACKAGES'].includes(v.commodity)) return false;
+                
+                // Check if purpose is DISCHARGE or DISCHARGE/LOAD
                 if (!['DISCHARGE', 'DISCHARGE/LOAD'].includes(v.purpose)) return false;
+                
+                // Check if there are units in import quantity
                 if (!v.quantity || !v.quantity.import || v.quantity.import.units === undefined) return false;
+                
                 return true;
             });
             
             const workingRoroVessels = vesselsInLog.filter(v => {
+                // Check if vessel is WORKING
                 if (v.status !== 'WORKING') return false;
+                
+                // Check if vessel type is RORO
                 if (v.vesselType !== 'RORO') return false;
+                
+                // Check if commodity is UNITS or UNITS AND PACKAGES
                 if (!['UNITS', 'UNITS AND PACKAGES'].includes(v.commodity)) return false;
+                
+                // Check if purpose is DISCHARGE or DISCHARGE/LOAD
                 if (!['DISCHARGE', 'DISCHARGE/LOAD'].includes(v.purpose)) return false;
+                
+                // Check if there are units in import quantity
                 if (!v.quantity || !v.quantity.import || v.quantity.import.units === undefined) return false;
+                
                 return true;
             });
             
             const inboundRoroVessels = vesselsInLog.filter(v => {
+                // Check if vessel is INBOUND
                 if (v.status !== 'INBOUND') return false;
+                
+                // Check if vessel type is RORO
                 if (v.vesselType !== 'RORO') return false;
+                
+                // Check if commodity is UNITS or UNITS AND PACKAGES
                 if (!['UNITS', 'UNITS AND PACKAGES'].includes(v.commodity)) return false;
+                
+                // Check if purpose is DISCHARGE or DISCHARGE/LOAD
                 if (!['DISCHARGE', 'DISCHARGE/LOAD'].includes(v.purpose)) return false;
+                
+                // Check if there are units in import quantity
                 if (!v.quantity || !v.quantity.import || v.quantity.import.units === undefined) return false;
+                
                 return true;
             });
             
@@ -4034,14 +4109,17 @@
                 return;
             }
             
+            // Calculate total units
             let totalUnitsAtQuayside = 0;
             let totalUnitsWorking = 0;
             let totalIncomingUnits = 0;
             
             roroContainer.innerHTML = '';
             
+            // Sort sailed vessels by ATD (oldest first)
             sailedRoroVessels.sort((a, b) => new Date(a.atd) - new Date(b.atd));
             
+            // Show sailed vessels with units at quayside first (ATD sorted oldest to newest)
             if (sailedRoroVessels.length > 0) {
                 sailedRoroVessels.forEach(vessel => {
                     let units = vessel.quantity.import.units || 0;
@@ -4067,8 +4145,10 @@
                 });
             }
             
+            // Sort working vessels by ATA (oldest first)
             workingRoroVessels.sort((a, b) => new Date(a.ata) - new Date(b.ata));
             
+            // Show working vessels
             if (workingRoroVessels.length > 0) {
                 workingRoroVessels.forEach(vessel => {
                     let units = vessel.quantity.import.units || 0;
@@ -4092,8 +4172,10 @@
                 });
             }
             
+            // Sort inbound vessels by ETA (oldest first)
             inboundRoroVessels.sort((a, b) => new Date(a.eta) - new Date(b.eta));
             
+            // Show inbound vessels
             if (inboundRoroVessels.length > 0) {
                 inboundRoroVessels.forEach(vessel => {
                     let units = vessel.quantity.import.units || 0;
@@ -4144,8 +4226,10 @@
             
             toastContainer.appendChild(toast);
             
+            // Show toast
             setTimeout(() => toast.classList.add('show'), 10);
             
+            // Remove toast after 5 seconds
             setTimeout(() => {
                 toast.classList.remove('show');
                 setTimeout(() => toast.remove(), 400);
@@ -4154,8 +4238,10 @@
         
         // Setup sample data for demonstration
         function setupSampleData() {
+            // Only add sample data if no vessels exist
             if (vessels.length > 0) return;
             
+            // Sample vessels data matching the requested format
             const sampleVessels = [
                 {
                     id: '1',
@@ -4327,10 +4413,17 @@
                 }
             ];
             
+            // Add sample vessels to the array
             vessels.push(...sampleVessels);
+            
+            // Save to localStorage
             saveVessels();
+            
+            // Update display
             loadVessels();
             updateDashboard();
+            
+            // Show notification
             showToast('Sample data loaded for demonstration', 'info');
         }
     </script>
