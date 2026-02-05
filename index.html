@@ -157,6 +157,23 @@
             opacity: 0.9;
         }
         
+        /* Dashboard Last Update */
+        .last-update {
+            background: rgba(0, 31, 63, 0.7);
+            padding: 8px 15px;
+            border-radius: 6px;
+            font-size: 14px;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            justify-content: center;
+        }
+        
+        .last-update i {
+            color: var(--accent-green);
+        }
+        
         /* Tabs Navigation */
         .tabs-container {
             margin: 20px 0 20px;
@@ -537,7 +554,7 @@
         /* DASHBOARD LAYOUT */
         .dashboard-container {
             display: grid;
-            grid-template-columns: 1fr 320px;
+            grid-template-columns: 1fr;
             gap: 20px;
             min-height: calc(100vh - 250px);
             width: 100%;
@@ -560,8 +577,17 @@
             overflow: visible;
         }
         
+        /* OVERVIEW LAYOUT */
+        .overview-container {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 20px;
+            min-height: calc(100vh - 250px);
+            width: 100%;
+        }
+        
         /* RIGHT SIDE SUMMARY SECTION */
-        .dashboard-sidebar {
+        .overview-sidebar {
             display: flex;
             flex-direction: column;
             gap: 20px;
@@ -784,11 +810,6 @@
             padding-left: 8px;
         }
         
-        /* Activity Log Styles - REMOVED */
-        .activity-log-section {
-            display: none;
-        }
-        
         /* Modal Styles */
         .modal {
             display: none;
@@ -950,11 +971,11 @@
         }
         
         @media (max-width: 1200px) {
-            .dashboard-container {
+            .overview-container {
                 grid-template-columns: 1fr;
             }
             
-            .dashboard-sidebar {
+            .overview-sidebar {
                 min-width: 100%;
             }
             
@@ -1038,6 +1059,10 @@
                 <div class="current-date" id="currentDate">15/01/2026</div>
                 <div class="current-time" id="currentTime">14:22</div>
                 <div class="current-slot" id="currentSlot">Evening Slot</div>
+                <div class="last-update" id="lastUpdate">
+                    <i class="fas fa-sync-alt"></i>
+                    <span>Last Update: 15/01/2026 14:22</span>
+                </div>
             </div>
             
             <div class="shifts-container">
@@ -1064,13 +1089,182 @@
     <main class="container">
         <div class="tabs-container">
             <div class="tabs">
-                <div class="tab active" data-tab="addVessel">Add a Vessel</div>
+                <div class="tab active" data-tab="overview">Overview</div>
                 <div class="tab" data-tab="dashboard">Dashboard</div>
+                <div class="tab" data-tab="addVessel">Add a Vessel</div>
+            </div>
+        </div>
+        
+        <!-- Overview Tab -->
+        <div class="tab-content active" id="overview">
+            <div class="overview-container">
+                <!-- LEFT SIDE: Summary -->
+                <div class="main-dashboard">
+                    <!-- Vessel Summary Card -->
+                    <div class="dashboard-section">
+                        <h3 class="section-title" style="margin-bottom: 12px;">Vessel Summary</h3>
+                        <div class="summary-item">
+                            <span class="summary-item-label">Sailed Vessels</span>
+                            <span class="summary-item-value" id="overviewSailedCount">0</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-item-label">Working Vessels</span>
+                            <span class="summary-item-value" id="overviewWorkingCount">0</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-item-label">Inbound Vessels</span>
+                            <span class="summary-item-value" id="overviewInboundCount">0</span>
+                        </div>
+                        
+                        <!-- Commodity Breakdown -->
+                        <div class="commodity-summary" id="overviewCommoditySummary" style="display: none;">
+                            <div id="overviewCommodityBreakdown">
+                                <!-- Commodity items will be added here -->
+                            </div>
+                        </div>
+                        
+                        <div class="summary-item" style="border-top: 2px solid var(--border-color); margin-top: 10px; padding-top: 10px;">
+                            <span class="summary-item-label" style="font-weight: 700;">Total Vessels</span>
+                            <span class="summary-item-value" id="overviewTotalCount" style="font-size: 18px;">0</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Incoming RORO Units -->
+                    <div class="dashboard-section roro-card">
+                        <h3 class="section-title" style="margin-bottom: 12px;">RORO Units Summary</h3>
+                        <div class="roro-total">
+                            <div class="roro-total-number" id="overviewTotalRoroUnits">0</div>
+                            <div class="roro-total-label">Total RORO Units</div>
+                        </div>
+                        
+                        <div class="roro-vessels" id="overviewRoroVesselsList">
+                            <div style="text-align: center; padding: 15px; color: var(--text-light);">
+                                <i class="fas fa-truck-loading" style="font-size: 25px; margin-bottom: 8px; opacity: 0.3;"></i>
+                                <p style="font-size: 13px;">No RORO vessels with units</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- RIGHT SIDE: Quick Stats -->
+                <div class="overview-sidebar">
+                    <!-- Quick Statistics -->
+                    <div class="sidebar-summary">
+                        <div class="sidebar-summary-title">Quick Statistics</div>
+                        <div class="summary-item">
+                            <span class="summary-item-label">Today's Vessels</span>
+                            <span class="summary-item-value" id="todayVesselsCount">0</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-item-label">Vessels with Alerts</span>
+                            <span class="summary-item-value" id="alertVesselsCount">0</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-item-label">Overdue ETA/ETD</span>
+                            <span class="summary-item-value" id="overdueVesselsCount">0</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-item-label">Pending TDR</span>
+                            <span class="summary-item-value" id="pendingTDRCount">0</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Recent Activity -->
+                    <div class="sidebar-summary">
+                        <div class="sidebar-summary-title">Recent Activity</div>
+                        <div id="recentActivity" style="max-height: 300px; overflow-y: auto;">
+                            <div style="text-align: center; padding: 20px; color: var(--text-light);">
+                                <i class="fas fa-history" style="font-size: 25px; margin-bottom: 8px; opacity: 0.3;"></i>
+                                <p style="font-size: 13px;">No recent activity</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Dashboard Tab -->
+        <div class="tab-content" id="dashboard">
+            <div class="dashboard-container">
+                <!-- Sailed Vessels Table -->
+                <div class="dashboard-section" id="sailedSection" style="display: none;">
+                    <h3 class="section-title" style="margin-bottom: 12px;">Sailed Vessels</h3>
+                    <div class="table-wrapper">
+                        <table class="dashboard-table" id="sailedTable">
+                            <thead>
+                                <tr>
+                                    <th>Vessel / Voy.</th>
+                                    <th>ATA</th>
+                                    <th>ATD</th>
+                                    <th>Port Stay</th>
+                                    <th>Vessel Type</th>
+                                    <th>Commodity</th>
+                                    <th>Berth</th>
+                                    <th>Remarks</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Sailed vessels will be added here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Working Vessels Table -->
+                <div class="dashboard-section" id="workingSection" style="display: none;">
+                    <h3 class="section-title" style="margin-bottom: 12px;">Working Vessels</h3>
+                    <div class="table-wrapper">
+                        <table class="dashboard-table" id="workingTable">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Vessel / Voy.</th>
+                                    <th>ATA</th>
+                                    <th>Port Stay</th>
+                                    <th>ETD</th>
+                                    <th>Vessel Type</th>
+                                    <th>Commodity</th>
+                                    <th>Quantity</th>
+                                    <th>Completed</th>
+                                    <th>Balance</th>
+                                    <th>Berth</th>
+                                    <th>Remarks</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Working vessels will be added here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Inbound Vessels Table with Date Grouping -->
+                <div class="dashboard-section" id="inboundSection" style="display: none;">
+                    <h3 class="section-title" style="margin-bottom: 12px;">Inbound Vessels</h3>
+                    <div class="table-wrapper">
+                        <table class="dashboard-table" id="inboundTable">
+                            <thead>
+                                <tr>
+                                    <th>ETA</th>
+                                    <th>Vessel / Voy.</th>
+                                    <th>Vessel Type</th>
+                                    <th>Commodity</th>
+                                    <th>Quantity</th>
+                                    <th>ETD</th>
+                                    <th>Remarks</th>
+                                </tr>
+                            </thead>
+                            <tbody id="inboundTableBody">
+                                <!-- Inbound vessels will be added here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
         
         <!-- Add Vessel Tab -->
-        <div class="tab-content active" id="addVessel">
+        <div class="tab-content" id="addVessel">
             <div class="form-section">
                 <div class="section-header">
                     <h2 class="section-title">Add a Vessel</h2>
@@ -1192,137 +1386,6 @@
                 </div>
             </div>
         </div>
-        
-        <!-- Dashboard Tab -->
-        <div class="tab-content" id="dashboard">
-            <div class="dashboard-container">
-                <!-- LEFT SIDE: Vessel Tables -->
-                <div class="main-dashboard">
-                    <!-- Sailed Vessels Table -->
-                    <div class="dashboard-section" id="sailedSection" style="display: none;">
-                        <h3 class="section-title" style="margin-bottom: 12px;">Sailed Vessels</h3>
-                        <div class="table-wrapper">
-                            <table class="dashboard-table" id="sailedTable">
-                                <thead>
-                                    <tr>
-                                        <th>Vessel / Voy.</th>
-                                        <th>ATA</th>
-                                        <th>ATD</th>
-                                        <th>Port Stay</th>
-                                        <th>Vessel Type</th>
-                                        <th>Commodity</th>
-                                        <th>Berth</th>
-                                        <th>Remarks</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <!-- Sailed vessels will be added here -->
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    
-                    <!-- Working Vessels Table -->
-                    <div class="dashboard-section" id="workingSection" style="display: none;">
-                        <h3 class="section-title" style="margin-bottom: 12px;">Working Vessels</h3>
-                        <div class="table-wrapper">
-                            <table class="dashboard-table" id="workingTable">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Vessel / Voy.</th>
-                                        <th>ATA</th>
-                                        <th>Port Stay</th>
-                                        <th>ETD</th>
-                                        <th>Vessel Type</th>
-                                        <th>Commodity</th>
-                                        <th>Quantity</th>
-                                        <th>Completed</th>
-                                        <th>Balance</th>
-                                        <th>Berth</th>
-                                        <th>Remarks</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <!-- Working vessels will be added here -->
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    
-                    <!-- Inbound Vessels Table with Date Grouping -->
-                    <div class="dashboard-section" id="inboundSection" style="display: none;">
-                        <h3 class="section-title" style="margin-bottom: 12px;">Inbound Vessels</h3>
-                        <div class="table-wrapper">
-                            <table class="dashboard-table" id="inboundTable">
-                                <thead>
-                                    <tr>
-                                        <th>ETA</th>
-                                        <th>Vessel / Voy.</th>
-                                        <th>Vessel Type</th>
-                                        <th>Commodity</th>
-                                        <th>Quantity</th>
-                                        <th>ETD</th>
-                                        <th>Remarks</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="inboundTableBody">
-                                    <!-- Inbound vessels will be added here -->
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- RIGHT SIDE: Summary and RORO -->
-                <div class="dashboard-sidebar">
-                    <!-- Summary Card - UPDATED -->
-                    <div class="sidebar-summary">
-                        <div class="sidebar-summary-title">Vessel Summary</div>
-                        <div class="summary-item">
-                            <span class="summary-item-label">Sailed Vessels</span>
-                            <span class="summary-item-value" id="sidebarSailedCount">0</span>
-                        </div>
-                        <div class="summary-item">
-                            <span class="summary-item-label">Working Vessels</span>
-                            <span class="summary-item-value" id="sidebarWorkingCount">0</span>
-                        </div>
-                        <div class="summary-item">
-                            <span class="summary-item-label">Inbound Vessels</span>
-                            <span class="summary-item-value" id="sidebarInboundCount">0</span>
-                        </div>
-                        
-                        <!-- Commodity Breakdown - UPDATED (No "Inbound by Commodity" title) -->
-                        <div class="commodity-summary" id="commoditySummary" style="display: none;">
-                            <div id="commodityBreakdown">
-                                <!-- Commodity items will be added here -->
-                            </div>
-                        </div>
-                        
-                        <div class="summary-item" style="border-top: 2px solid var(--border-color); margin-top: 10px; padding-top: 10px;">
-                            <span class="summary-item-label" style="font-weight: 700;">Total Vessels</span>
-                            <span class="summary-item-value" id="sidebarTotalCount" style="font-size: 18px;">0</span>
-                        </div>
-                    </div>
-                    
-                    <!-- Incoming RORO Units - COMPACT WITHOUT SCROLL -->
-                    <div class="sidebar-summary roro-card">
-                        <div class="sidebar-summary-title">RORO Units Summary</div>
-                        <div class="roro-total">
-                            <div class="roro-total-number" id="totalRoroUnits">0</div>
-                            <div class="roro-total-label">Total RORO Units</div>
-                        </div>
-                        
-                        <div class="roro-vessels" id="roroVesselsList">
-                            <div style="text-align: center; padding: 15px; color: var(--text-light);">
-                                <i class="fas fa-truck-loading" style="font-size: 25px; margin-bottom: 8px; opacity: 0.3;"></i>
-                                <p style="font-size: 13px;">No RORO vessels with units</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </main>
     
     <!-- Toast Notification Container -->
@@ -1335,6 +1398,7 @@
         let db = null;
         let firebaseInitialized = false;
         let isUserAction = false;
+        let lastUpdateTime = new Date();
         
         // Firebase configuration (YOUR CONFIG)
         const firebaseConfig = {
@@ -1410,19 +1474,15 @@
             // Set up tab switching
             setupTabs();
             
-            // Set up form interactions
-            setupFormInteractions();
-            
             // Setup real-time Firestore listeners
             await setupFirestoreListeners();
             
-            // Update dashboard counts
+            // Update overview and dashboard
+            updateOverview();
             updateDashboard();
             
-            // Only setup sample data if database is empty
-            if (vessels.length === 0) {
-                await setupSampleData();
-            }
+            // Show Overview tab by default
+            switchToTab('overview');
         }
         
         // Initialize Firebase
@@ -1469,6 +1529,7 @@
                 const localVessels = JSON.parse(localStorage.getItem('gcVessels')) || [];
                 vessels = localVessels;
                 loadVesselsUI();
+                updateOverview();
                 updateDashboard();
                 updateFirebaseStatus('offline');
                 return false;
@@ -1487,8 +1548,13 @@
                     console.log(`Real-time update: ${vessels.length} vessels loaded`);
                     updateFirebaseStatus('connected');
                     
+                    // Update last update time
+                    lastUpdateTime = new Date();
+                    updateLastUpdateDisplay();
+                    
                     // Update UI with new data
                     loadVesselsUI();
+                    updateOverview();
                     updateDashboard();
                     
                     // Show notification if not from current user's action
@@ -1504,6 +1570,7 @@
                     const localVessels = JSON.parse(localStorage.getItem('gcVessels')) || [];
                     vessels = localVessels;
                     loadVesselsUI();
+                    updateOverview();
                     updateDashboard();
                     showToast('Loaded from local storage (offline mode)', 'warning');
                 });
@@ -1517,10 +1584,21 @@
                 const localVessels = JSON.parse(localStorage.getItem('gcVessels')) || [];
                 vessels = localVessels;
                 loadVesselsUI();
+                updateOverview();
                 updateDashboard();
                 showToast('Loaded from local storage (offline mode)', 'warning');
                 return false;
             }
+        }
+        
+        // Update last update display
+        function updateLastUpdateDisplay() {
+            const lastUpdateElement = document.getElementById('lastUpdate');
+            if (!lastUpdateElement) return;
+            
+            const formattedDate = formatDate(lastUpdateTime);
+            const formattedTime = formatTime(lastUpdateTime);
+            lastUpdateElement.innerHTML = `<i class="fas fa-sync-alt"></i> <span>Last Update: ${formattedDate} ${formattedTime}</span>`;
         }
         
         // Update Firebase connection status display
@@ -1787,7 +1865,7 @@
             return `${dateFormatted} ${timeFormatted} (${shift}) ${day}`;
         }
         
-        // Setup tab switching
+        // Setup tab switching with password protection for Add Vessel tab
         function setupTabs() {
             const tabs = document.querySelectorAll('.tab');
             const tabContents = document.querySelectorAll('.tab-content');
@@ -1796,17 +1874,41 @@
                 tab.addEventListener('click', function() {
                     const tabId = this.getAttribute('data-tab');
                     
-                    tabs.forEach(t => t.classList.remove('active'));
-                    tabContents.forEach(c => c.classList.remove('active'));
-                    
-                    this.classList.add('active');
-                    document.getElementById(tabId).classList.add('active');
-                    
-                    if (tabId === 'dashboard') {
-                        updateDashboard();
+                    // Check if trying to access Add Vessel tab
+                    if (tabId === 'addVessel') {
+                        const password = prompt('Enter password to access Add Vessel:');
+                        if (password !== 'GC123') {
+                            showToast('Incorrect password', 'error');
+                            return;
+                        }
                     }
+                    
+                    switchToTab(tabId);
                 });
             });
+        }
+        
+        // Switch to a specific tab
+        function switchToTab(tabId) {
+            const tabs = document.querySelectorAll('.tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabs.forEach(t => t.classList.remove('active'));
+            tabContents.forEach(c => c.classList.remove('active'));
+            
+            document.querySelector(`[data-tab="${tabId}"]`).classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+            
+            if (tabId === 'dashboard') {
+                updateDashboard();
+            } else if (tabId === 'overview') {
+                updateOverview();
+            } else if (tabId === 'addVessel') {
+                // Set up form interactions for Add Vessel tab
+                setTimeout(() => {
+                    setupFormInteractions();
+                }, 100);
+            }
         }
         
         // Setup form interactions
@@ -2120,7 +2222,10 @@
                 showToast(`Vessel ${vesselName} added (offline mode)`, 'warning');
             }
             
-            // Note: UI will update automatically via real-time listener
+            // Switch to Dashboard tab after adding
+            setTimeout(() => {
+                switchToTab('dashboard');
+            }, 1000);
         }
         
         // Get quantity data from form
@@ -3021,16 +3126,10 @@
             }
         }
         
-        // Edit vessel
+        // Edit vessel - REMOVED PASSWORD REQUIREMENT
         function editVessel(vesselId) {
             const vessel = vessels.find(v => v.id === vesselId);
             if (!vessel) return;
-            
-            const password = prompt('Enter password to edit vessel:');
-            if (password !== 'GC123') {
-                showToast('Incorrect password', 'error');
-                return;
-            }
             
             createEditModal(vessel);
         }
@@ -3822,8 +3921,8 @@
             }
         }
         
-        // Update dashboard
-        function updateDashboard() {
+        // Update overview tab
+        function updateOverview() {
             const sailedVessels = vessels.filter(v => v.status === 'SAILED');
             const workingVessels = vessels.filter(v => v.status === 'WORKING');
             const inboundVessels = vessels.filter(v => v.status === 'INBOUND');
@@ -3832,22 +3931,20 @@
             const workingCount = workingVessels.length;
             const inboundCount = inboundVessels.length;
             
-            document.getElementById('sidebarSailedCount').textContent = sailedCount;
-            document.getElementById('sidebarWorkingCount').textContent = workingCount;
-            document.getElementById('sidebarInboundCount').textContent = inboundCount;
-            document.getElementById('sidebarTotalCount').textContent = vessels.length;
+            document.getElementById('overviewSailedCount').textContent = sailedCount;
+            document.getElementById('overviewWorkingCount').textContent = workingCount;
+            document.getElementById('overviewInboundCount').textContent = inboundCount;
+            document.getElementById('overviewTotalCount').textContent = vessels.length;
             
-            updateCommodityBreakdown(inboundVessels);
-            updateSailedTable();
-            updateWorkingTable();
-            updateInboundTable();
-            updateRoroUnits();
+            updateOverviewCommodityBreakdown(inboundVessels);
+            updateOverviewRoroUnits();
+            updateQuickStatistics();
         }
         
-        // Update commodity breakdown for inbound vessels
-        function updateCommodityBreakdown(inboundVessels) {
-            const commodityBreakdown = document.getElementById('commodityBreakdown');
-            const commoditySummary = document.getElementById('commoditySummary');
+        // Update overview commodity breakdown
+        function updateOverviewCommodityBreakdown(inboundVessels) {
+            const commodityBreakdown = document.getElementById('overviewCommodityBreakdown');
+            const commoditySummary = document.getElementById('overviewCommoditySummary');
             
             if (inboundVessels.length === 0) {
                 commoditySummary.style.display = 'none';
@@ -3890,6 +3987,184 @@
             });
             
             commodityBreakdown.innerHTML = html;
+        }
+        
+        // Update overview RORO units
+        function updateOverviewRoroUnits() {
+            const roroContainer = document.getElementById('overviewRoroVesselsList');
+            const totalUnitsElement = document.getElementById('overviewTotalRoroUnits');
+            
+            const vesselsInLog = vessels.filter(v => v.status !== 'CLOSED');
+            
+            const sailedRoroVessels = vesselsInLog.filter(v => {
+                if (v.status !== 'SAILED') return false;
+                if (v.vesselType !== 'RORO') return false;
+                if (!['UNITS', 'UNITS AND PACKAGES'].includes(v.commodity)) return false;
+                if (!['DISCHARGE', 'DISCHARGE/LOAD'].includes(v.purpose)) return false;
+                if (!v.quantity || !v.quantity.import || v.quantity.import.units === undefined) return false;
+                return true;
+            });
+            
+            const workingRoroVessels = vesselsInLog.filter(v => {
+                if (v.status !== 'WORKING') return false;
+                if (v.vesselType !== 'RORO') return false;
+                if (!['UNITS', 'UNITS AND PACKAGES'].includes(v.commodity)) return false;
+                if (!['DISCHARGE', 'DISCHARGE/LOAD'].includes(v.purpose)) return false;
+                if (!v.quantity || !v.quantity.import || v.quantity.import.units === undefined) return false;
+                return true;
+            });
+            
+            const inboundRoroVessels = vesselsInLog.filter(v => {
+                if (v.status !== 'INBOUND') return false;
+                if (v.vesselType !== 'RORO') return false;
+                if (!['UNITS', 'UNITS AND PACKAGES'].includes(v.commodity)) return false;
+                if (!['DISCHARGE', 'DISCHARGE/LOAD'].includes(v.purpose)) return false;
+                if (!v.quantity || !v.quantity.import || v.quantity.import.units === undefined) return false;
+                return true;
+            });
+            
+            if (sailedRoroVessels.length === 0 && workingRoroVessels.length === 0 && inboundRoroVessels.length === 0) {
+                roroContainer.innerHTML = `
+                    <div style="text-align: center; padding: 15px; color: var(--text-light);">
+                        <i class="fas fa-truck-loading" style="font-size: 25px; margin-bottom: 8px; opacity: 0.3;"></i>
+                        <p style="font-size: 13px;">No RORO vessels with units</p>
+                    </div>
+                `;
+                totalUnitsElement.textContent = '0';
+                return;
+            }
+            
+            let totalUnitsAtQuayside = 0;
+            let totalUnitsWorking = 0;
+            let totalIncomingUnits = 0;
+            
+            roroContainer.innerHTML = '';
+            
+            sailedRoroVessels.sort((a, b) => new Date(a.atd) - new Date(b.atd));
+            
+            if (sailedRoroVessels.length > 0) {
+                sailedRoroVessels.forEach(vessel => {
+                    let units = vessel.quantity.import.units || 0;
+                    let shifted = vessel.shifted || 0;
+                    let atQuayside = units - shifted;
+                    
+                    if (atQuayside > 0) {
+                        totalUnitsAtQuayside += atQuayside;
+                        
+                        const vesselItem = document.createElement('div');
+                        vesselItem.className = 'roro-vessel-item roro-sailed';
+                        vesselItem.innerHTML = `
+                            <div>
+                                <div style="font-weight: 600; font-size: 12px;">${vessel.vesselName}</div>
+                                <div style="font-size: 11px; color: var(--text-light);">SAILED - ATD: ${formatDateTimeWithDayShift(new Date(vessel.atd))}</div>
+                            </div>
+                            <div style="font-weight: 700; color: var(--primary-blue); font-size: 12px;">
+                                ${formatNumber(atQuayside)} units
+                            </div>
+                        `;
+                        roroContainer.appendChild(vesselItem);
+                    }
+                });
+            }
+            
+            workingRoroVessels.sort((a, b) => new Date(a.ata) - new Date(b.ata));
+            
+            if (workingRoroVessels.length > 0) {
+                workingRoroVessels.forEach(vessel => {
+                    let units = vessel.quantity.import.units || 0;
+                    let shifted = vessel.shifted || 0;
+                    let remaining = units - shifted;
+                    
+                    totalUnitsWorking += remaining;
+                    
+                    const vesselItem = document.createElement('div');
+                    vesselItem.className = 'roro-vessel-item roro-incoming';
+                    vesselItem.innerHTML = `
+                        <div>
+                            <div style="font-weight: 600; font-size: 12px;">${vessel.vesselName}</div>
+                            <div style="font-size: 11px; color: var(--text-light);">WORKING - ATA: ${formatDateTimeWithDayShift(new Date(vessel.ata))}</div>
+                        </div>
+                        <div style="font-weight: 700; color: var(--primary-blue); font-size: 12px;">
+                            ${formatNumber(remaining)} units
+                        </div>
+                    `;
+                    roroContainer.appendChild(vesselItem);
+                });
+            }
+            
+            inboundRoroVessels.sort((a, b) => new Date(a.eta) - new Date(b.eta));
+            
+            if (inboundRoroVessels.length > 0) {
+                inboundRoroVessels.forEach(vessel => {
+                    let units = vessel.quantity.import.units || 0;
+                    let shifted = vessel.shifted || 0;
+                    let remaining = units - shifted;
+                    
+                    totalIncomingUnits += remaining;
+                    
+                    const vesselItem = document.createElement('div');
+                    vesselItem.className = 'roro-vessel-item roro-incoming';
+                    vesselItem.innerHTML = `
+                        <div>
+                            <div style="font-weight: 600; font-size: 12px;">${vessel.vesselName}</div>
+                            <div style="font-size: 11px; color: var(--text-light);">INBOUND - ETA: ${formatDateTimeWithDayShift(new Date(vessel.eta))}</div>
+                        </div>
+                        <div style="font-weight: 700; color: var(--primary-blue); font-size: 12px;">
+                            ${formatNumber(remaining)} units
+                        </div>
+                    `;
+                    roroContainer.appendChild(vesselItem);
+                });
+            }
+            
+            const totalUnits = totalUnitsAtQuayside + totalUnitsWorking + totalIncomingUnits;
+            totalUnitsElement.textContent = formatNumber(totalUnits);
+        }
+        
+        // Update quick statistics
+        function updateQuickStatistics() {
+            // Today's vessels
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            const tomorrow = new Date(today);
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            
+            const todayVessels = vessels.filter(v => {
+                const eta = new Date(v.eta);
+                return eta >= today && eta < tomorrow;
+            });
+            
+            // Vessels with alerts
+            const alertVessels = vessels.filter(v => checkVesselNotifications(v) > 0);
+            
+            // Overdue vessels
+            const overdueVessels = vessels.filter(v => {
+                if (v.status === 'INBOUND' && v.eta) {
+                    const etaDate = new Date(v.eta);
+                    return etaDate < new Date();
+                } else if (v.status === 'WORKING' && v.etd) {
+                    const etdDate = new Date(v.etd);
+                    return etdDate < new Date();
+                }
+                return false;
+            });
+            
+            // Pending TDR
+            const pendingTDR = vessels.filter(v => 
+                v.status === 'SAILED' && (!v.checks.tdrAgent || !v.checks.tdrFinance)
+            );
+            
+            document.getElementById('todayVesselsCount').textContent = todayVessels.length;
+            document.getElementById('alertVesselsCount').textContent = alertVessels.length;
+            document.getElementById('overdueVesselsCount').textContent = overdueVessels.length;
+            document.getElementById('pendingTDRCount').textContent = pendingTDR.length;
+        }
+        
+        // Update dashboard tab
+        function updateDashboard() {
+            updateSailedTable();
+            updateWorkingTable();
+            updateInboundTable();
         }
         
         // Update sailed vessels table
@@ -4211,138 +4486,6 @@
             return parts.length > 0 ? `<strong>${prefix}:</strong> ${parts.join(', ')}` : '';
         }
         
-        // Update RORO units
-        function updateRoroUnits() {
-            const roroContainer = document.getElementById('roroVesselsList');
-            const totalUnitsElement = document.getElementById('totalRoroUnits');
-            
-            const vesselsInLog = vessels.filter(v => v.status !== 'CLOSED');
-            
-            const sailedRoroVessels = vesselsInLog.filter(v => {
-                if (v.status !== 'SAILED') return false;
-                if (v.vesselType !== 'RORO') return false;
-                if (!['UNITS', 'UNITS AND PACKAGES'].includes(v.commodity)) return false;
-                if (!['DISCHARGE', 'DISCHARGE/LOAD'].includes(v.purpose)) return false;
-                if (!v.quantity || !v.quantity.import || v.quantity.import.units === undefined) return false;
-                return true;
-            });
-            
-            const workingRoroVessels = vesselsInLog.filter(v => {
-                if (v.status !== 'WORKING') return false;
-                if (v.vesselType !== 'RORO') return false;
-                if (!['UNITS', 'UNITS AND PACKAGES'].includes(v.commodity)) return false;
-                if (!['DISCHARGE', 'DISCHARGE/LOAD'].includes(v.purpose)) return false;
-                if (!v.quantity || !v.quantity.import || v.quantity.import.units === undefined) return false;
-                return true;
-            });
-            
-            const inboundRoroVessels = vesselsInLog.filter(v => {
-                if (v.status !== 'INBOUND') return false;
-                if (v.vesselType !== 'RORO') return false;
-                if (!['UNITS', 'UNITS AND PACKAGES'].includes(v.commodity)) return false;
-                if (!['DISCHARGE', 'DISCHARGE/LOAD'].includes(v.purpose)) return false;
-                if (!v.quantity || !v.quantity.import || v.quantity.import.units === undefined) return false;
-                return true;
-            });
-            
-            if (sailedRoroVessels.length === 0 && workingRoroVessels.length === 0 && inboundRoroVessels.length === 0) {
-                roroContainer.innerHTML = `
-                    <div style="text-align: center; padding: 15px; color: var(--text-light);">
-                        <i class="fas fa-truck-loading" style="font-size: 25px; margin-bottom: 8px; opacity: 0.3;"></i>
-                        <p style="font-size: 13px;">No RORO vessels with units</p>
-                    </div>
-                `;
-                totalUnitsElement.textContent = '0';
-                return;
-            }
-            
-            let totalUnitsAtQuayside = 0;
-            let totalUnitsWorking = 0;
-            let totalIncomingUnits = 0;
-            
-            roroContainer.innerHTML = '';
-            
-            sailedRoroVessels.sort((a, b) => new Date(a.atd) - new Date(b.atd));
-            
-            if (sailedRoroVessels.length > 0) {
-                sailedRoroVessels.forEach(vessel => {
-                    let units = vessel.quantity.import.units || 0;
-                    let shifted = vessel.shifted || 0;
-                    let atQuayside = units - shifted;
-                    
-                    if (atQuayside > 0) {
-                        totalUnitsAtQuayside += atQuayside;
-                        
-                        const vesselItem = document.createElement('div');
-                        vesselItem.className = 'roro-vessel-item roro-sailed';
-                        vesselItem.innerHTML = `
-                            <div>
-                                <div style="font-weight: 600; font-size: 12px;">${vessel.vesselName}</div>
-                                <div style="font-size: 11px; color: var(--text-light);">SAILED - ATD: ${formatDateTimeWithDayShift(new Date(vessel.atd))}</div>
-                            </div>
-                            <div style="font-weight: 700; color: var(--primary-blue); font-size: 12px;">
-                                ${formatNumber(atQuayside)} units
-                            </div>
-                        `;
-                        roroContainer.appendChild(vesselItem);
-                    }
-                });
-            }
-            
-            workingRoroVessels.sort((a, b) => new Date(a.ata) - new Date(b.ata));
-            
-            if (workingRoroVessels.length > 0) {
-                workingRoroVessels.forEach(vessel => {
-                    let units = vessel.quantity.import.units || 0;
-                    let shifted = vessel.shifted || 0;
-                    let remaining = units - shifted;
-                    
-                    totalUnitsWorking += remaining;
-                    
-                    const vesselItem = document.createElement('div');
-                    vesselItem.className = 'roro-vessel-item roro-incoming';
-                    vesselItem.innerHTML = `
-                        <div>
-                            <div style="font-weight: 600; font-size: 12px;">${vessel.vesselName}</div>
-                            <div style="font-size: 11px; color: var(--text-light);">WORKING - ATA: ${formatDateTimeWithDayShift(new Date(vessel.ata))}</div>
-                        </div>
-                        <div style="font-weight: 700; color: var(--primary-blue); font-size: 12px;">
-                            ${formatNumber(remaining)} units
-                        </div>
-                    `;
-                    roroContainer.appendChild(vesselItem);
-                });
-            }
-            
-            inboundRoroVessels.sort((a, b) => new Date(a.eta) - new Date(b.eta));
-            
-            if (inboundRoroVessels.length > 0) {
-                inboundRoroVessels.forEach(vessel => {
-                    let units = vessel.quantity.import.units || 0;
-                    let shifted = vessel.shifted || 0;
-                    let remaining = units - shifted;
-                    
-                    totalIncomingUnits += remaining;
-                    
-                    const vesselItem = document.createElement('div');
-                    vesselItem.className = 'roro-vessel-item roro-incoming';
-                    vesselItem.innerHTML = `
-                        <div>
-                            <div style="font-weight: 600; font-size: 12px;">${vessel.vesselName}</div>
-                            <div style="font-size: 11px; color: var(--text-light);">INBOUND - ETA: ${formatDateTimeWithDayShift(new Date(vessel.eta))}</div>
-                        </div>
-                        <div style="font-weight: 700; color: var(--primary-blue); font-size: 12px;">
-                            ${formatNumber(remaining)} units
-                        </div>
-                    `;
-                    roroContainer.appendChild(vesselItem);
-                });
-            }
-            
-            const totalUnits = totalUnitsAtQuayside + totalUnitsWorking + totalIncomingUnits;
-            totalUnitsElement.textContent = formatNumber(totalUnits);
-        }
-        
         // Show toast notification
         function showToast(message, type = 'info') {
             const toastContainer = document.getElementById('toastContainer');
@@ -4430,208 +4573,6 @@
                 vessels = vessels.filter(v => v.id !== vesselId);
                 localStorage.setItem('gcVessels', JSON.stringify(vessels));
                 return false;
-            }
-        }
-        
-        // Setup sample data for demonstration
-        async function setupSampleData() {
-            if (vessels.length > 0) return;
-            
-            const sampleVessels = [
-                {
-                    id: '1',
-                    vesselName: 'NOOR E NUBAWAT',
-                    voyage: '26-01',
-                    agent: 'Middle East Shipping',
-                    eta: '2026-01-09T08:00',
-                    vesselType: 'DHOW',
-                    commodity: 'LIVESTOCK',
-                    purpose: 'DISCHARGE',
-                    etd: '2026-01-10T12:00',
-                    quantity: {
-                        import: { heads: 500 }
-                    },
-                    status: 'INBOUND',
-                    remarks: 'Waiting for veterinary clearance',
-                    checks: { preArrival: true, manifest: false, printFile: false, tdrAgent: false, tdrFinance: false },
-                    createdAt: '2026-01-05T14:00',
-                    updatedAt: '2026-01-05T14:00'
-                },
-                {
-                    id: '2',
-                    vesselName: 'CELESTYAL JOURNEY',
-                    voyage: '26-02',
-                    agent: 'Cruise Lines Inc.',
-                    eta: '2026-01-09T10:00',
-                    vesselType: 'CRUISE',
-                    commodity: 'PASSENGERS',
-                    purpose: 'N/A',
-                    etd: '2026-01-09T18:00',
-                    quantity: {},
-                    status: 'INBOUND',
-                    remarks: 'Tourist cruise with 800 passengers',
-                    checks: { preArrival: true, manifest: true, printFile: false, tdrAgent: false, tdrFinance: false },
-                    createdAt: '2026-01-06T09:15',
-                    updatedAt: '2026-01-06T09:15'
-                },
-                {
-                    id: '3',
-                    vesselName: 'POLARIS HIGHWAY',
-                    voyage: '90A',
-                    agent: 'Auto Carriers Ltd.',
-                    eta: '2026-01-10T08:00',
-                    vesselType: 'RORO',
-                    commodity: 'UNITS',
-                    purpose: 'DISCHARGE',
-                    etd: '2026-01-11T16:00',
-                    quantity: {
-                        import: { units: 323 }
-                    },
-                    status: 'INBOUND',
-                    remarks: 'Delayed due to weather',
-                    checks: { preArrival: true, manifest: false, printFile: true, tdrAgent: false, tdrFinance: false },
-                    createdAt: '2026-01-07T11:30',
-                    updatedAt: '2026-01-07T11:30'
-                },
-                {
-                    id: '4',
-                    vesselName: 'WCS JOYCE',
-                    voyage: '2601',
-                    agent: 'West Coast Shipping',
-                    eta: '2026-01-10T06:00',
-                    vesselType: 'GENERAL CARGO',
-                    commodity: 'PACKAGES',
-                    purpose: 'LOAD',
-                    etd: '2026-01-12T14:00',
-                    quantity: {
-                        export: { packages: 3, weight: 100.250, volume: 95.750, freightTon: 100.250 }
-                    },
-                    status: 'INBOUND',
-                    remarks: 'Heavy machinery loading',
-                    checks: { preArrival: true, manifest: true, printFile: false, tdrAgent: false, tdrFinance: false },
-                    createdAt: '2026-01-08T08:20',
-                    updatedAt: '2026-01-08T08:20'
-                },
-                {
-                    id: '5',
-                    vesselName: 'MSC EURIBIA',
-                    voyage: 'ER11-2',
-                    agent: 'Mediterranean Shipping',
-                    eta: '2026-01-10T08:00',
-                    vesselType: 'CRUISE',
-                    commodity: 'PASSENGERS',
-                    purpose: 'N/A',
-                    etd: '2026-01-10T20:00',
-                    quantity: {},
-                    status: 'INBOUND',
-                    remarks: 'Luxury cruise ship',
-                    checks: { preArrival: true, manifest: true, printFile: false, tdrAgent: false, tdrFinance: false },
-                    createdAt: '2026-01-09T10:45',
-                    updatedAt: '2026-01-09T10:45'
-                },
-                {
-                    id: '6',
-                    vesselName: 'CASTOR LEADER',
-                    voyage: '86',
-                    agent: 'European Carriers',
-                    eta: '2026-01-10T08:00',
-                    vesselType: 'RORO',
-                    commodity: 'UNITS',
-                    purpose: 'DISCHARGE',
-                    etd: '2026-01-12T22:00',
-                    quantity: {
-                        import: { units: 766 }
-                    },
-                    status: 'INBOUND',
-                    remarks: 'Car carrier with 766 vehicles',
-                    checks: { preArrival: true, manifest: false, printFile: false, tdrAgent: false, tdrFinance: false },
-                    createdAt: '2026-01-09T14:20',
-                    updatedAt: '2026-01-09T14:20'
-                },
-                {
-                    id: '7',
-                    vesselName: 'OCEAN FREEDOM',
-                    voyage: 'V-265E',
-                    agent: 'ABC Shipping Co.',
-                    eta: '2026-01-16T08:00',
-                    vesselType: 'RORO',
-                    commodity: 'UNITS AND PACKAGES',
-                    purpose: 'DISCHARGE/LOAD',
-                    etd: '2026-01-17T18:00',
-                    quantity: {
-                        import: { units: 450, mafi: 3, packages: 15, weight: 120.500, volume: 150.250, freightTon: 150.250 },
-                        export: { units: 220, mafi: 2, packages: 8, weight: 80.125, volume: 95.750, freightTon: 95.750 }
-                    },
-                    status: 'WORKING',
-                    remarks: 'Simultaneous discharge and loading operations',
-                    checks: { preArrival: true, manifest: true, printFile: true, tdrAgent: false, tdrFinance: false },
-                    ata: '2026-01-15T09:30',
-                    berth: 'B4',
-                    shifted: 150,
-                    completed: {
-                        import: { units: 250, mafi: 2, packages: 10, weight: 70.250, volume: 85.500, freightTon: 85.500 },
-                        export: { units: 80, mafi: 1, packages: 3, weight: 30.125, volume: 35.250, freightTon: 35.250 }
-                    },
-                    balance: {
-                        import: { units: 200, mafi: 1, packages: 5, weight: 50.250, volume: 64.750, freightTon: 64.750 },
-                        export: { units: 140, mafi: 1, packages: 5, weight: 50, volume: 60.5, freightTon: 60.5 }
-                    },
-                    createdAt: '2026-01-10T14:00',
-                    updatedAt: '2026-01-15T09:30'
-                },
-                {
-                    id: '8',
-                    vesselName: 'SULPHUR CARRIER',
-                    voyage: 'V-777S',
-                    agent: 'Minerals Co.',
-                    eta: '2026-01-14T12:00',
-                    vesselType: 'TANKER',
-                    commodity: 'SULPHUR',
-                    purpose: 'LOAD',
-                    etd: '2026-01-17T20:00',
-                    quantity: {
-                        export: { weight: 12000.750 }
-                    },
-                    status: 'WORKING',
-                    remarks: 'Loading sulphur at 500 MT/hour',
-                    checks: { preArrival: true, manifest: true, printFile: true, tdrAgent: false, tdrFinance: false },
-                    ata: '2026-01-13T10:00',
-                    berth: 'A3',
-                    completed: {
-                        export: { weight: 2600.250 }
-                    },
-                    balance: {
-                        export: { weight: 9400.500 }
-                    },
-                    createdAt: '2026-01-05T14:30',
-                    updatedAt: '2026-01-14T10:00'
-                }
-            ];
-            
-            // Save all sample vessels to Firestore
-            if (firebaseInitialized) {
-                try {
-                    const batch = db.batch();
-                    const vesselsRef = db.collection('vessels');
-                    
-                    sampleVessels.forEach(vessel => {
-                        const docRef = vesselsRef.doc(vessel.id);
-                        batch.set(docRef, vessel);
-                    });
-                    
-                    await batch.commit();
-                    console.log("Sample data saved to Firestore");
-                    showToast('Sample data loaded for demonstration', 'info');
-                } catch (error) {
-                    console.error("Error saving sample data to Firestore:", error);
-                    // Save to localStorage as fallback
-                    localStorage.setItem('gcVessels', JSON.stringify(sampleVessels));
-                    showToast('Sample data loaded (offline mode)', 'warning');
-                }
-            } else {
-                // Save to localStorage as fallback
-                localStorage.setItem('gcVessels', JSON.stringify(sampleVessels));
-                showToast('Sample data loaded (offline mode)', 'warning');
             }
         }
     </script>
