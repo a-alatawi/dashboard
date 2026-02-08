@@ -49,6 +49,17 @@
             padding: 0 15px;
         }
         
+        /* Freeze tabs */
+        .tabs-container {
+            margin: 20px 0 20px;
+            width: 100%;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: #000;
+            padding: 10px 0;
+        }
+        
         /* Header Styles */
         header {
             background: linear-gradient(135deg, #001f3f 0%, #003366 100%);
@@ -174,20 +185,7 @@
             color: var(--accent-green);
         }
         
-        /* Tabs Navigation - Freeze only in Add Vessel tab */
-        .tabs-container {
-            margin: 20px 0 20px;
-            width: 100%;
-        }
-        
-        #addVessel.active ~ .tabs-container {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: #000;
-            padding: 10px 0;
-        }
-        
+        /* Tabs Navigation */
         .tabs {
             display: flex;
             border-bottom: 2px solid var(--border-color);
@@ -713,64 +711,6 @@
             background-color: var(--light-gray);
         }
         
-        /* NEW: Progress bar for working vessel table cells */
-        .progress-cell-container {
-            position: relative;
-            min-height: 40px;
-        }
-        
-        .progress-cell-content {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-            min-height: 40px;
-        }
-        
-        .progress-cell-quantity {
-            font-weight: 600;
-            color: var(--primary-blue);
-            font-size: 13px;
-        }
-        
-        .progress-cell-bar-container {
-            height: 8px;
-            background-color: #333;
-            border-radius: 4px;
-            overflow: hidden;
-            margin: 2px 0;
-        }
-        
-        .progress-cell-bar {
-            height: 100%;
-            display: flex;
-        }
-        
-        .progress-cell-completed {
-            background-color: var(--accent-green);
-            height: 100%;
-        }
-        
-        .progress-cell-balance {
-            background-color: var(--accent-red);
-            height: 100%;
-        }
-        
-        .progress-cell-percentage {
-            font-size: 10px;
-            font-weight: bold;
-            color: white;
-            text-align: center;
-            margin-top: 2px;
-        }
-        
-        /* Progress bar container for merged cells */
-        .progress-merged-cells-container {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            padding: 8px 0;
-        }
-        
         /* TEXT BLINKING ANIMATION FOR OVERDUE VESSELS */
         @keyframes textBlink {
             0% { color: inherit; }
@@ -898,7 +838,7 @@
             background: #111;
             border-radius: 10px;
             width: 90%;
-            max-width: 900px;
+            max-width: 800px;
             max-height: 90vh;
             overflow-y: auto;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
@@ -930,212 +870,6 @@
         
         .modal-body {
             padding: 20px;
-        }
-        
-        /* Operations Timeline Grid */
-        .operations-timeline-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 2px solid var(--border-color);
-        }
-        
-        /* Shifts Breakdown */
-        .shifts-breakdown {
-            margin-top: 15px;
-            padding: 15px;
-            background: #1a1a1a;
-            border-radius: 6px;
-            border-left: 4px solid var(--primary-blue);
-        }
-        
-        .shifts-breakdown-title {
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: var(--primary-blue);
-        }
-        
-        .shift-item {
-            padding: 8px 0;
-            border-bottom: 1px solid var(--border-color);
-        }
-        
-        .shift-item:last-child {
-            border-bottom: none;
-        }
-        
-        /* Enhanced Shift Progress Section */
-        .shift-progress-section {
-            margin: 15px 0;
-            padding: 15px;
-            background: #1a1a1a;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-        }
-        
-        .shift-progress-title {
-            font-weight: 600;
-            margin-bottom: 15px;
-            color: var(--primary-blue);
-            font-size: 16px;
-        }
-        
-        /* UPDATED: Enhanced shift entry with fields on same line */
-        .shift-entry-enhanced {
-            margin-bottom: 12px;
-            padding: 12px;
-            background: #222;
-            border-radius: 6px;
-            border-left: 4px solid var(--secondary-blue);
-        }
-        
-        .shift-header-enhanced {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-            padding-bottom: 8px;
-            border-bottom: 1px solid var(--border-color);
-            flex-wrap: wrap;
-        }
-        
-        .shift-info-enhanced {
-            font-weight: 600;
-            color: var(--primary-blue);
-            font-size: 14px;
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-        
-        .shift-info-row {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-        
-        .shift-date {
-            color: var(--text-dark);
-            font-weight: 500;
-        }
-        
-        .shift-time-slot {
-            color: var(--accent-green);
-            font-weight: 500;
-        }
-        
-        .shift-name {
-            color: var(--accent-yellow);
-            font-weight: 500;
-        }
-        
-        /* UPDATED: Shift fields container - horizontal layout */
-        .shift-fields-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            align-items: center;
-            margin-bottom: 8px;
-        }
-        
-        .shift-field-group {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            background: #333;
-            padding: 4px 8px;
-            border-radius: 4px;
-            min-width: 120px;
-        }
-        
-        .shift-field-label {
-            font-size: 11px;
-            color: var(--text-light);
-            white-space: nowrap;
-        }
-        
-        .shift-field-input {
-            width: 70px;
-            padding: 4px 6px;
-            font-size: 12px;
-            background-color: #222;
-            border: 1px solid var(--border-color);
-            border-radius: 3px;
-            color: var(--text-dark);
-        }
-        
-        /* Shifted to Yard section in shift progress */
-        .shift-shifted-container {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: #1a472a;
-            padding: 8px;
-            border-radius: 4px;
-            margin-top: 8px;
-        }
-        
-        .shift-shifted-label {
-            font-size: 12px;
-            color: var(--accent-green);
-            font-weight: 600;
-        }
-        
-        .shift-shifted-input {
-            width: 80px;
-            padding: 4px 6px;
-            font-size: 12px;
-            background-color: #222;
-            border: 1px solid var(--accent-green);
-            border-radius: 3px;
-            color: var(--text-dark);
-        }
-        
-        /* NEW: Working details modal totals section */
-        .working-details-totals {
-            margin-top: 20px;
-            padding: 15px;
-            background: #1a1a1a;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-        }
-        
-        .working-details-total-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px solid var(--border-color);
-        }
-        
-        .working-details-total-row:last-child {
-            border-bottom: none;
-        }
-        
-        .working-details-total-label {
-            font-weight: 600;
-            color: var(--text-dark);
-            font-size: 14px;
-        }
-        
-        .working-details-total-value {
-            font-weight: 700;
-            font-size: 14px;
-        }
-        
-        .working-details-total-quantity {
-            color: var(--primary-blue);
-        }
-        
-        .working-details-total-completed {
-            color: var(--accent-green);
-        }
-        
-        .working-details-total-balance {
-            color: var(--accent-red);
         }
         
         /* Toast Notification */
@@ -1254,10 +988,6 @@
             .vessel-details {
                 grid-template-columns: repeat(3, 1fr);
             }
-            
-            .operations-timeline-grid {
-                grid-template-columns: 1fr;
-            }
         }
         
         @media (max-width: 992px) {
@@ -1273,16 +1003,6 @@
             
             .shift-box {
                 min-width: 200px;
-            }
-            
-            .shift-fields-container {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .shift-field-group {
-                width: 100%;
-                justify-content: space-between;
             }
         }
         
@@ -1317,10 +1037,6 @@
             }
             
             .vessel-details {
-                grid-template-columns: 1fr;
-            }
-            
-            .operations-timeline-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -2157,90 +1873,6 @@
             return `${dateFormatted} ${timeFormatted} (${shift}) ${day}`;
         }
         
-        // Calculate shifts breakdown for operations
-        function calculateShiftsBreakdown(startTime, endTime) {
-            if (!startTime) return null;
-            
-            const start = new Date(startTime);
-            // Use current time if endTime is not provided, but don't fill the input field
-            const end = endTime ? new Date(endTime) : new Date();
-            const shifts = [];
-            
-            let current = new Date(start);
-            
-            while (current < end) {
-                const shiftInfo = getShiftForTime(current);
-                const shiftStart = new Date(current);
-                
-                // Determine shift end time
-                let shiftEnd;
-                if (shiftInfo.slot === 'morning') {
-                    shiftEnd = new Date(current);
-                    shiftEnd.setHours(14, 0, 0, 0);
-                } else if (shiftInfo.slot === 'evening') {
-                    shiftEnd = new Date(current);
-                    shiftEnd.setHours(22, 0, 0, 0);
-                } else { // night
-                    shiftEnd = new Date(current);
-                    if (current.getHours() < 6) {
-                        shiftEnd.setHours(6, 0, 0, 0);
-                    } else {
-                        shiftEnd.setDate(shiftEnd.getDate() + 1);
-                        shiftEnd.setHours(6, 0, 0, 0);
-                    }
-                }
-                
-                // If shift end is beyond operation end, use operation end
-                if (shiftEnd > end) {
-                    shiftEnd = new Date(end);
-                }
-                
-                shifts.push({
-                    start: new Date(shiftStart),
-                    end: new Date(shiftEnd),
-                    slot: shiftInfo.slot,
-                    shift: shiftInfo.shift,
-                    shiftLabel: `${formatDate(shiftStart)} ${shiftInfo.slot.toUpperCase()} (${shiftInfo.shift})`
-                });
-                
-                // Move to next shift
-                current = new Date(shiftEnd);
-                
-                // Prevent infinite loop
-                if (shifts.length > 50) break;
-            }
-            
-            return shifts;
-        }
-        
-        // Format shifts breakdown for display
-        function formatShiftsBreakdown(shifts) {
-            if (!shifts || shifts.length === 0) return '';
-            
-            let html = '<div class="shifts-breakdown">';
-            html += '<div class="shifts-breakdown-title">Shifts Breakdown:</div>';
-            
-            shifts.forEach((shift, index) => {
-                const startTime = formatTime(shift.start);
-                const endTime = formatTime(shift.end);
-                const startDate = formatDate(shift.start);
-                const endDate = formatDate(shift.end);
-                
-                html += `<div class="shift-item">`;
-                if (startDate === endDate) {
-                    html += `${startDate} ${startTime} - ${endTime} ${shift.slot.toUpperCase()} (${shift.shift})`;
-                } else {
-                    html += `${startDate} ${startTime} - ${endDate} ${endTime} ${shift.slot.toUpperCase()} (${shift.shift})`;
-                }
-                html += `</div>`;
-            });
-            
-            html += `<div style="margin-top: 10px; font-weight: 600; color: var(--primary-blue);">Total: ${shifts.length} shifts</div>`;
-            html += '</div>';
-            
-            return html;
-        }
-        
         // Setup tab switching with password protection for Add Vessel tab
         function setupTabs() {
             const tabs = document.querySelectorAll('.tab');
@@ -2323,7 +1955,7 @@
             }
         }
         
-        // Update quantity section based on selected commodity and purpose - FIXED MAFI FIELD POSITION
+        // Update quantity section based on selected commodity and purpose
         function updateQuantitySection() {
             const commodity = document.getElementById('commodity').value;
             const purpose = document.getElementById('purpose').value;
@@ -2364,7 +1996,7 @@
             setupFreightTonCalculators();
         }
         
-        // Create quantity table based on commodity - FIXED: MAFI FIELD POSITION
+        // Create quantity table based on commodity
         function createQuantityTable(commodity, purpose, vesselType, header = '') {
             if (!header) {
                 header = purpose === 'DISCHARGE' ? 'IMPORT (DISCHARGE)' : 'EXPORT (LOAD)';
@@ -2377,8 +2009,7 @@
             } else if (['PACKAGES', 'OVER DIMENSION', 'STEEL PIPE', 'TIMBER'].includes(commodity)) {
                 tableHTML = createPackagesTable(header, vesselType);
             } else if (commodity === 'UNITS AND PACKAGES') {
-                // FIX: MAFI should appear between Units and Packages for UNITS AND PACKAGES
-                tableHTML = createUnitsAndPackagesTableWithMAFI(header, vesselType);
+                tableHTML = createUnitsAndPackagesTable(header, vesselType);
             } else if (commodity === 'LIVESTOCK') {
                 tableHTML = createLivestockTable(header);
             } else if (['SULPHUR', 'SUGAR', 'IRON ORE CAKE'].includes(commodity)) {
@@ -2437,12 +2068,9 @@
             `;
         }
         
-        // Create table for UNITS AND PACKAGES commodity - FIXED: MAFI between Units and Packages
-        function createUnitsAndPackagesTableWithMAFI(header, vesselType) {
+        // Create table for UNITS AND PACKAGES commodity
+        function createUnitsAndPackagesTable(header, vesselType) {
             const mafiColumn = vesselType === 'RORO' ? '<th>MAFI</th>' : '';
-            const mafiInput = vesselType === 'RORO' ? 
-                '<td><input type="number" min="0" data-field="mafi" placeholder="Enter MAFI"></td>' : '';
-            
             return `
                 <div class="table-header">${header}</div>
                 <table class="quantity-table">
@@ -2459,7 +2087,7 @@
                     <tbody>
                         <tr>
                             <td><input type="number" min="0" data-field="units" placeholder="Enter units"></td>
-                            ${mafiInput}
+                            ${vesselType === 'RORO' ? '<td><input type="number" min="0" data-field="mafi" placeholder="Enter MAFI"></td>' : ''}
                             <td><input type="number" min="0" data-field="packages" placeholder="Enter packages"></td>
                             <td><input type="number" min="0" step="0.001" data-field="weight" placeholder="Enter weight"></td>
                             <td><input type="number" min="0" step="0.001" data-field="volume" placeholder="Enter volume"></td>
@@ -2622,7 +2250,6 @@
                     tdrAgent: false,
                     tdrFinance: false
                 },
-                shiftProgress: {}, // NEW: Store shift-wise progress
                 createdAt: new Date().toISOString(),
                 updatedAt: new Date().toISOString()
             };
@@ -2874,43 +2501,17 @@
             `;
         }
         
-        // Create WORKING vessel card - UPDATED TO SHOW SHIFT PROGRESS AND REMOVE ETA
+        // Create WORKING vessel card
         function createWorkingVesselCard(vessel, notifications, etaFormatted, etdFormatted, statusClass) {
             const quantitySummary = formatQuantitySummary(vessel);
+            const completedSummary = vessel.completed ? formatQuantitySummary({ quantity: vessel.completed }) : 'N/A';
+            const balanceSummary = vessel.balance ? formatQuantitySummary({ quantity: vessel.balance }) : 'N/A';
             
-            // Calculate total completed from all shifts
-            const totalCompleted = calculateTotalCompletedFromShifts(vessel);
-            const totalCompletedSummary = totalCompleted ? formatQuantitySummary({ quantity: totalCompleted }) : 'N/A';
-            
-            // Calculate total shifted from all shifts
-            const totalShifted = calculateTotalShiftedFromShifts(vessel);
-            
-            // Calculate balance by subtracting quantity with total completed
-            const balance = calculateBalance(vessel.quantity, totalCompleted);
-            const balanceSummary = balance ? formatQuantitySummary({ quantity: balance }) : 'N/A';
+            const showShifted = ['UNITS', 'UNITS AND PACKAGES'].includes(vessel.commodity);
+            const shiftedUnits = showShifted && vessel.shifted ? formatNumber(vessel.shifted) + ' units' : 'N/A';
             
             const portStay = vessel.ata ? calculatePortStay(vessel.ata, new Date()) : null;
             const portStayFormatted = portStay ? formatPortStay(portStay) : 'N/A';
-            
-            // Calculate shifts count for display in vessel card
-            const shiftsCount = vessel.shiftProgress ? Object.keys(vessel.shiftProgress).length : 0;
-            
-            // Show operations completed status
-            let operationsCompletedStatus = 'In Progress';
-            if (vessel.operationsCompleted) {
-                operationsCompletedStatus = formatDateOnly(vessel.operationsCompleted) + ' ' + formatTimeWithShift(vessel.operationsCompleted);
-            }
-            
-            // Show total shifted if available (show 0 if commodity is UNITS or UNITS AND PACKAGES)
-            let totalShiftedHtml = '';
-            if (['UNITS', 'UNITS AND PACKAGES'].includes(vessel.commodity)) {
-                totalShiftedHtml = `
-                    <div class="detail-item">
-                        <div class="detail-label">Total Shifted to Yard</div>
-                        <div class="detail-value">${formatNumber(totalShifted || 0)} units</div>
-                    </div>
-                `;
-            }
             
             return `
                 ${notifications > 0 ? `<div class="notification-badge">${notifications}</div>` : ''}
@@ -2921,6 +2522,10 @@
                 </div>
                 <div class="vessel-body">
                     <div class="vessel-details">
+                        <div class="detail-item">
+                            <div class="detail-label">ETA</div>
+                            <div class="detail-value">${etaFormatted}</div>
+                        </div>
                         <div class="detail-item">
                             <div class="detail-label">ATA</div>
                             <div class="detail-value">${vessel.ata ? formatDateTimeWithDayShift(new Date(vessel.ata)) : 'N/A'}</div>
@@ -2950,21 +2555,22 @@
                             <div class="detail-value">${vessel.berth || 'N/A'}</div>
                         </div>
                         <div class="detail-item">
-                            <div class="detail-label">Total Quantity</div>
+                            <div class="detail-label">Quantity</div>
                             <div class="detail-value">${quantitySummary}</div>
                         </div>
                         <div class="detail-item">
-                            <div class="detail-label">Total Completed</div>
-                            <div class="detail-value">${totalCompletedSummary}</div>
+                            <div class="detail-label">Completed</div>
+                            <div class="detail-value">${completedSummary}</div>
                         </div>
-                        ${totalShiftedHtml}
+                        ${showShifted ? `
+                        <div class="detail-item">
+                            <div class="detail-label">Shifted to Yard</div>
+                            <div class="detail-value">${shiftedUnits}</div>
+                        </div>
+                        ` : ''}
                         <div class="detail-item">
                             <div class="detail-label">Balance</div>
                             <div class="detail-value">${balanceSummary}</div>
-                        </div>
-                        <div class="detail-item">
-                            <div class="detail-label">Operations Completed</div>
-                            <div class="detail-value">${operationsCompletedStatus}</div>
                         </div>
                         <div class="detail-item">
                             <div class="detail-label">Remarks</div>
@@ -2994,69 +2600,12 @@
             `;
         }
         
-        // Calculate total completed from all shifts - UPDATED: Include 0 values for missing table types
-        function calculateTotalCompletedFromShifts(vessel) {
-            if (!vessel.shiftProgress || Object.keys(vessel.shiftProgress).length === 0) {
-                return null;
-            }
-            
-            const totalCompleted = {};
-            
-            // Initialize with 0 values for all table types in vessel quantity
-            if (vessel.quantity) {
-                Object.keys(vessel.quantity).forEach(tableType => {
-                    if (!totalCompleted[tableType]) {
-                        totalCompleted[tableType] = {};
-                    }
-                    // Initialize all fields with 0
-                    Object.keys(vessel.quantity[tableType]).forEach(field => {
-                        totalCompleted[tableType][field] = 0;
-                    });
-                });
-            }
-            
-            Object.values(vessel.shiftProgress).forEach(shift => {
-                if (shift.completed) {
-                    Object.keys(shift.completed).forEach(tableType => {
-                        if (!totalCompleted[tableType]) {
-                            totalCompleted[tableType] = {};
-                        }
-                        
-                        Object.keys(shift.completed[tableType]).forEach(field => {
-                            if (!totalCompleted[tableType][field]) {
-                                totalCompleted[tableType][field] = 0;
-                            }
-                            totalCompleted[tableType][field] += shift.completed[tableType][field] || 0;
-                        });
-                    });
-                }
-            });
-            
-            return Object.keys(totalCompleted).length > 0 ? totalCompleted : null;
-        }
-        
-        // Calculate total shifted from all shifts
-        function calculateTotalShiftedFromShifts(vessel) {
-            if (!vessel.shiftProgress || Object.keys(vessel.shiftProgress).length === 0) {
-                return 0;
-            }
-            
-            let totalShifted = 0;
-            Object.values(vessel.shiftProgress).forEach(shift => {
-                if (shift.shifted) {
-                    totalShifted += shift.shifted || 0;
-                }
-            });
-            
-            return totalShifted;
-        }
-        
         // Create SAILED vessel card
         function createSailedVesselCard(vessel, notifications, etaFormatted, statusClass) {
             const quantitySummary = formatQuantitySummary(vessel);
             
             const showShifted = ['UNITS', 'UNITS AND PACKAGES'].includes(vessel.commodity);
-            const shiftedUnits = showShifted ? formatNumber(vessel.shifted || 0) + ' units' : 'N/A';
+            const shiftedUnits = showShifted && vessel.shifted ? formatNumber(vessel.shifted) + ' units' : 'N/A';
             
             const portStay = (vessel.ata && vessel.atd) ? calculatePortStay(vessel.ata, vessel.atd) : null;
             const portStayFormatted = portStay ? formatPortStay(portStay) : 'N/A';
@@ -3367,7 +2916,7 @@
                                 <input type="datetime-local" id="newETA" value="${formatForInput(vessel.eta)}" required>
                             </div>
                             <div class="form-group">
-                                <label for="updateETD">Update ETD</label>
+                                <label for="updateETD">Update ETD (Optional)</label>
                                 <input type="datetime-local" id="updateETD" value="${formatForInput(vessel.etd)}">
                             </div>
                         </form>
@@ -3545,28 +3094,24 @@
             }
         }
         
-        // Calculate average per day for SULPHUR, ALUMINIUM, or STEEL BILLET - UPDATED: Use port stay
+        // Calculate average per day for SULPHUR, ALUMINIUM, or STEEL BILLET
         function calculateAveragePerDay(vessel) {
             if (!['SULPHUR', 'ALUMINIUM', 'STEEL BILLET'].includes(vessel.commodity)) {
                 return null;
             }
             
-            if (!vessel.ata) {
+            if (!vessel.completed || !vessel.ata) {
                 return null;
             }
             
             let completedWeight = 0;
-            const totalCompleted = calculateTotalCompletedFromShifts(vessel);
-            
-            if (totalCompleted) {
-                if (vessel.purpose === 'DISCHARGE' || vessel.purpose === 'DISCHARGE/LOAD') {
-                    if (totalCompleted.import && totalCompleted.import.weight) {
-                        completedWeight = totalCompleted.import.weight;
-                    }
-                } else if (vessel.purpose === 'LOAD') {
-                    if (totalCompleted.export && totalCompleted.export.weight) {
-                        completedWeight = totalCompleted.export.weight;
-                    }
+            if (vessel.purpose === 'DISCHARGE' || vessel.purpose === 'DISCHARGE/LOAD') {
+                if (vessel.completed.import && vessel.completed.import.weight) {
+                    completedWeight = vessel.completed.import.weight;
+                }
+            } else if (vessel.purpose === 'LOAD') {
+                if (vessel.completed.export && vessel.completed.export.weight) {
+                    completedWeight = vessel.completed.export.weight;
                 }
             }
             
@@ -3870,9 +3415,6 @@
                             vessel.shifted = null;
                             vessel.completed = null;
                             vessel.balance = null;
-                            vessel.operationsCommenced = null;
-                            vessel.operationsCompleted = null;
-                            vessel.shiftProgress = {}; // Clear shift progress
                             vessel.updatedAt = new Date().toISOString();
                             
                             saveVesselToFirestore(vessel);
@@ -3919,6 +3461,10 @@
                                 <label for="etdUpdate">ETD (Estimated Time of Departure)</label>
                                 <input type="datetime-local" id="etdUpdate" value="${formatForInput(vessel.etd)}">
                             </div>
+                            
+                            <div class="alert alert-info" style="margin-top: 15px;">
+                                <i class="fas fa-info-circle"></i> Completed quantities are not required when updating to WORKING status. You can add them later.
+                            </div>
                         </form>
                         
                         <div class="form-actions" style="display: flex; justify-content: flex-end; gap: 8px; margin-top: 20px;">
@@ -3962,7 +3508,6 @@
                 vessel.ata = ata;
                 vessel.berth = berth;
                 if (etd) vessel.etd = etd;
-                vessel.shiftProgress = {}; // Initialize shift progress
                 vessel.updatedAt = new Date().toISOString();
                 
                 // Save to Firestore
@@ -4009,6 +3554,10 @@
                                 <input type="number" id="shiftedUnits" placeholder="Enter shifted units" value="${vessel.shifted || ''}">
                             </div>
                             ` : ''}
+                            
+                            <div class="alert alert-info" style="margin-top: 15px;">
+                                <i class="fas fa-info-circle"></i> After updating to SAILED, you'll need to complete TDR checks before closing the vessel.
+                            </div>
                         </form>
                         
                         <div class="form-actions" style="display: flex; justify-content: flex-end; gap: 8px; margin-top: 20px;">
@@ -4058,7 +3607,7 @@
             });
         }
         
-        // Update commodity for INBOUND vessel - SHOW PREVIOUSLY ENTERED IN INPUT FIELDS
+        // Update commodity for INBOUND vessel - SHOW PREVIOUSLY ENTERED
         function updateCommodity(vesselId) {
             const vessel = vessels.find(v => v.id === vesselId);
             if (!vessel || vessel.status !== 'INBOUND') return;
@@ -4089,6 +3638,10 @@
                                     <option value="DISCHARGE/LOAD" ${vessel.purpose === 'DISCHARGE/LOAD' ? 'selected' : ''}>Discharge/Load</option>
                                     <option value="N/A" ${vessel.purpose === 'N/A' ? 'selected' : ''}>N/A</option>
                                 </select>
+                            </div>
+                            
+                            <div class="alert alert-info" style="margin-bottom: 15px;">
+                                <i class="fas fa-info-circle"></i> Previous Quantity: ${formatQuantitySummary(vessel)}
                             </div>
                             
                             <div id="updateQuantitySection"></div>
@@ -4125,12 +3678,12 @@
                 let tablesHTML = '';
                 
                 if (purpose === 'DISCHARGE' || purpose === 'LOAD') {
-                    tablesHTML = createQuantityTableWithPreviousData(commodity, purpose, vessel.vesselType, vessel.quantity);
+                    tablesHTML = createQuantityTable(commodity, purpose, vessel.vesselType);
                 } else if (purpose === 'DISCHARGE/LOAD') {
                     tablesHTML = `
-                        ${createQuantityTableWithPreviousData(commodity, 'DISCHARGE', vessel.vesselType, vessel.quantity, 'IMPORT (DISCHARGE)')}
-                        ${createQuantityTableWithPreviousData(commodity, 'LOAD', vessel.vesselType, vessel.quantity, 'EXPORT (LOAD)')}
-                        ${createQuantityTableWithPreviousData(commodity, 'TRANSSHIPMENT', vessel.vesselType, vessel.quantity, 'TRANSSHIPMENT')}
+                        ${createQuantityTable(commodity, 'DISCHARGE', vessel.vesselType, 'IMPORT (DISCHARGE)')}
+                        ${createQuantityTable(commodity, 'LOAD', vessel.vesselType, 'EXPORT (LOAD)')}
+                        ${createQuantityTable(commodity, 'TRANSSHIPMENT', vessel.vesselType, 'TRANSSHIPMENT')}
                     `;
                 }
                 
@@ -4172,183 +3725,6 @@
                 
                 showToast('Commodity and quantity updated successfully', 'success');
             });
-        }
-        
-        // Create quantity table with previous data pre-filled
-        function createQuantityTableWithPreviousData(commodity, purpose, vesselType, previousQuantity, header = '') {
-            if (!header) {
-                header = purpose === 'DISCHARGE' ? 'IMPORT (DISCHARGE)' : 'EXPORT (LOAD)';
-            }
-            
-            let tableType;
-            if (purpose === 'DISCHARGE') {
-                tableType = 'import';
-            } else if (purpose === 'LOAD') {
-                tableType = 'export';
-            } else if (purpose === 'TRANSSHIPMENT') {
-                tableType = 'transshipment';
-            }
-            
-            const previousData = previousQuantity && previousQuantity[tableType] ? previousQuantity[tableType] : {};
-            
-            if (commodity === 'UNITS') {
-                return createUnitsTableWithPrevious(header, previousData.units);
-            } else if (['PACKAGES', 'OVER DIMENSION', 'STEEL PIPE', 'TIMBER'].includes(commodity)) {
-                return createPackagesTableWithPrevious(header, vesselType, previousData);
-            } else if (commodity === 'UNITS AND PACKAGES') {
-                // FIX: Use the corrected table structure with MAFI between Units and Packages
-                return createUnitsAndPackagesTableWithPreviousAndMAFI(header, vesselType, previousData);
-            } else if (commodity === 'LIVESTOCK') {
-                return createLivestockTableWithPrevious(header, previousData.heads);
-            } else if (['SULPHUR', 'SUGAR', 'IRON ORE CAKE'].includes(commodity)) {
-                return createWeightTableWithPrevious(header, previousData.weight);
-            } else if (['ALUMINIUM', 'STEEL BILLET', 'STEEL PLATE'].includes(commodity)) {
-                return createPackagesWeightTableWithPrevious(header, previousData);
-            }
-            
-            return '';
-        }
-        
-        // Create units table with previous data
-        function createUnitsTableWithPrevious(header, previousUnits) {
-            return `
-                <div class="table-header">${header}</div>
-                <table class="quantity-table">
-                    <thead>
-                        <tr>
-                            <th>Units</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><input type="number" min="0" data-field="units" placeholder="Enter units" value="${previousUnits || ''}"></td>
-                        </tr>
-                    </tbody>
-                </table>
-            `;
-        }
-        
-        // Create packages table with previous data
-        function createPackagesTableWithPrevious(header, vesselType, previousData) {
-            const mafiColumn = vesselType === 'RORO' ? '<th>MAFI</th>' : '';
-            const mafiInput = vesselType === 'RORO' ? 
-                `<td><input type="number" min="0" data-field="mafi" placeholder="Enter MAFI" value="${previousData.mafi || ''}"></td>` : '';
-            
-            return `
-                <div class="table-header">${header}</div>
-                <table class="quantity-table">
-                    <thead>
-                        <tr>
-                            ${mafiColumn}
-                            <th>Packages</th>
-                            <th>Weight (MT)</th>
-                            <th>Volume (M³)</th>
-                            <th>Freight Ton</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            ${mafiInput}
-                            <td><input type="number" min="0" data-field="packages" placeholder="Enter packages" value="${previousData.packages || ''}"></td>
-                            <td><input type="number" min="0" step="0.001" data-field="weight" placeholder="Enter weight" value="${previousData.weight || ''}"></td>
-                            <td><input type="number" min="0" step="0.001" data-field="volume" placeholder="Enter volume" value="${previousData.volume || ''}"></td>
-                            <td><input type="number" min="0" step="0.001" data-field="freightTon" readonly style="background-color: #333;" value="${previousData.freightTon || ''}"></td>
-                        </tr>
-                    </tbody>
-                </table>
-            `;
-        }
-        
-        // Create units and packages table with previous data - FIXED: MAFI between Units and Packages
-        function createUnitsAndPackagesTableWithPreviousAndMAFI(header, vesselType, previousData) {
-            const mafiColumn = vesselType === 'RORO' ? '<th>MAFI</th>' : '';
-            const mafiInput = vesselType === 'RORO' ? 
-                `<td><input type="number" min="0" data-field="mafi" placeholder="Enter MAFI" value="${previousData.mafi || ''}"></td>` : '';
-            
-            return `
-                <div class="table-header">${header}</div>
-                <table class="quantity-table">
-                    <thead>
-                        <tr>
-                            <th>Units</th>
-                            ${mafiColumn}
-                            <th>Packages</th>
-                            <th>Weight (MT)</th>
-                            <th>Volume (M³)</th>
-                            <th>Freight Ton</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><input type="number" min="0" data-field="units" placeholder="Enter units" value="${previousData.units || ''}"></td>
-                            ${mafiInput}
-                            <td><input type="number" min="0" data-field="packages" placeholder="Enter packages" value="${previousData.packages || ''}"></td>
-                            <td><input type="number" min="0" step="0.001" data-field="weight" placeholder="Enter weight" value="${previousData.weight || ''}"></td>
-                            <td><input type="number" min="0" step="0.001" data-field="volume" placeholder="Enter volume" value="${previousData.volume || ''}"></td>
-                            <td><input type="number" min="0" step="0.001" data-field="freightTon" readonly style="background-color: #333;" value="${previousData.freightTon || ''}"></td>
-                        </tr>
-                    </tbody>
-                </table>
-            `;
-        }
-        
-        // Create livestock table with previous data
-        function createLivestockTableWithPrevious(header, previousHeads) {
-            return `
-                <div class="table-header">${header}</div>
-                <table class="quantity-table">
-                    <thead>
-                        <tr>
-                            <th>Heads</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><input type="number" min="0" data-field="heads" placeholder="Enter heads" value="${previousHeads || ''}"></td>
-                        </tr>
-                    </tbody>
-                </table>
-            `;
-        }
-        
-        // Create weight table with previous data
-        function createWeightTableWithPrevious(header, previousWeight) {
-            return `
-                <div class="table-header">${header}</div>
-                <table class="quantity-table">
-                    <thead>
-                        <tr>
-                            <th>Weight (MT)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><input type="number" min="0" step="0.001" data-field="weight" placeholder="Enter weight" value="${previousWeight || ''}"></td>
-                        </tr>
-                    </tbody>
-                </table>
-            `;
-        }
-        
-        // Create packages and weight table with previous data
-        function createPackagesWeightTableWithPrevious(header, previousData) {
-            return `
-                <div class="table-header">${header}</div>
-                <table class="quantity-table">
-                    <thead>
-                        <tr>
-                            <th>Packages</th>
-                            <th>Weight (MT)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><input type="number" min="0" data-field="packages" placeholder="Enter packages" value="${previousData.packages || ''}"></td>
-                            <td><input type="number" min="0" step="0.001" data-field="weight" placeholder="Enter weight" value="${previousData.weight || ''}"></td>
-                        </tr>
-                    </tbody>
-                </table>
-            `;
         }
         
         // Setup freight ton calculators in modal
@@ -4395,7 +3771,7 @@
             return quantityData;
         }
         
-        // Update working details (shift-wise progress) - ENHANCED VERSION WITH REALTIME UPDATES
+        // Update working details (completed, shifted, balance) - SHOW PREVIOUSLY ENTERED
         async function updateWorkingDetails(vesselId) {
             isUserAction = true;
             
@@ -4407,192 +3783,24 @@
             
             const showShifted = ['UNITS', 'UNITS AND PACKAGES'].includes(vessel.commodity);
             
-            // Initialize operationsCommenced if not set
-            if (!vessel.operationsCommenced) {
-                vessel.operationsCommenced = vessel.ata || new Date().toISOString();
+            let completedTablesHTML = '';
+            
+            if (vessel.purpose === 'DISCHARGE/LOAD') {
+                completedTablesHTML = `
+                    <h4 style="margin-top: 15px; color: var(--primary-blue);">Completed Details</h4>
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle"></i> Please enter completed quantities for all three categories to calculate balance correctly.
+                    </div>
+                    ${createQuantityTable(vessel.commodity, 'DISCHARGE', vessel.vesselType, 'DISCHARGE - Completed')}
+                    ${createQuantityTable(vessel.commodity, 'LOAD', vessel.vesselType, 'LOAD - Completed')}
+                    ${createQuantityTable(vessel.commodity, 'TRANSSHIPMENT', vessel.vesselType, 'TRANSSHIPMENT - Completed')}
+                `;
+            } else {
+                completedTablesHTML = `
+                    <h4 style="margin-top: 15px; color: var(--primary-blue);">Completed Details</h4>
+                    ${createQuantityTable(vessel.commodity, vessel.purpose, vessel.vesselType, 'Completed')}
+                `;
             }
-            
-            // Calculate totals for initial display
-            const totalCompleted = calculateTotalCompletedFromShifts(vessel);
-            const balance = calculateBalance(vessel.quantity, totalCompleted);
-            
-            // Function to update totals display
-            const updateTotalsDisplay = (shiftProgressData = vessel.shiftProgress) => {
-                const tempTotalCompleted = calculateTotalCompletedFromShifts({...vessel, shiftProgress: shiftProgressData});
-                const tempBalance = calculateBalance(vessel.quantity, tempTotalCompleted);
-                
-                const totalQuantitySummary = formatDashboardQuantity(vessel.quantity, 'quantity');
-                const totalCompletedSummary = tempTotalCompleted ? formatDashboardQuantity({ quantity: tempTotalCompleted }, 'completed') : 'NIL';
-                const totalBalanceSummary = tempBalance ? formatDashboardQuantity({ quantity: tempBalance }, 'balance') : 'NIL';
-                
-                modal.querySelector('#totalQuantityValue').innerHTML = totalQuantitySummary;
-                modal.querySelector('#totalCompletedValue').innerHTML = totalCompletedSummary;
-                modal.querySelector('#totalBalanceValue').innerHTML = totalBalanceSummary;
-            };
-            
-            // Function to update shift progress display
-            const updateShiftProgressDisplay = () => {
-                const operationsCommenced = modal.querySelector('#operationsCommenced').value || vessel.operationsCommenced;
-                const operationsCompleted = modal.querySelector('#operationsCompleted').value;
-                
-                if (!operationsCommenced) {
-                    modal.querySelector('#shiftProgressContainer').innerHTML = `
-                        <div class="alert alert-warning">
-                            <i class="fas fa-exclamation-triangle"></i> Please enter Operations Commenced date to calculate shifts.
-                        </div>
-                    `;
-                    return;
-                }
-                
-                // Validate operationsCompleted is not before operationsCommenced
-                if (operationsCompleted && operationsCompleted < operationsCommenced) {
-                    modal.querySelector('#shiftProgressContainer').innerHTML = `
-                        <div class="alert alert-error">
-                            <i class="fas fa-exclamation-circle"></i> Operations Completed cannot be before Operations Commenced.
-                        </div>
-                    `;
-                    return;
-                }
-                
-                // Calculate shifts from operations commenced to operations completed (or current time)
-                const endTime = operationsCompleted || new Date().toISOString();
-                const shifts = calculateShiftsBreakdown(operationsCommenced, endTime);
-                
-                let shiftsHTML = '';
-                if (shifts && shifts.length > 0) {
-                    shiftsHTML = `
-                        <div class="shift-progress-section">
-                            <div class="shift-progress-title">Shift Progress Tracking</div>
-                    `;
-                    
-                    shifts.forEach((shift, index) => {
-                        const shiftKey = `${formatDate(shift.start)}_${shift.shift}_${shift.slot}`;
-                        const existingShiftData = vessel.shiftProgress && vessel.shiftProgress[shiftKey] ? vessel.shiftProgress[shiftKey] : null;
-                        
-                        // Determine if this shift is in progress (current shift) or future
-                        const now = new Date();
-                        const isCurrentShift = now >= shift.start && now <= shift.end;
-                        const isFutureShift = now < shift.start;
-                        
-                        let shiftStatus = '';
-                        if (isFutureShift) {
-                            shiftStatus = `<span style="color: var(--text-light); font-size: 12px;">(Future Shift)</span>`;
-                        } else if (isCurrentShift) {
-                            shiftStatus = `<span style="color: var(--accent-green); font-size: 12px;">(Current Shift)</span>`;
-                        } else if (existingShiftData && existingShiftData.completed) {
-                            shiftStatus = `<span style="color: var(--accent-green); font-size: 12px;">(Completed)</span>`;
-                        }
-                        
-                        // Format: [Date - Time Slot - Shift]
-                        const shiftInfo = `${formatDate(shift.start)} - ${shift.slot.toUpperCase()} - Shift ${shift.shift}`;
-                        
-                        shiftsHTML += `
-                            <div class="shift-entry-enhanced">
-                                <div class="shift-header-enhanced">
-                                    <div class="shift-info-enhanced">
-                                        <div class="shift-info-row">
-                                            <span class="shift-date">${formatDate(shift.start)}</span>
-                                            <span class="shift-time-slot">${shift.slot.toUpperCase()}</span>
-                                            <span class="shift-name">Shift ${shift.shift}</span>
-                                            ${shiftStatus}
-                                        </div>
-                                        <div style="font-size: 12px; color: var(--text-light);">
-                                            ${formatTime(shift.start)} - ${formatTime(shift.end)}
-                                        </div>
-                                    </div>
-                                </div>
-                                ${!isFutureShift ? createEnhancedShiftQuantityInputsHorizontal(vessel, shiftKey, existingShiftData) : `
-                                <div style="color: var(--text-light); font-style: italic; padding: 10px; background: #333; border-radius: 4px;">
-                                    This shift has not started yet. You can enter progress once it begins.
-                                </div>
-                                `}
-                                ${showShifted && !isFutureShift ? createShiftedToYardInput(shiftKey, existingShiftData) : ''}
-                            </div>
-                        `;
-                    });
-                    
-                    shiftsHTML += `
-                            <div style="margin-top: 15px; padding-top: 10px; border-top: 1px solid var(--border-color);">
-                                <div style="font-weight: 600; color: var(--primary-blue);">
-                                    Total: ${shifts.length} shift${shifts.length !== 1 ? 's' : ''}
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                } else {
-                    shiftsHTML = `
-                        <div class="alert alert-warning">
-                            <i class="fas fa-exclamation-triangle"></i> No shifts found for operations timeline.
-                        </div>
-                    `;
-                }
-                
-                modal.querySelector('#shiftProgressContainer').innerHTML = shiftsHTML;
-                
-                // Attach event listeners to inputs for real-time updates
-                setTimeout(() => {
-                    modal.querySelectorAll('.shift-field-input, .shift-shifted-input').forEach(input => {
-                        input.addEventListener('input', () => {
-                            // Collect current shift data
-                            const shiftProgressData = {};
-                            modal.querySelectorAll('.shift-entry-enhanced').forEach(shiftEntry => {
-                                const shiftKeyInput = shiftEntry.querySelector('.shift-key-input');
-                                if (shiftKeyInput) {
-                                    const shiftKey = shiftKeyInput.value;
-                                    const shiftInfoElement = shiftEntry.querySelector('.shift-info-row');
-                                    const shiftLabel = shiftInfoElement ? shiftInfoElement.textContent.replace(/\(.*?\)/g, '').trim() : `Shift ${shiftKey}`;
-                                    
-                                    // Collect quantity data for this shift
-                                    const shiftData = {
-                                        shiftLabel: shiftLabel,
-                                        completed: {}
-                                    };
-                                    
-                                    // Get quantity inputs for this shift
-                                    const quantityInputs = shiftEntry.querySelectorAll('.shift-field-input');
-                                    quantityInputs.forEach(input => {
-                                        const value = input.value.trim();
-                                        const field = input.getAttribute('data-field');
-                                        const tableType = input.getAttribute('data-table-type');
-                                        
-                                        if (!shiftData.completed[tableType]) {
-                                            shiftData.completed[tableType] = {};
-                                        }
-                                        
-                                        // Include 0 values for fields that user didn't fill
-                                        if (value === '') {
-                                            // Check if this field exists in vessel quantity
-                                            if (vessel.quantity && vessel.quantity[tableType] && vessel.quantity[tableType][field] !== undefined) {
-                                                shiftData.completed[tableType][field] = 0;
-                                            }
-                                        } else {
-                                            shiftData.completed[tableType][field] = isNaN(Number(value)) ? value : Number(value);
-                                        }
-                                    });
-                                    
-                                    // Get shifted to yard value if applicable (include 0 if not entered)
-                                    const shiftedInput = shiftEntry.querySelector('.shift-shifted-input');
-                                    if (shiftedInput) {
-                                        if (shiftedInput.value.trim() !== '') {
-                                            shiftData.shifted = parseInt(shiftedInput.value.trim()) || 0;
-                                        } else if (showShifted) {
-                                            shiftData.shifted = 0;
-                                        }
-                                    }
-                                    
-                                    // Only add if there's completed data (including 0 values)
-                                    if (Object.keys(shiftData.completed).length > 0 || shiftData.shifted !== undefined) {
-                                        shiftProgressData[shiftKey] = shiftData;
-                                    }
-                                }
-                            });
-                            
-                            // Update totals display with current data
-                            updateTotalsDisplay(shiftProgressData);
-                        });
-                    });
-                }, 100);
-            };
             
             modal.innerHTML = `
                 <div class="modal-content">
@@ -4602,12 +3810,31 @@
                     </div>
                     <div class="modal-body">
                         <form id="updateWorkingDetailsForm">
-                            <!-- Operations Timeline at the top -->
+                            ${showShifted ? `
+                            <div class="form-group">
+                                <label for="updateShifted">Shifted to Yard (Units)</label>
+                                <input type="number" id="updateShifted" placeholder="Enter shifted units" value="${vessel.shifted || ''}">
+                                <small style="color: var(--text-light); margin-top: 5px; display: block;">Previously: ${vessel.shifted || '0'} units</small>
+                            </div>
+                            ` : ''}
+                            
+                            <div class="alert alert-info" style="margin-bottom: 15px;">
+                                <i class="fas fa-info-circle"></i> Previous Completed: ${vessel.completed ? formatQuantitySummary({ quantity: vessel.completed }) : 'None'}
+                            </div>
+                            
+                            ${completedTablesHTML}
+                            
+                            <div class="alert alert-info">
+                                <i class="fas fa-calculator"></i> Balance will be calculated automatically as: (Quantity - Completed)
+                            </div>
+                            
+                            <!-- Operations Commenced and Completed Section -->
                             ${['DISCHARGE', 'LOAD', 'DISCHARGE/LOAD'].includes(vessel.purpose) ? `
-                            <div class="operations-timeline-grid">
+                            <div style="margin-top: 20px; padding-top: 15px; border-top: 2px solid var(--border-color);">
+                                <h4 style="color: var(--primary-blue);">Operations Timeline</h4>
                                 <div class="form-group">
-                                    <label for="operationsCommenced">Operations Commenced *</label>
-                                    <input type="datetime-local" id="operationsCommenced" value="${vessel.operationsCommenced ? vessel.operationsCommenced.slice(0, 16) : (vessel.ata ? vessel.ata.slice(0, 16) : new Date().toISOString().slice(0, 16))}" required>
+                                    <label for="operationsCommenced">Operations Commenced</label>
+                                    <input type="datetime-local" id="operationsCommenced" value="${vessel.operationsCommenced ? vessel.operationsCommenced.slice(0, 16) : ''}">
                                 </div>
                                 <div class="form-group">
                                     <label for="operationsCompleted">Operations Completed</label>
@@ -4615,35 +3842,11 @@
                                 </div>
                             </div>
                             ` : ''}
-                            
-                            <!-- NEW: Totals Section at the TOP -->
-                            <div class="working-details-totals">
-                                <div class="working-details-total-row">
-                                    <div class="working-details-total-label">Total Quantity:</div>
-                                    <div class="working-details-total-value working-details-total-quantity" id="totalQuantityValue">${formatDashboardQuantity(vessel.quantity, 'quantity')}</div>
-                                </div>
-                                <div class="working-details-total-row">
-                                    <div class="working-details-total-label">Total Completed:</div>
-                                    <div class="working-details-total-value working-details-total-completed" id="totalCompletedValue">${totalCompleted ? formatDashboardQuantity({ quantity: totalCompleted }, 'completed') : 'NIL'}</div>
-                                </div>
-                                <div class="working-details-total-row">
-                                    <div class="working-details-total-label">Total Balance:</div>
-                                    <div class="working-details-total-value working-details-total-balance" id="totalBalanceValue">${balance ? formatDashboardQuantity({ quantity: balance }, 'balance') : 'NIL'}</div>
-                                </div>
-                            </div>
-                            
-                            <!-- Shift Progress Container - Dynamically Updated -->
-                            <div id="shiftProgressContainer">
-                                <div style="text-align: center; padding: 20px; color: var(--text-light);">
-                                    <i class="fas fa-spinner fa-spin"></i>
-                                    <p>Loading shift progress...</p>
-                                </div>
-                            </div>
                         </form>
                         
                         <div class="form-actions" style="display: flex; justify-content: flex-end; gap: 8px; margin-top: 20px;">
                             <button type="button" class="btn btn-secondary" id="cancelWorkingDetailsBtn">Cancel</button>
-                            <button type="button" class="btn btn-primary" id="confirmWorkingDetailsBtn">Update Working Details</button>
+                            <button type="button" class="btn btn-primary" id="confirmWorkingDetailsBtn">Update Details</button>
                         </div>
                     </div>
                 </div>
@@ -4651,111 +3854,33 @@
             
             document.body.appendChild(modal);
             
-            // Initial shift progress display
             setTimeout(() => {
-                updateShiftProgressDisplay();
+                setupFreightTonCalculatorsInModal(modal);
             }, 100);
-            
-            // Update shift progress when operations dates change
-            modal.querySelector('#operationsCommenced').addEventListener('change', updateShiftProgressDisplay);
-            const operationsCompletedInput = modal.querySelector('#operationsCompleted');
-            if (operationsCompletedInput) {
-                operationsCompletedInput.addEventListener('change', updateShiftProgressDisplay);
-            }
             
             modal.querySelector('.modal-close').addEventListener('click', () => modal.remove());
             modal.querySelector('#cancelWorkingDetailsBtn').addEventListener('click', () => modal.remove());
             modal.querySelector('#confirmWorkingDetailsBtn').addEventListener('click', async () => {
                 isUserAction = true;
                 
-                // Update operations timeline
+                if (showShifted) {
+                    const shiftedUnits = modal.querySelector('#updateShifted').value;
+                    if (shiftedUnits) vessel.shifted = parseInt(shiftedUnits);
+                }
+                
+                const completedData = getQuantityDataFromModal(modal, vessel.commodity, vessel.purpose);
+                if (Object.keys(completedData).length > 0) {
+                    vessel.completed = completedData;
+                    vessel.balance = calculateBalance(vessel.quantity, vessel.completed);
+                }
+                
+                // Save operations timeline if applicable
                 if (['DISCHARGE', 'LOAD', 'DISCHARGE/LOAD'].includes(vessel.purpose)) {
                     const operationsCommenced = modal.querySelector('#operationsCommenced').value;
                     const operationsCompleted = modal.querySelector('#operationsCompleted').value;
                     
                     if (operationsCommenced) vessel.operationsCommenced = operationsCommenced;
-                    
-                    // Only update operationsCompleted if provided by user
-                    if (operationsCompleted) {
-                        vessel.operationsCompleted = operationsCompleted;
-                    } else {
-                        // Clear operationsCompleted if user didn't provide it
-                        vessel.operationsCompleted = null;
-                    }
-                }
-                
-                // Collect shift progress data
-                const shiftProgressData = {};
-                modal.querySelectorAll('.shift-entry-enhanced').forEach(shiftEntry => {
-                    const shiftKeyInput = shiftEntry.querySelector('.shift-key-input');
-                    if (shiftKeyInput) {
-                        const shiftKey = shiftKeyInput.value;
-                        const shiftInfoElement = shiftEntry.querySelector('.shift-info-row');
-                        const shiftLabel = shiftInfoElement ? shiftInfoElement.textContent.replace(/\(.*?\)/g, '').trim() : `Shift ${shiftKey}`;
-                        
-                        // Collect quantity data for this shift
-                        const shiftData = {
-                            shiftLabel: shiftLabel,
-                            completed: {}
-                        };
-                        
-                        // Get quantity inputs for this shift
-                        const quantityInputs = shiftEntry.querySelectorAll('.shift-field-input');
-                        quantityInputs.forEach(input => {
-                            const value = input.value.trim();
-                            const field = input.getAttribute('data-field');
-                            const tableType = input.getAttribute('data-table-type');
-                            
-                            if (!shiftData.completed[tableType]) {
-                                shiftData.completed[tableType] = {};
-                            }
-                            
-                            // Include 0 values for fields that user didn't fill
-                            if (value === '') {
-                                // Check if this field exists in vessel quantity
-                                if (vessel.quantity && vessel.quantity[tableType] && vessel.quantity[tableType][field] !== undefined) {
-                                    shiftData.completed[tableType][field] = 0;
-                                }
-                            } else {
-                                shiftData.completed[tableType][field] = isNaN(Number(value)) ? value : Number(value);
-                            }
-                        });
-                        
-                        // Get shifted to yard value if applicable (include 0 if not entered)
-                        const shiftedInput = shiftEntry.querySelector('.shift-shifted-input');
-                        if (shiftedInput) {
-                            if (shiftedInput.value.trim() !== '') {
-                                shiftData.shifted = parseInt(shiftedInput.value.trim()) || 0;
-                            } else if (showShifted) {
-                                shiftData.shifted = 0;
-                            }
-                        }
-                        
-                        // Only add if there's completed data (including 0 values)
-                        if (Object.keys(shiftData.completed).length > 0 || shiftData.shifted !== undefined) {
-                            shiftProgressData[shiftKey] = shiftData;
-                        } else {
-                            // If shift exists in vessel but user cleared all inputs, remove it
-                            if (vessel.shiftProgress && vessel.shiftProgress[shiftKey]) {
-                                // Don't add to shiftProgressData (effectively removing it)
-                            }
-                        }
-                    }
-                });
-                
-                // Update vessel with shift progress data
-                vessel.shiftProgress = shiftProgressData;
-                
-                // Calculate total completed from all shifts
-                const newTotalCompleted = calculateTotalCompletedFromShifts(vessel);
-                
-                // Calculate total shifted from all shifts
-                const newTotalShifted = calculateTotalShiftedFromShifts(vessel);
-                
-                // Calculate balance
-                if (newTotalCompleted && vessel.quantity) {
-                    const newBalance = calculateBalance(vessel.quantity, newTotalCompleted);
-                    vessel.balance = newBalance;
+                    if (operationsCompleted) vessel.operationsCompleted = operationsCompleted;
                 }
                 
                 vessel.updatedAt = new Date().toISOString();
@@ -4768,113 +3893,7 @@
             });
         }
         
-        // Create enhanced quantity inputs for a shift with HORIZONTAL LAYOUT and CORRECT ORDER
-        function createEnhancedShiftQuantityInputsHorizontal(vessel, shiftKey, existingShiftData) {
-            if (!vessel.quantity || Object.keys(vessel.quantity).length === 0) {
-                return `
-                    <div style="color: var(--text-light); font-style: italic; padding: 10px; background: #333; border-radius: 4px;">
-                        No quantity data available for this vessel.
-                    </div>
-                `;
-            }
-            
-            let inputsHTML = '<div class="shift-fields-container">';
-            
-            // Define the correct order of table types: DISCHARGE (import) first, then LOAD (export), then TS (transshipment)
-            const tableTypesInOrder = ['import', 'export', 'transshipment'].filter(type => vessel.quantity[type]);
-            
-            // Define the correct order of fields within each table type
-            const fieldOrder = ['units', 'mafi', 'packages', 'weight', 'volume', 'freightTon', 'heads'];
-            
-            // Create input fields based on vessel quantity structure in correct order
-            tableTypesInOrder.forEach(tableType => {
-                const tableData = vessel.quantity[tableType];
-                
-                // Get fields that exist in this table data, sorted according to fieldOrder
-                const existingFields = Object.keys(tableData).filter(field => fieldOrder.includes(field));
-                const sortedFields = fieldOrder.filter(field => existingFields.includes(field));
-                
-                sortedFields.forEach(field => {
-                    const existingValue = existingShiftData && existingShiftData.completed && 
-                                       existingShiftData.completed[tableType] && 
-                                       existingShiftData.completed[tableType][field] !== undefined ?
-                                       existingShiftData.completed[tableType][field] : '';
-                    
-                    let step = '1';
-                    let placeholder = '';
-                    
-                    if (field === 'weight' || field === 'volume' || field === 'freightTon') {
-                        step = '0.001';
-                        placeholder = '0.000';
-                    } else if (field === 'units' || field === 'packages' || field === 'mafi' || field === 'heads') {
-                        step = '1';
-                        placeholder = '0';
-                    }
-                    
-                    const fieldLabel = field.charAt(0).toUpperCase() + field.slice(1);
-                    let displayLabel = fieldLabel;
-                    if (field === 'freightTon') {
-                        displayLabel = 'FT';
-                    } else if (field === 'mafi') {
-                        displayLabel = 'MAFI';
-                    } else if (field === 'units') {
-                        displayLabel = 'Units';
-                    } else if (field === 'packages') {
-                        displayLabel = 'Pkg';
-                    } else if (field === 'weight') {
-                        displayLabel = 'Weight';
-                    } else if (field === 'volume') {
-                        displayLabel = 'Volume';
-                    } else if (field === 'heads') {
-                        displayLabel = 'Heads';
-                    }
-                    
-                    // Add table type prefix for clarity
-                    const tablePrefix = tableType === 'import' ? 'IMP-' : 
-                                      tableType === 'export' ? 'EXP-' : 
-                                      'TS-';
-                    
-                    inputsHTML += `
-                        <div class="shift-field-group">
-                            <span class="shift-field-label">${tablePrefix}${displayLabel}:</span>
-                            <input type="number" 
-                                   class="shift-field-input" 
-                                   data-field="${field}" 
-                                   data-table-type="${tableType}"
-                                   step="${step}"
-                                   placeholder="${placeholder}"
-                                   value="${existingValue}"
-                                   min="0">
-                        </div>
-                    `;
-                });
-            });
-            
-            inputsHTML += '</div>';
-            
-            // Add hidden input for shift key
-            inputsHTML += `<input type="hidden" class="shift-key-input" value="${shiftKey}">`;
-            
-            return inputsHTML;
-        }
-        
-        // Create shifted to yard input for shift
-        function createShiftedToYardInput(shiftKey, existingShiftData) {
-            const existingValue = existingShiftData && existingShiftData.shifted !== undefined ? existingShiftData.shifted : '';
-            
-            return `
-                <div class="shift-shifted-container">
-                    <span class="shift-shifted-label">Shifted to Yard (Units):</span>
-                    <input type="number" 
-                           class="shift-shifted-input" 
-                           placeholder="Enter units shifted"
-                           value="${existingValue}"
-                           min="0">
-                </div>
-            `;
-        }
-        
-        // Calculate balance between quantity and completed - UPDATED: Handle 0 values properly
+        // Calculate balance between quantity and completed
         function calculateBalance(quantity, completed) {
             if (!quantity || !completed) return null;
             
@@ -4886,7 +3905,7 @@
                     
                     for (const field in quantity[tableType]) {
                         const qtyValue = quantity[tableType][field] || 0;
-                        const compValue = completed[tableType][field] !== undefined ? completed[tableType][field] : 0;
+                        const compValue = completed[tableType][field] || 0;
                         balance[tableType][field] = qtyValue - compValue;
                     }
                 }
@@ -4895,7 +3914,7 @@
             return Object.keys(balance).length > 0 ? balance : null;
         }
         
-        // Update sailed details - Only show for UNITS or UNITS AND PACKAGES - SHOW PREVIOUSLY ENTERED IN INPUT FIELD
+        // Update sailed details - Only show for UNITS or UNITS AND PACKAGES - SHOW PREVIOUSLY ENTERED
         async function updateSailedDetails(vesselId) {
             isUserAction = true;
             
@@ -4921,6 +3940,11 @@
                             <div class="form-group">
                                 <label for="updateSailedShifted">Shifted to Yard (Units)</label>
                                 <input type="number" id="updateSailedShifted" placeholder="Enter shifted units" value="${vessel.shifted || ''}">
+                                <small style="color: var(--text-light); margin-top: 5px; display: block;">Previously: ${vessel.shifted || '0'} units</small>
+                            </div>
+                            
+                            <div class="alert alert-info" style="margin-top: 15px;">
+                                <i class="fas fa-info-circle"></i> To close this vessel, both TDR checks must be completed.
                             </div>
                         </form>
                         
@@ -5271,7 +4295,7 @@
             });
         }
         
-        // Update working vessels table with text blinking for overdue ETD and PROGRESS BAR IN 3 CELLS
+        // Update working vessels table with text blinking for overdue ETD
         function updateWorkingTable() {
             const workingVessels = vessels.filter(v => v.status === 'WORKING');
             const tableBody = document.querySelector('#workingTable tbody');
@@ -5293,53 +4317,31 @@
                 
                 const quantitySummary = formatDashboardQuantity(vessel.quantity, 'quantity');
                 
-                // Calculate total completed from shifts
-                const totalCompleted = calculateTotalCompletedFromShifts(vessel);
                 let completedSummary = '-';
-                if (totalCompleted) {
-                    const hasCompletedData = Object.values(totalCompleted).some(table => 
+                if (vessel.completed) {
+                    const hasCompletedData = Object.values(vessel.completed).some(table => 
                         Object.values(table).some(value => value !== 0 && value !== null && value !== undefined)
                     );
-                    completedSummary = hasCompletedData ? formatDashboardQuantity(totalCompleted, 'completed') : 'NIL';
+                    completedSummary = hasCompletedData ? formatDashboardQuantity(vessel.completed, 'completed') : 'NIL';
                 }
                 
                 let balanceSummary = '-';
-                if (totalCompleted && vessel.quantity) {
-                    const balance = calculateBalance(vessel.quantity, totalCompleted);
-                    if (balance) {
-                        const hasBalanceData = Object.values(balance).some(table => 
-                            Object.values(table).some(value => value !== 0 && value !== null && value !== undefined)
-                        );
-                        balanceSummary = hasBalanceData ? formatDashboardQuantity(balance, 'balance') : 'NIL';
-                    }
-                }
-                
-                // Calculate progress percentage for progress bar
-                let progressPercentage = 0;
-                
-                if (totalCompleted && vessel.quantity) {
-                    const totalQuantityValue = calculateTotalQuantityValue(vessel.quantity);
-                    const totalCompletedValue = calculateTotalCompletedValue(totalCompleted);
-                    
-                    if (totalQuantityValue > 0) {
-                        progressPercentage = Math.min(100, Math.round((totalCompletedValue / totalQuantityValue) * 100));
-                    }
+                if (vessel.balance) {
+                    const hasBalanceData = Object.values(vessel.balance).some(table => 
+                        Object.values(table).some(value => value !== 0 && value !== null && value !== undefined)
+                    );
+                    balanceSummary = hasBalanceData ? formatDashboardQuantity(vessel.balance, 'balance') : 'NIL';
                 }
                 
                 let remarks = '';
                 const remarkParts = [];
                 
-                // Calculate average for SULPHUR, ALUMINIUM, and STEEL BILLET - UPDATED: Use port stay
+                // Calculate average for SULPHUR, ALUMINIUM, and STEEL BILLET
                 if (['SULPHUR', 'ALUMINIUM', 'STEEL BILLET'].includes(vessel.commodity)) {
                     const average = calculateAveragePerDay(vessel);
                     if (average) {
                         remarkParts.push(`Average ${average} MT/day`);
                     }
-                }
-                
-                // Add shift count if available
-                if (vessel.shiftProgress && Object.keys(vessel.shiftProgress).length > 0) {
-                    remarkParts.push(`${Object.keys(vessel.shiftProgress).length} shifts`);
                 }
                 
                 if (vessel.remarks) {
@@ -5368,53 +4370,6 @@
                     row.className = 'overdue-text-blink';
                 }
                 
-                // Create progress bar HTML for the 3 cells
-                const completedWidth = progressPercentage;
-                const balanceWidth = 100 - progressPercentage;
-                
-                const progressBarHTML = `
-                    <div class="progress-cell-container">
-                        <div class="progress-cell-content">
-                            <div class="progress-cell-quantity">${quantitySummary}</div>
-                            <div class="progress-cell-bar-container">
-                                <div class="progress-cell-bar">
-                                    <div class="progress-cell-completed" style="width: ${completedWidth}%"></div>
-                                    <div class="progress-cell-balance" style="width: ${balanceWidth}%"></div>
-                                </div>
-                            </div>
-                            <div class="progress-cell-percentage">${progressPercentage}%</div>
-                        </div>
-                    </div>
-                `;
-                
-                const completedCellHTML = `
-                    <div class="progress-cell-container">
-                        <div class="progress-cell-content">
-                            <div class="progress-cell-quantity">${completedSummary}</div>
-                            <div class="progress-cell-bar-container">
-                                <div class="progress-cell-bar">
-                                    <div class="progress-cell-completed" style="width: ${completedWidth}%"></div>
-                                </div>
-                            </div>
-                            <div class="progress-cell-percentage">${completedSummary === 'NIL' ? '0%' : progressPercentage + '%'}</div>
-                        </div>
-                    </div>
-                `;
-                
-                const balanceCellHTML = `
-                    <div class="progress-cell-container">
-                        <div class="progress-cell-content">
-                            <div class="progress-cell-quantity">${balanceSummary}</div>
-                            <div class="progress-cell-bar-container">
-                                <div class="progress-cell-bar">
-                                    <div class="progress-cell-balance" style="width: ${balanceSummary === 'NIL' ? '100%' : '100%'}"></div>
-                                </div>
-                            </div>
-                            <div class="progress-cell-percentage">${balanceSummary === 'NIL' ? '100%' : (100 - progressPercentage) + '%'}</div>
-                        </div>
-                    </div>
-                `;
-                
                 row.innerHTML = `
                     <td>${index + 1}</td>
                     <td class="vessel-name-voyage">${vessel.vesselName} / ${vessel.voyage}</td>
@@ -5423,48 +4378,14 @@
                     <td>${vessel.etd ? formatDateTimeWithDayShift(new Date(vessel.etd)) : 'N/A'}</td>
                     <td>${vessel.vesselType}</td>
                     <td>${vessel.commodity}</td>
-                    <td>${progressBarHTML}</td>
-                    <td>${completedCellHTML}</td>
-                    <td>${balanceCellHTML}</td>
+                    <td>${quantitySummary}</td>
+                    <td>${completedSummary}</td>
+                    <td>${balanceSummary}</td>
                     <td>${vessel.berth || 'N/A'}</td>
                     <td>${remarks}</td>
                 `;
                 tableBody.appendChild(row);
             });
-        }
-        
-        // Calculate total quantity value for progress bar (sum of all quantity fields)
-        function calculateTotalQuantityValue(quantity) {
-            if (!quantity) return 0;
-            
-            let total = 0;
-            
-            Object.values(quantity).forEach(tableData => {
-                Object.values(tableData).forEach(value => {
-                    if (typeof value === 'number') {
-                        total += value;
-                    }
-                });
-            });
-            
-            return total;
-        }
-        
-        // Calculate total completed value for progress bar (sum of all completed fields)
-        function calculateTotalCompletedValue(completed) {
-            if (!completed) return 0;
-            
-            let total = 0;
-            
-            Object.values(completed).forEach(tableData => {
-                Object.values(tableData).forEach(value => {
-                    if (typeof value === 'number') {
-                        total += value;
-                    }
-                });
-            });
-            
-            return total;
         }
         
         // Update inbound vessels table with date grouping and text blinking for overdue ETA
